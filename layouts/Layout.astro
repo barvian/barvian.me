@@ -1,4 +1,5 @@
 ---
+import '/assets/main.css'
 import { ViewTransitions } from 'astro:transitions'
 
 type Props = {
@@ -21,10 +22,29 @@ const {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ViewTransitions fallback="swap" />
-		<link href="/assets/main.css" rel="stylesheet" />
+		<ViewTransitions fallback="none" />
 	</head>
 	<body class={bodyClass}>	
 		<slot />
 	</body>
 </html>
+
+<script>
+  // Handle home -> project page transition
+  import { isTransitionBeforePreparationEvent } from "astro:transitions/client"
+
+  document.addEventListener('astro:before-preparation', (event) => {
+      if (!isTransitionBeforePreparationEvent(event)) return
+      
+      document.addEventListener('astro:after-preparation', () => {
+          const [doc, slug] = event.to.pathname === '/' ? [event.newDocument, event.from.pathname] : [document, event.to.pathname]
+          const project = doc.querySelector<HTMLAnchorElement>(`a[data-project][href="${slug}"]`)
+          if (!project) return
+          
+          project.dataset.project = 'active'
+          document.addEventListener('astro:page-load', () => {
+              project.dataset.project = ''
+          }, { once: true })
+      }, { once: true });
+  })
+</script>

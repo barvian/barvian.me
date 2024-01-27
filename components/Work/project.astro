@@ -1,16 +1,17 @@
 ---
-import { z } from 'astro:content'
-import { project } from '/schemas/work'
-import Video from '/components/Video.vue'
+import { type ProjectEntry } from '/schemas/work'
+import ProjectHero from '/components/ProjectHero.astro'
 
 type Props = {
-    slug: string
-    data: z.infer<typeof project>
+    entry: ProjectEntry
 }
 
-const { data, slug } = Astro.props
+const { entry } = Astro.props
+const { data, slug } = entry
 ---
 
-<a href={slug} class:list={['group outline-none', (data.usesLightBg || data.usesDarkBg) && 'relative after:absolute after:inset-0 after:size-full after:pointer-events-none', data.usesLightBg && 'after:bg-to-dark', data.usesDarkBg && 'dark:after:bg-to-light']}>
-    <Video class="w-full aspect-golden group-focus-visible:outline object-cover group-hover:scale-[1.02] group-hover:shadow-2xl dark:group-hover:shadow-none transition rounded-xl" client:load transition:persist={slug} style={{ viewTransitionName: slug }} src={data.video} muted playsinline loop autoplay poster={data.poster} />
+<a href={`/${slug}`} data-project class:list={['group group/card outline-none relative', (data.usesLightBg || data.usesDarkBg) && 'after:absolute after:inset-0 after:size-full after:pointer-events-none', data.usesLightBg && 'after:bg-to-dark', data.usesDarkBg && 'dark:after:bg-to-light']}>
+    <div class="absolute w-full top-0 group-data-[project=active]:[view-transition-name:project-header]" data-project-header role="none"></div>
+    <div class="absolute w-full bottom-0 group-data-[project=active]:[view-transition-name:project-content]" data-project-content role="none"></div>
+    <ProjectHero {entry} />
 </a>

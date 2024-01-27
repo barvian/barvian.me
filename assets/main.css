@@ -1,12 +1,48 @@
 @tailwind base;
+@tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: "Favorit";
-    src: url("/assets/ABCFavoritVariable-Trial.woff2") format("woff2-variations");
-}
-
 @layer base {
+    @font-face {
+        font-family: "Favorit";
+        src: url("/assets/ABCFavoritVariable-Trial.woff2") format("woff2-variations");
+    }
+    
+    ::view-transition-group(*) {
+        animation-duration: theme('transitionDuration.500');
+        animation-timing-function: theme('transitionTimingFunction.DEFAULT');
+    }
+
+    ::view-transition-new(project-hero),
+    ::view-transition-old(project-hero) {
+        /*
+            This is a persistent element, so let the new always show on top
+            See https://developer.chrome.com/docs/web-platform/view-transitions#making_the_most_of_content_you_already_have
+        */
+        animation: none;
+        mix-blend-mode: normal;
+    }
+
+    ::view-transition-old(works) {
+        animation-name: pushBack;
+    }
+
+    ::view-transition-new(works) {
+        animation-name: pushForward;
+    }
+
+    @keyframes pushBack {
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes pushForward {
+        from {
+            opacity: 0;
+        }
+    }
+
     *, *::before, *::after {
         min-width: 0;
         min-height: 0;

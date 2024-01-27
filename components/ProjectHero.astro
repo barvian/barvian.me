@@ -1,0 +1,24 @@
+---
+// Only here because the markup has to be the exact same because it's a shared element
+
+import { type ProjectEntry } from '/schemas/work'
+import Video from '/components/Video.vue'
+
+type Props = {
+    entry: ProjectEntry
+}
+
+const { entry } = Astro.props
+const { data, slug } = entry
+---
+
+<Video
+    class="w-full aspect-golden transition rounded-xl object-cover group-focus-visible/card:outline group-hover/card:scale-[1.02] group-hover/card:shadow-2xl dark:group-hover/card:shadow-none group-data-[project=active]:[view-transition-name:project-hero]"
+    client:load
+    transition:persist={slug}
+    src={data.video}
+    poster={data.poster}
+    muted playsinline
+    loop
+    autoplay
+/>

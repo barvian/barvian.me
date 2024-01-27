@@ -1,16 +1,15 @@
 ---
 import Logo from "/components/icons/Codrops.vue"
 import External from "/components/icons/External.vue"
-import { z } from 'astro:content'
-import { codrops } from '/schemas/work'
+import { type CodropsEntry } from '/schemas/work'
 import { Image } from 'astro:assets'
 import headshot from '/assets/headshot.jpeg'
 
 type Props = {
-    data: z.infer<typeof codrops>
+    entry: CodropsEntry
 }
 
-const { data } = Astro.props
+const { entry: { data } } = Astro.props
 ---
 
 <a class="group p-7 h-full rounded-xl text-white border-b-10 border-[#334BF7] flex flex-col gap-5 bg-[#0D1028] hover:bg-[#0A103E] transition hover:scale-[1.02] hover:shadow-2xl dark:hover:shadow-none" href={data.url}>

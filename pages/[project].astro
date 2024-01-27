@@ -1,0 +1,83 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content'
+import Layout from '/layouts/Layout.astro'
+import { type ProjectEntry } from '/schemas/work'
+import Button from '/components/Button.astro'
+import PauseButton from '/components/PauseButton.vue'
+import Back from '/components/icons/Back.vue'
+import ProjectHero from '/components/ProjectHero.astro'
+
+export async function getStaticPaths() {
+  const projects = await getCollection('works', ({ data }) => data.type === 'project')
+  return projects.map(entry => ({
+    params: { project: entry.slug },
+    props: { entry: entry as ProjectEntry }
+  }))
+}
+
+const { entry } = Astro.props
+const { data } = entry
+const { Content } = await entry.render()
+---
+
+<Layout bodyClass="container" title={`${data.title}, by Maxwell Barvian`}>
+    <header class="max-xl:max-w-prose max-xl:mx-auto max-xl:pt-[max(theme(padding.10),10vh)] xl:fixed xl:top-[max(theme(padding.10),10vh)] max-xl:mb-8">
+      <nav>
+        <a href="/" class="flex items-start gap-2 *:opacity-45 *:duration-150 *:transition-opacity *:hover:opacity-85">
+          <Back class="h-6" />
+          <span style="view-transition-name: name">Maxwell Barvian</span></a>
+      </nav>
+    </header>
+    <main>
+      <article class="xl:py-[max(theme(padding.10),10vh)] max-w-prose mx-auto">
+        <header class="mb-12" style="view-transition-name: project-header;">
+          <div class="flex items-center">
+            <div class="flex-1">
+              <h1 class="text-2xl font-medium">{data.title}</h1>
+              <div class="flex items-center text-sm mt-0.5"> 
+                {('for' in data) && <>
+                  <span>
+                    <span class="opacity-70">For</span>
+                    <a href=""></a>
+                  </span>
+                  <span class="opacity-70">·</span>
+                </>}
+                {('date' in data) && (
+                  <time pubdate datetime={data.date.toISOString()} class="opacity-70">
+                    {
+                      data.date.toLocaleDateString('en-us', {
+                        year: 'numeric',
+                        month: 'long'
+                      })
+                    }
+                  </time>
+                )}
+              </div>
+            </div>
+            <div class="flex gap-6">
+              {('repo' in data && data.repo) && (
+                <Button secondary icon="github" href={data.repo}>
+                </Button>
+              )}
+              {('url' in data && data.url) && (
+                <Button icon="external" href={data.url}>
+                  View live
+                </Button>
+              )}
+            </div>
+          </div>
+          {('video' in data && data.video) && (
+            <div class="relative mt-10 group" data-project="active">
+              <ProjectHero {entry} />
+              <div class="absolute bottom-5 right-5">
+                <PauseButton client:only="vue" />
+              </div>
+            </div>
+          )}
+        </header>
+        <div class="prose prose-lg dark:prose-invert" style="view-transition-name: project-content">
+          <Content />
+        </div>
+      </article>
+    </main>
+</Layout>

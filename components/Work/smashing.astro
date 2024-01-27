@@ -1,16 +1,15 @@
 ---
 import Logo from "/components/icons/Smashing.vue"
 import External from "/components/icons/External.vue"
-import { z } from 'astro:content'
-import { smashing } from '/schemas/work'
+import { type SmashingEntry } from '/schemas/work'
 import { Image } from 'astro:assets'
 import headshot from '/assets/headshot.jpeg'
 
 type Props = {
-    data: z.infer<typeof smashing>
+    entry: SmashingEntry
 }
 
-const { data } = Astro.props
+const { entry: { data } } = Astro.props
 ---
 
 <a class="group p-7 h-full rounded-xl overflow-hidden text-white pb-[calc(theme(padding.7)+theme(borderWidth.10))] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[theme(borderWidth.10)] after:bg-[image:--rainbow] relative flex flex-col gap-5 bg-[#162C35] hover:bg-[#19313c] transition hover:scale-[1.02] hover:shadow-2xl dark:hover:shadow-none" style="--rainbow: linear-gradient(90deg, #74C6EB 0%, #8586BC 19%, #D992BA 37%, #EE9697 51%, #F0947D 59.32%, #F4B886 67.71%, #FAEE9A 80.5%, #ACD39E 93.83%, #85C79A 100%)" href={data.url}>

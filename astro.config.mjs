@@ -8,7 +8,8 @@ import vue from "@astrojs/vue";
 export default defineConfig({
   integrations: [
     tailwind({
-      nesting: true
+      nesting: true,
+      applyBaseStyles: false
     }),
     svelte(),
     vue()
