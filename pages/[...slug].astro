@@ -18,7 +18,7 @@ const { Content } = await entry.render();
 ---
 
 <Layout bodyClass="container" title={`${entry.data.title}, by Maxwell Barvian`}>
-    <header class="max-md:pt-10 md:max-xl:pt-28 max-xl:max-w-prose max-xl:mx-auto xl:fixed xl:top-28 max-xl:mb-8">
+    <header class="max-md:pt-10 md:max-xl:pt-28 max-xl:max-w-prose max-xl:mx-auto xl:fixed xl:top-10 max-xl:mb-8">
       <nav>
         <a href="/" class="flex items-start gap-2 *:opacity-45 *:duration-150 *:transition-opacity *:hover:opacity-85"><Back class="h-6" /><span transition:name="name">Maxwell Barvian</span></a>
       </nav>
@@ -62,8 +62,8 @@ const { Content } = await entry.render();
             </div>
           </div>
           {('video' in entry.data) && (
-            <div class="relative aspect-golden overflow-hidden rounded-2xl mt-10">
-              <Video class="size-full object-cover" client:load transition:persist={entry.slug} style={{ viewTransitionName: entry.slug }}  src={entry.data.video} muted playsinline loop autoplay poster={entry.data.poster} />
+            <div class="relative mt-10">
+              <Video class="size-full object-cover overflow-hidden rounded-xl aspect-golden" client:load transition:persist={entry.slug} style={{ viewTransitionName: entry.slug }}  src={entry.data.video} muted playsinline loop autoplay poster={entry.data.poster} />
               <div class="absolute bottom-5 right-5">
                 <PauseButton client:only="vue" />
               </div>

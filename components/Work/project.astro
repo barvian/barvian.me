@@ -11,6 +11,6 @@ type Props = {
 const { data, slug } = Astro.props
 ---
 
-<a href={slug} class:list={[(data.usesLightBg || data.usesDarkBg) && 'relative after:absolute after:inset-0 after:size-full after:pointer-events-none', data.usesLightBg && 'after:bg-to-dark', data.usesDarkBg && 'dark:after:bg-to-light']}>
-    <Video class="size-full object-cover" client:load transition:persist={slug} style={{ viewTransitionName: slug }} src={data.video} muted playsinline loop autoplay poster={data.poster} />
+<a href={slug} class:list={['group outline-none', (data.usesLightBg || data.usesDarkBg) && 'relative after:absolute after:inset-0 after:size-full after:pointer-events-none', data.usesLightBg && 'after:bg-to-dark', data.usesDarkBg && 'dark:after:bg-to-light']}>
+    <Video class="w-full aspect-golden group-focus-visible:outline object-cover group-hover:scale-[1.02] group-hover:shadow-2xl dark:group-hover:shadow-none transition rounded-xl" client:load transition:persist={slug} style={{ viewTransitionName: slug }} src={data.video} muted playsinline loop autoplay poster={data.poster} />
 </a>
