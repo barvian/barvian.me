@@ -1,0 +1,16 @@
+---
+import { z } from 'astro:content'
+import { project } from '/schemas/work'
+import Video from '/components/Video.vue'
+
+type Props = {
+    slug: string
+    data: z.infer<typeof project>
+}
+
+const { data, slug } = Astro.props
+---
+
+<a href={slug} class:list={[(data.usesLightBg || data.usesDarkBg) && 'relative after:absolute after:inset-0 after:size-full after:pointer-events-none', data.usesLightBg && 'after:bg-to-dark', data.usesDarkBg && 'dark:after:bg-to-light']}>
+    <Video class="size-full object-cover" client:load transition:persist={slug} style={{ viewTransitionName: slug }} src={data.video} muted playsinline loop autoplay poster={data.poster} />
+</a>

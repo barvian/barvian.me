@@ -1,0 +1,32 @@
+---
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js'
+import External from '/components/icons/External.vue'
+import GitHub from './icons/GitHub.vue'
+
+type Props = {
+    href?: string
+    secondary?: boolean
+    icon?: 'external' | 'github'
+}
+const { href, secondary = false, icon } = Astro.props
+const Tag = href ? 'a' : 'button'
+
+let EndIcon: AstroComponentFactory | undefined, endIconClass: string | undefined,
+    StartIcon: AstroComponentFactory | undefined, startIconClass: string | undefined
+switch (icon) {
+    case 'external':
+        EndIcon = External
+        endIconClass = 'h-3'
+        break
+    case 'github':
+        StartIcon = GitHub
+        startIconClass = 'h-5'
+        break
+}
+---
+
+<Tag {href} class:list={['leading-snug h-12 font-medium rounded-full flex items-center justify-center gap-3', !Astro.slots.has('default') ? 'aspect-square' : [StartIcon ? 'pl-6' : 'pl-7', EndIcon ? 'pr-6' : 'pr-7'], secondary ? 'border border-current' : 'bg-black text-white dark:bg-white dark:text-black']}>
+    {StartIcon && <StartIcon class={startIconClass} />}
+    <slot />
+    {EndIcon && <EndIcon class={endIconClass} />}
+</Tag>

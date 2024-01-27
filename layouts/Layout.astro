@@ -1,0 +1,30 @@
+---
+import { ViewTransitions } from 'astro:transitions'
+
+type Props = {
+	title?: string
+	bodyClass?: string
+}
+
+const {
+	title = "Maxwell Barvian, Front-end Developer",
+	bodyClass
+} = Astro.props
+---
+
+<!doctype html>
+<html lang="en" class="bg-white text-black dark:bg-black dark:text-white antialiased">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<ViewTransitions fallback="swap" />
+		<link href="/assets/main.css" rel="stylesheet" />
+	</head>
+	<body class={bodyClass}>	
+		<slot />
+	</body>
+</html>

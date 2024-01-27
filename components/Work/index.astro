@@ -1,0 +1,24 @@
+---
+import { type AstroComponentFactory } from 'astro/runtime/server/index.js'
+import { getEntry } from 'astro:content'
+import mapObject from 'map-obj'
+const components = mapObject(
+	import.meta.glob<AstroComponentFactory>(
+		['./*.astro', '!./index.astro'],
+		{ eager: true, import: 'default' }
+	),
+	(file, val) => [file.substring(2, file.lastIndexOf('.')), val]
+)
+
+type Props = {
+	slug: string
+}
+
+const { slug } = Astro.props
+
+const entry = await getEntry('works', slug)
+if (!entry) throw new Error(`Could not find work with slug: ${slug}`)
+const Component = components[entry.data.type]
+---
+
+<Component {slug} data={entry.data}></Component>

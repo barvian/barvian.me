@@ -1,0 +1,36 @@
+---
+import Logo from "/components/icons/Smashing.vue"
+import External from "/components/icons/External.vue"
+import { z } from 'astro:content'
+import { smashing } from '/schemas/work'
+import { Image } from 'astro:assets'
+import headshot from '/assets/headshot.jpeg'
+
+type Props = {
+    data: z.infer<typeof smashing>
+}
+
+const { data } = Astro.props
+---
+
+<a class="group p-7 text-white border-b-10 flex flex-col gap-5 bg-[#162C35] hover:bg-[#19313c] transition-colors" style="border-image: linear-gradient(90deg, #74C6EB 0%, #8586BC 19%, #D992BA 37%, #EE9697 51%, #F0947D 59.32%, #F4B886 67.71%, #FAEE9A 80.5%, #ACD39E 93.83%, #85C79A 100%) 1;" href={data.url}>
+    <span class="flex gap-3.5 items-center">
+        <Logo class="w-5" />
+        <span class="text-[#F94962] uppercase text-sm whitespace-nowrap">
+            Smashing Magazine
+            <span class="overflow-hidden inline-block align-middle ml-[0.5em] -top-[0.0625em] relative">
+                <External class="h-[0.75em] -translate-x-full translate-y-[110%] group-hover:translate-y-0 group-hover:translate-x-0 transition-transform" />
+            </span>
+        </span>
+    </span>
+    <span class="flex-1 text-2xl/snug font-medium">{data.title}</span>
+    <span class="flex items-center gap-3.5">
+        <span class="scale-[84%] translate-x-[15%] -rotate-[11deg] transition-transform group-hover:rotate-0 overflow-hidden rounded-lg origin-bottom-left block size-fit">
+            <Image src={headshot} height="100" class="size-12 scale-[1.2] rotate-[11deg] transition-transform group-hover:rotate-0" alt="Headshot of Maxwell Barvian" />
+        </span>
+        <span class="flex-1 opacity-80">
+            <span class="font-light">written by</span>
+            <span>Maxwell Barvian</span>
+        </span>
+    </span>
+</a>

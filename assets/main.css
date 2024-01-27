@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Favorit";
+    src: url("/assets/ABCFavoritVariable-Trial.woff2") format("woff2-variations");
+}
+
+@layer base {
+    *, *::before, *::after {
+        min-width: 0;
+        min-height: 0;
+    }
+}
+
+@layer utilities {
+}
