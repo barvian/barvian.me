@@ -31,6 +31,7 @@ export default {
 				DEFAULT: 'cubic-bezier(.165,.84,.44,1)'
 			},
 			transitionDuration: {
+				350: '350ms',
 				DEFAULT: '400ms',
 				450: '450ms'
 			},

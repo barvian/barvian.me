@@ -12,11 +12,16 @@
         animation-duration: theme('transitionDuration.450'); /* verbose, but I like haing to use theme values */
         animation-timing-function: theme('transitionTimingFunction.DEFAULT');
     }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        transform-origin: top center;
+    }
     
     /* Exit animations */
     [data-astro-transition=forward]::view-transition-old(root),
     [data-astro-transition=forward]::view-transition-old(title) {
-        animation-duration: theme('transitionDuration.300');
+        animation-duration: theme('transitionDuration.350');
     }
 
     [data-astro-transition=forward]::view-transition-old(root) {
@@ -27,8 +32,8 @@
     [data-astro-transition=back]::view-transition-new(root),
     [data-astro-transition=back]::view-transition-new(title) {
         animation-timing-function: theme('transitionTimingFunction.out');
-        animation-duration: theme('transitionDuration.300');
-        animation-delay: calc(theme('transitionDuration.450') - theme('transitionDuration.300'))
+        animation-duration: theme('transitionDuration.350');
+        animation-delay: calc(theme('transitionDuration.450') - theme('transitionDuration.350'))
     }
 
     [data-astro-transition=back]::view-transition-new(root) {
@@ -55,14 +60,14 @@
 
     @keyframes push {
         to {
-            transform: translateY(2rem);
+            transform: scale(0.9);
             opacity: 0;
         }
     }
 
     @keyframes pop {
         from {
-            transform: translateY(2rem);
+            transform: scale(0.9);
             opacity: 0;
         }
     }
