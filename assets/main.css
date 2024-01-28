@@ -8,7 +8,9 @@
         src: url("/assets/ABCFavoritVariable-Trial.woff2") format("woff2-variations");
     }
     
-    ::view-transition-group(*) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
         animation-duration: theme('transitionDuration.450'); /* verbose, but I like haing to use theme values */
         animation-timing-function: theme('transitionTimingFunction.DEFAULT');
     }
@@ -20,7 +22,8 @@
     
     /* Exit animations */
     [data-astro-transition=forward]::view-transition-old(root),
-    [data-astro-transition=forward]::view-transition-old(title) {
+    [data-astro-transition=forward]::view-transition-old(title),
+    [data-astro-transition=forward]::view-transition-new(title) {
         animation-duration: theme('transitionDuration.350');
     }
 
@@ -28,20 +31,27 @@
         animation-name: push;
     }
 
+    [data-astro-transition=forward]::view-transition-new(root) {
+        animation: none;
+        opacity: 0
+    }
+
     /* Entrance animations */
     [data-astro-transition=back]::view-transition-new(root),
+    [data-astro-transition=back]::view-transition-old(title),
     [data-astro-transition=back]::view-transition-new(title) {
-        animation-timing-function: theme('transitionTimingFunction.out');
-        animation-duration: theme('transitionDuration.350');
-        animation-delay: calc(theme('transitionDuration.450') - theme('transitionDuration.350'))
+        /* animation-timing-function: theme('transitionTimingFunction.out'); */
+        /* animation-duration: theme('transitionDuration.350'); */
+        /* animation-delay: calc(theme('transitionDuration.450') - theme('transitionDuration.350')) */
     }
 
     [data-astro-transition=back]::view-transition-new(root) {
         animation-name: pop;
     }
 
-    ::view-transition-new(project-hero) {
-        animation-name: hero;
+    [data-astro-transition=back]::view-transition-old(root) {
+        animation: none;
+        opacity: 0
     }
 
     ::view-transition-old(project-hero) {
@@ -49,19 +59,19 @@
             This is a persistent element, so let the new always show on top
             See https://developer.chrome.com/docs/web-platform/view-transitions#making_the_most_of_content_you_already_have
         */
-        display: none;
+        animation: none;
+        opacity: 0
     }
 
-    @keyframes hero {
-        to {
-            box-shadow: none;
-        }
+    ::view-transition-new(project-hero) {
+        animation: none;
     }
 
     @keyframes push {
         to {
             transform: scale(0.9);
             opacity: 0;
+            /* filter: blur(30px) saturate(50%) */
         }
     }
 
@@ -69,6 +79,7 @@
         from {
             transform: scale(0.9);
             opacity: 0;
+            /* filter: blur(30px) saturate(50%) */
         }
     }
 

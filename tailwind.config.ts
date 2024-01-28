@@ -28,7 +28,9 @@ export default {
 				10: '10px'
 			},
 			transitionTimingFunction: {
-				DEFAULT: 'cubic-bezier(.165,.84,.44,1)'
+				out: 'cubic-bezier(.165,.84,.44,1)',
+				DEFAULT: 'cubic-bezier(.165,.84,.44,1)',
+				in: 'cubic-bezier(0.56, 0.00, 0.83, 0.16)'
 			},
 			transitionDuration: {
 				350: '350ms',
