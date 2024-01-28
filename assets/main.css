@@ -13,6 +13,18 @@
         animation-timing-function: theme('transitionTimingFunction.DEFAULT');
     }
 
+    [data-astro-transition=forward]::view-transition-old(root) {
+        animation-name: push;
+        animation-duration: theme('transitionDuration.300');
+    }
+
+    [data-astro-transition=back]::view-transition-new(root) {
+        animation-name: pop;
+        animation-timing-function: theme('transitionTimingFunction.out');
+        animation-duration: theme('transitionDuration.300');
+        animation-delay: calc(theme('transitionDuration.500') - theme('transitionDuration.300'))
+    }
+
     ::view-transition-new(project-hero) {
         animation-name: hero;
     }
@@ -25,28 +37,22 @@
         display: none;
     }
 
-    ::view-transition-old(works) {
-        animation-name: pushBack;
-    }
-
-    ::view-transition-new(works) {
-        animation-name: pushForward;
-    }
-
     @keyframes hero {
         to {
             box-shadow: none;
         }
     }
 
-    @keyframes pushBack {
+    @keyframes push {
         to {
+            transform: translateY(2rem);
             opacity: 0;
         }
     }
 
-    @keyframes pushForward {
+    @keyframes pop {
         from {
+            transform: translateY(2rem);
             opacity: 0;
         }
     }
