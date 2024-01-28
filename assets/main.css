@@ -12,17 +12,27 @@
         animation-duration: theme('transitionDuration.450'); /* verbose, but I like haing to use theme values */
         animation-timing-function: theme('transitionTimingFunction.DEFAULT');
     }
+    
+    /* Exit animations */
+    [data-astro-transition=forward]::view-transition-old(root),
+    [data-astro-transition=forward]::view-transition-old(title) {
+        animation-duration: theme('transitionDuration.300');
+    }
 
     [data-astro-transition=forward]::view-transition-old(root) {
         animation-name: push;
+    }
+
+    /* Entrance animations */
+    [data-astro-transition=back]::view-transition-new(root),
+    [data-astro-transition=back]::view-transition-new(title) {
+        animation-timing-function: theme('transitionTimingFunction.out');
         animation-duration: theme('transitionDuration.300');
+        animation-delay: calc(theme('transitionDuration.450') - theme('transitionDuration.300'))
     }
 
     [data-astro-transition=back]::view-transition-new(root) {
         animation-name: pop;
-        animation-timing-function: theme('transitionTimingFunction.out');
-        animation-duration: theme('transitionDuration.300');
-        animation-delay: calc(theme('transitionDuration.450') - theme('transitionDuration.300'))
     }
 
     ::view-transition-new(project-hero) {
@@ -60,5 +70,11 @@
     *, *::before, *::after {
         min-width: 0;
         min-height: 0;
+    }
+}
+
+@layer components {
+    .container {
+        @apply xl:px-8
     }
 }

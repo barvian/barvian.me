@@ -10,7 +10,7 @@ const { entry } = Astro.props
 const { data, slug } = entry
 ---
 
-<a href={`/${slug}`} data-project class:list={['group group/card outline-none relative', (data.usesLightBg || data.usesDarkBg) && 'after:absolute after:inset-0 after:size-full after:pointer-events-none', data.usesLightBg && 'after:bg-to-dark', data.usesDarkBg && 'dark:after:bg-to-light']}>
+<a href={`/${slug}`} aria-label={entry.data.title} data-project class:list={['group group/card outline-none relative', (data.usesLightBg || data.usesDarkBg) && 'after:absolute after:inset-0 after:size-full after:pointer-events-none', data.usesLightBg && 'after:bg-to-dark', data.usesDarkBg && 'dark:after:bg-to-light']}>
     <div class="absolute w-full top-0 group-data-[project=active]:[view-transition-name:project-header]" data-project-header role="none"></div>
     <div class="absolute w-full bottom-0 group-data-[project=active]:[view-transition-name:project-content]" data-project-content role="none"></div>
     <ProjectHero {entry} />
