@@ -33,18 +33,24 @@ const {
   // Handle home -> project page transition
   import { isTransitionBeforePreparationEvent } from "astro:transitions/client"
 
+  function markActiveProject(doc: Document, slug: string) {
+    const project = doc.querySelector<HTMLAnchorElement>(`a[data-project][href="${slug}"]`)
+    if (!project) return
+    
+    project.dataset.project = 'active'
+    document.addEventListener('astro:page-load', () => {
+        project.dataset.project = ''
+    }, { once: true })
+  }
+
   document.addEventListener('astro:before-preparation', (event) => {
-      if (!isTransitionBeforePreparationEvent(event)) return
-      
-      document.addEventListener('astro:after-preparation', () => {
-          const [doc, slug] = event.to.pathname === '/' ? [event.newDocument, event.from.pathname] : [document, event.to.pathname]
-          const project = doc.querySelector<HTMLAnchorElement>(`a[data-project][href="${slug}"]`)
-          if (!project) return
-          
-          project.dataset.project = 'active'
-          document.addEventListener('astro:page-load', () => {
-              project.dataset.project = ''
-          }, { once: true })
-      }, { once: true });
+    if (!isTransitionBeforePreparationEvent(event)) return
+
+    // If we're going to a project page, immediately mark the active project
+    if (event.from.pathname === '/') markActiveProject(document, event.to.pathname)
+    // Otherwise, if we're going home we have to wait for the homepage document to load
+    else document.addEventListener('astro:after-preparation', () => {
+      markActiveProject(event.newDocument, event.from.pathname)
+    }, { once: true });
   })
 </script>

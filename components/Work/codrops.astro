@@ -12,7 +12,7 @@ type Props = {
 const { entry: { data } } = Astro.props
 ---
 
-<a class="group p-7 h-full rounded-xl text-white border-b-10 border-[#334BF7] flex flex-col gap-5 bg-[#0D1028] hover:bg-[#0A103E] transition hover:scale-[1.02] hover:shadow-2xl dark:hover:shadow-none" href={data.url}>
+<a class="group p-7 h-full rounded-xl text-white border-b-10 border-[#334BF7] flex flex-col gap-5 bg-[#0D1028] hover:bg-[#0A103E] transition hover:scale-[1.02] active:scale-[1] active:duration-200 hover:shadow-2xl active:shadow-none dark:!shadow-none" href={data.url}>
     <span class="flex gap-3 justify-start items-center">
         <Logo class="h-6" />
         <span class="overflow-hidden relative top-[.0625rem]">

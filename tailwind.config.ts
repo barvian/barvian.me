@@ -1,5 +1,7 @@
 import { type Config } from 'tailwindcss'
+import plugin from 'tailwindcss/plugin'
 import typography from '@tailwindcss/typography'
+import { normalize } from 'tailwindcss/src/util/dataTypes'
 
 export default {
 	content: ['./{components,pages,layouts}/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -34,6 +36,18 @@ export default {
 		},
 	},
 	plugins: [
-		typography
+		typography,
+		plugin(({ matchVariant }) => {
+			// Override built-in to handle self
+			matchVariant('group-has', (value, { modifier }) => {
+				const mod = modifier ? `\\/${modifier}` : ''
+				const has = value ? `:has(${normalize(value)})` : ''
+				return `:merge(.group${mod})${has} &`
+			}, {
+				values: {
+					DEFAULT: null
+				}
+			})
+		})
 	]
 } satisfies Config

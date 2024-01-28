@@ -67,7 +67,7 @@ const { Content } = await entry.render()
             </div>
           </div>
           {('video' in data && data.video) && (
-            <div class="relative mt-10 group" data-project="active">
+            <div class="relative mt-10 group/hero">
               <ProjectHero {entry} />
               <div class="absolute bottom-5 right-5">
                 <PauseButton client:only="vue" />
