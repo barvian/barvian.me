@@ -18,6 +18,9 @@ export default {
 				'10vh': 'max(theme(padding.10),10vh)',
 				'12vh': 'max(theme(padding.12),12vh)'
 			}),
+			screens: {
+				md: '860px'
+			},
 			aspectRatio: {
 				golden: '1.618'
 			},

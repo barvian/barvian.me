@@ -1,4 +1,4 @@
-import { z, type CollectionEntry } from 'astro:content'
+import { z, reference, type CollectionEntry } from 'astro:content'
 
 export const project = z.object({
   type: z.literal('project'),
@@ -7,11 +7,11 @@ export const project = z.object({
   video: z.string(),
   usesLightBg: z.boolean().default(false),
   usesDarkBg: z.boolean().default(false),
-  for: z.string().optional(),
+  for: reference('companies').optional(),
   repo: z.string().optional(),
   url: z.string().url().optional(),
   date: z.date(),
-  using: z.array(z.string()).optional()
+  using: z.array(reference('tools')).optional()
 })
 
 export type ProjectEntry = CollectionEntry<'works'> & { data: z.infer<typeof project> }

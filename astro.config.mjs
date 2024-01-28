@@ -12,7 +12,11 @@ export default defineConfig({
       applyBaseStyles: false
     }),
     svelte(),
-    vue()
+    vue({
+      script: {
+        propsDestructure: true
+      }
+    })
   ],
   srcDir: './'
 });

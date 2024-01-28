@@ -1,0 +1,23 @@
+---
+// Like Astro's, except it inlines SVGs
+// https://github.com/withastro/astro/blob/main/packages/astro/components/Image.astro
+
+import type { ImageMetadata } from 'astro';
+import { Image as AstroImage, getImage, type LocalImageProps, type RemoteImageProps } from 'astro:assets';
+
+type Props = (LocalImageProps | RemoteImageProps) & {
+    src: ImageMetadata
+};
+
+const { alt, src, ...props } = Astro.props
+---
+
+{src.format === 'svg' ? (
+    // @ts-expect-error type issue
+    <svg {...props} aria-label={alt} style={{ aspectRatio: src.width/src.height }}>
+        <use xlink:href={`${src.src}#root`} />
+    </svg>
+) : (
+    // @ts-expect-error type issue
+    <AstroImage {src} {alt} {...props} />
+)}
