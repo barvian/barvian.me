@@ -9,7 +9,7 @@
     }
     
     ::view-transition-group(*) {
-        animation-duration: theme('transitionDuration.500');
+        animation-duration: theme('transitionDuration.450'); /* verbose, but I like haing to use theme values */
         animation-timing-function: theme('transitionTimingFunction.DEFAULT');
     }
 
@@ -22,7 +22,7 @@
         animation-name: pop;
         animation-timing-function: theme('transitionTimingFunction.out');
         animation-duration: theme('transitionDuration.300');
-        animation-delay: calc(theme('transitionDuration.500') - theme('transitionDuration.300'))
+        animation-delay: calc(theme('transitionDuration.450') - theme('transitionDuration.300'))
     }
 
     ::view-transition-new(project-hero) {
@@ -61,7 +61,4 @@
         min-width: 0;
         min-height: 0;
     }
-}
-
-@layer utilities {
 }
