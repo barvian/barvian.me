@@ -33,6 +33,11 @@ const {
   // Handle home -> project page transition
   import { isTransitionBeforePreparationEvent } from "astro:transitions/client"
 
+  // Fallback for unsupported browsers
+  // @ts-expect-error experimental prop
+  if (!document.startViewTransition)
+    addEventListener('beforeunload', () => sessionStorage.setItem('from', location.pathname))
+  
   function markActiveProject(doc: Document, slug: string) {
     const project = doc.querySelector<HTMLAnchorElement>(`a[data-project][href="${slug}"]`)
     if (!project) return
@@ -45,6 +50,7 @@ const {
 
   document.addEventListener('astro:before-preparation', (event) => {
     if (!isTransitionBeforePreparationEvent(event)) return
+    sessionStorage.setItem('from', event.from.pathname)
 
     // If we're going to a project page, immediately mark the active project
     if (event.from.pathname === '/') markActiveProject(document, event.to.pathname)

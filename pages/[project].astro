@@ -23,7 +23,7 @@ const { Content } = await entry.render()
 <Layout bodyClass="container" title={`${data.title}, by Maxwell Barvian`}>
     <header class="max-xl:max-w-prose max-xl:mx-auto max-xl:pt-10vh xl:fixed xl:top-10vh max-xl:mb-8">
       <nav>
-        <a href="/" class="flex items-start gap-2 group outline-none">
+        <a href="/" onclick="return sessionStorage.getItem('from') === '/' ? (history.back(), false) : undefined" class="flex items-start gap-2 group outline-none">
           <div class="w-fit opacity-45 duration-150 group-focus-visible:outline transition-opacity group-hover:opacity-85" style="view-transition-name: back"><Back class="h-6" /></div>
           <div class="relative">
             <span style="view-transition-name: name" class="opacity-45 duration-150 transition-opacity group-hover:opacity-85">Maxwell Barvian</span>
