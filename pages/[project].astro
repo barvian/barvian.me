@@ -21,7 +21,7 @@ const { Content } = await entry.render()
 ---
 
 <Layout bodyClass="container" title={`${data.title}, by Maxwell Barvian`}>
-    <header class="max-xl:max-w-prose max-xl:mx-auto max-xl:pt-[max(theme(padding.10),10vh)] xl:fixed xl:top-[max(theme(padding.10),10vh)] max-xl:mb-8">
+    <header class="max-xl:max-w-prose max-xl:mx-auto max-xl:pt-10vh xl:fixed xl:top-10vh max-xl:mb-8">
       <nav>
         <a href="/" class="flex items-start gap-2 *:opacity-45 *:duration-150 *:transition-opacity *:hover:opacity-85">
           <Back class="h-6" />
@@ -29,7 +29,7 @@ const { Content } = await entry.render()
       </nav>
     </header>
     <main>
-      <article class="xl:py-[max(theme(padding.10),10vh)] max-w-prose mx-auto">
+      <article class="pb-12vh xl:pt-10vh max-w-prose mx-auto">
         <header class="mb-12" style="view-transition-name: project-header;">
           <div class="flex items-center">
             <div class="flex-1">

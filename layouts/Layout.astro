@@ -24,7 +24,7 @@ const {
 		<title>{title}</title>
 		<ViewTransitions fallback="none" />
 	</head>
-	<body class={bodyClass}>	
+	<body class:list={[bodyClass, 'min-h-[100svh]']}>	
 		<slot />
 	</body>
 </html>

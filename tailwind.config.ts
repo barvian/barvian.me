@@ -14,6 +14,10 @@ export default {
 			fontFamily: {
 				sans: ['Favorit', 'sans-serif']
 			},
+			spacing: ({ theme }) => ({
+				'10vh': 'max(theme(padding.10),10vh)',
+				'12vh': 'max(theme(padding.12),12vh)'
+			}),
 			aspectRatio: {
 				golden: '1.618'
 			},
