@@ -52,11 +52,14 @@ const {
     if (!isTransitionBeforePreparationEvent(event)) return
     sessionStorage.setItem('from', event.from.pathname)
 
-    // If we're going to a project page, immediately mark the active project
+    // If we're going to a project page, immediately mark the active project...
     if (event.from.pathname === '/') markActiveProject(document, event.to.pathname)
-    // Otherwise, if we're going home we have to wait for the homepage document to load
-    else document.addEventListener('astro:after-preparation', () => {
-      markActiveProject(event.newDocument, event.from.pathname)
+    document.addEventListener('astro:after-preparation', () => {
+      // ...otherwise, if we're going home we have to wait for the homepage document to load
+      if (event.to.pathname === '/') markActiveProject(event.newDocument, event.from.pathname)
+      
+      event.newDocument.documentElement.dataset.transitionFrom = event.from.pathname
+      event.newDocument.documentElement.dataset.transitionTo = event.to.pathname
     }, { once: true });
   })
 </script>
