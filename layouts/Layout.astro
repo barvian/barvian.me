@@ -58,3 +58,80 @@ const {
     }, { once: true });
   })
 </script>
+
+<style is:global>
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+      animation-duration: theme('transitionDuration.450'); /* verbose, but I like haing to use theme values */
+      animation-timing-function: theme('transitionTimingFunction.DEFAULT');
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+      transform-origin: top center;
+  }
+  
+  /* Exit animations */
+  [data-transition-from="/"]::view-transition-old(root),
+  [data-transition-from="/"]::view-transition-old(title),
+  [data-transition-from="/"]::view-transition-new(title) {
+      animation-duration: theme('transitionDuration.350');
+  }
+
+  [data-transition-from="/"]::view-transition-old(root) {
+      animation-name: push;
+  }
+
+  [data-transition-from="/"]::view-transition-new(root) {
+      animation: none;
+      opacity: 0
+  }
+
+  /* Entrance animations */
+  [data-transition-to="/"]::view-transition-new(root),
+  [data-transition-to="/"]::view-transition-old(title),
+  [data-transition-to="/"]::view-transition-new(title) {
+      /* animation-timing-function: theme('transitionTimingFunction.out'); */
+      /* animation-duration: theme('transitionDuration.350'); */
+      /* animation-delay: calc(theme('transitionDuration.450') - theme('transitionDuration.350')) */
+  }
+
+  [data-transition-to="/"]::view-transition-new(root) {
+      animation-name: pop;
+  }
+
+  [data-transition-to="/"]::view-transition-old(root) {
+      animation: none;
+      opacity: 0
+  }
+
+  ::view-transition-old(project-hero) {
+      /*
+          This is a persistent element, so let the new always show on top
+          See https://developer.chrome.com/docs/web-platform/view-transitions#making_the_most_of_content_you_already_have
+      */
+      animation: none;
+      opacity: 0
+  }
+
+  ::view-transition-new(project-hero) {
+      animation: none;
+  }
+
+  @keyframes push {
+      to {
+          transform: scale(0.9);
+          opacity: 0;
+          /* filter: blur(30px) saturate(50%) */
+      }
+  }
+
+  @keyframes pop {
+      from {
+          transform: scale(0.9);
+          opacity: 0;
+          /* filter: blur(30px) saturate(50%) */
+      }
+  }
+</style>
