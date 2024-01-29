@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content'
 import Layout from '/layouts/Layout.astro'
 import { type ProjectEntry } from '/schemas/work'
 import Button from '../components/Button.vue'
-import Back from '/components/icons/Back.vue'
+import External from '../components/icons/External.vue'
 import ProjectHero from '/components/ProjectHero.astro'
 import { getEntry } from 'astro:content'
 import Image from '/components/Image.astro'
@@ -29,7 +29,7 @@ const { Content } = await entry.render()
         <a href="/" onclick="return document.documentElement.dataset.transitionFrom === '/' && history.state.index !== 0 ? (history.back(), false) : undefined" class="flex items-center gap-3.5 group outline-none w-fit">
           <div class="w-fit opacity-45 group-focus-visible:outline transition-opacity group-hover:opacity-85 group-active:duration-200 group-active:opacity-65" style="view-transition-name: back"><External class="h-2.5 rotate-225" /></div>
           <div class="relative">
-            <span style="view-transition-name: name" class="opacity-45 duration-150 transition-opacity group-hover:opacity-85">Maxwell Barvian</span>
+            <span style="view-transition-name: name" class="opacity-45 transition-opacity group-hover:opacity-85 group-active:duration-200 group-active:opacity-65">Maxwell Barvian</span>
             <span aria-hidden="true" class="invisible top-full left-0 absolute whitespace-nowrap" style="view-transition-name: title">Front-end Developer</span>
           </div>
         </a>

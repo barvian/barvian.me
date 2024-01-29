@@ -30,6 +30,9 @@ export default {
 			borderWidth: {
 				10: '10px'
 			},
+			rotate: {
+				'225': '225deg'
+			},
 			transitionTimingFunction: {
 				out: 'cubic-bezier(.165,.84,.44,1)',
 				DEFAULT: 'cubic-bezier(.165,.84,.44,1)',
