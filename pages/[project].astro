@@ -7,7 +7,6 @@ import External from '../components/icons/External.vue'
 import ProjectHero from '/components/ProjectHero.astro'
 import { getEntry } from 'astro:content'
 import Image from '/components/Image.astro'
-import { Image as AstroImage } from 'astro:assets'
 
 export async function getStaticPaths() {
   const projects = await getCollection('works', ({ data }) => data.type === 'project')
@@ -47,7 +46,7 @@ const { Content } = await entry.render()
                     <span class="opacity-70">For</span>
                     <a class="font-medium underline" href={company.data.url}>
                       {company.data.logo && (
-                        <Image class="h-3.5 inline-block align-middle relative -top-[0.0625rem] mr-1" alt={`${company.data.name} logo`} src={company.data.logo} />
+                        <Image class="max-sm:hidden h-3.5 inline-block align-middle relative -top-[0.0625rem] mr-1" alt={`${company.data.name} logo`} src={company.data.logo} />
                       )}{company.data.name}
                       </a>
                   </span>
@@ -55,17 +54,27 @@ const { Content } = await entry.render()
                 </>}
                 {data.date && (
                   <time pubdate datetime={data.date.toISOString()} class="opacity-70">
+                    <span class="max-sm:hidden">
+                      {
+                        data.date.toLocaleDateString('en-us', {
+                          month: 'long',
+                          year: 'numeric'
+                        })
+                      }
+                    </span>
+                    <span class="sm:hidden">
                     {
                       data.date.toLocaleDateString('en-us', {
-                        year: 'numeric',
-                        month: 'long'
+                        month: 'short',
+                        year: 'numeric'
                       })
                     }
+                    </span>
                   </time>
                 )}
               </div>
             </div>
-            <div class="flex gap-6">
+            <div class="flex gap-4 sm:gap-6">
               {data.repo && (
                 <Button client:load secondary icon="github" href={data.repo}>
                 </Button>
