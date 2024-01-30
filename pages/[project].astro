@@ -46,11 +46,12 @@ const { Content } = await entry.render()
                 {company && <>
                   <span>
                     <span class="opacity-70">For</span>
-                    <Link class="font-medium underline cursor-external" href={company.data.url}>
-                      {company.data.logo && (
-                        <Image class="max-sm:hidden h-3.5 inline-block align-middle relative -top-[0.0625rem] mr-1" alt={`${company.data.name} logo`} src={company.data.logo} />
-                      )}{company.data.name}
-                      </Link>
+                    {company.data.logo && (
+                      <Image class="max-sm:hidden h-3.5 inline-block align-middle relative -top-[0.0625rem]" alt={`${company.data.name} logo`} src={company.data.logo} />
+                    )}
+                    <Link class="font-medium link-underline cursor-external" href={company.data.url}>
+                      {company.data.name}
+                    </Link>
                   </span>
                   <span class="opacity-70">·</span>
                 </>}
@@ -100,7 +101,7 @@ const { Content } = await entry.render()
               {using?.map((tool) => <Button size="sm" preset="secondary" href={tool.data.url}>{tool.data.name}</Button>)}
             </div>
           )}
-          <div class="mt-10 prose prose-lg prose-neutral dark:prose-invert">
+          <div class="mt-10 prose prose-lg prose-a:link-underline prose-neutral dark:prose-invert">
             <Content components={{ a: Link }} />
           </div>
         </div>

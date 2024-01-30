@@ -18,4 +18,8 @@
     .container {
         @apply xl:px-8
     }
+
+    .link-underline {
+        @apply relative no-underline transition active:duration-200 active:opacity-80 inline-block before:absolute before:left-0 before:top-1/2 before:mt-[.6em] before:w-full before:h-[1px] before:bg-current before:opacity-35 dark:before:opacity-70 after:absolute after:left-0 after:top-1/2 after:mt-[.6em] after:w-full after:h-[1px] after:bg-current after:scale-x-0 after:transition after:hover:scale-x-100 after:origin-left
+    }
 }
