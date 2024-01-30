@@ -5,13 +5,18 @@
     import Dribbble from './icons/Dribbble.vue'
     import Email from './icons/Email.vue'
     import LinkedIn from './icons/LinkedIn.vue'
+    import { isExternal } from '/utils/url'
 
-    const { href, preset = 'primary', icon } = defineProps<{
+    
+    // Discriminated unions didn't work with Vue here:
+    const { href, preset = 'primary', size = 'md', icon } = defineProps<{
         href?: string
         preset?: 'primary' | 'secondary' | 'tertiary'
+        size?: 'sm' | 'md'
         icon?: 'external' | 'github' | 'x' | 'dribbble' | 'email' | 'linkedin'
-        target?: string
     }>()
+
+    const external = href && isExternal(href)
 
     const {
         Icon = undefined,
@@ -50,12 +55,14 @@
         :is="href ? 'a' : 'button'"
         ref="button"
         :href
-        :target
+        :rel="external ? 'external' : undefined"
+        :target="external ? '_blank' : undefined"
         :class="[
-            'transition group hover:scale-110 active:scale-100 active:duration-200 isolate overflow-clip relative *:pointer-events-none leading-snug h-12 font-medium rounded-full flex items-center justify-center gap-3',
-            target == '_blank' && icon !== 'external' && 'cursor-external',
+            size === 'md' ? 'h-12' : 'h-8',
+            'transition group hover:scale-110 active:scale-100 active:duration-200 isolate overflow-clip relative *:pointer-events-none leading-snug font-medium rounded-full flex items-center justify-center gap-3',
+            external && icon !== 'external' && 'cursor-external',
             $slots.default
-                ? 'px-7'
+                ? (size === 'md' ? 'px-7' : 'px-2.5 text-sm')
                 : 'aspect-square',
             preset === 'primary'
                 ? 'bg-black hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-white text-white dark:text-black'
@@ -63,7 +70,8 @@
         ]"
     >
         <component :is="Icon" :class="iconClassName" v-if="!iconRight && Icon" />
-        <span v-if="$slots.default" class="block relative overflow-hidden">
+        <slot v-if="preset !== 'primary'" />
+        <span v-else-if="$slots.default" class="block relative overflow-hidden">
             <span class="block group-hover:-translate-y-[108%] group-hover:skew-y-6 transition">
                 <slot />
             </span>

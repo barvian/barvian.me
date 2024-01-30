@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content'
+import { getCollection, getEntries } from 'astro:content'
 import Layout from '/layouts/Layout.astro'
 import { type ProjectEntry } from '/schemas/work'
 import Button from '../components/Button.vue'
@@ -7,6 +7,7 @@ import External from '../components/icons/External.vue'
 import ProjectHero from '/components/ProjectHero.astro'
 import { getEntry } from 'astro:content'
 import Image from '/components/Image.astro'
+import Link from '/components/Link.vue'
 
 export async function getStaticPaths() {
   const projects = await getCollection('works', ({ data }) => data.type === 'project')
@@ -19,6 +20,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props
 const { data } = entry
 const company = data.for && await getEntry(data.for)
+const using = data.using && await getEntries(data.using)
 const { Content } = await entry.render()
 ---
 
@@ -36,7 +38,7 @@ const { Content } = await entry.render()
     </header>
     <main>
       <article class="pb-12vh xl:pt-10vh max-w-prose mx-auto">
-        <header class="mb-10" style="view-transition-name: project-header;">
+        <header style="view-transition-name: project-header;">
           <div class="flex items-center">
             <div class="flex-1">
               <h1 class="text-2xl font-medium">{data.title}</h1>
@@ -44,11 +46,11 @@ const { Content } = await entry.render()
                 {company && <>
                   <span>
                     <span class="opacity-70">For</span>
-                    <a class="font-medium underline" href={company.data.url}>
+                    <Link class="font-medium underline cursor-external" href={company.data.url}>
                       {company.data.logo && (
                         <Image class="max-sm:hidden h-3.5 inline-block align-middle relative -top-[0.0625rem] mr-1" alt={`${company.data.name} logo`} src={company.data.logo} />
                       )}{company.data.name}
-                      </a>
+                      </Link>
                   </span>
                   <span class="opacity-70">·</span>
                 </>}
@@ -76,11 +78,11 @@ const { Content } = await entry.render()
             </div>
             <div class="flex gap-4 sm:gap-6">
               {data.repo && (
-                <Button preset="secondary" icon="github" target="_blank" href={data.repo}/>
+                <Button preset="secondary" icon="github" href={data.repo}/>
               )}
               {data.url && <>
-                <Button class="sm:hidden" icon="external" target="_blank" href={data.url}/>
-                <Button class="max-sm:hidden" icon="external" target="_blank" href={data.url}>
+                <Button class="sm:hidden" icon="external" href={data.url}/>
+                <Button class="max-sm:hidden" icon="external" href={data.url}>
                   View live
                 </Button>
               </>}
@@ -92,8 +94,15 @@ const { Content } = await entry.render()
             </div>
           )}
         </header>
-        <div class="prose prose-lg prose-neutral dark:prose-invert" style="view-transition-name: project-content">
-          <Content />
+        <div style="view-transition-name: project-content">
+          {using && (
+            <div role="group" aria-label="Tools used" class="opacity-70 flex flex-wrap gap-3 mt-10">
+              {using?.map((tool) => <Button size="sm" preset="secondary" href={tool.data.url}>{tool.data.name}</Button>)}
+            </div>
+          )}
+          <div class="mt-10 prose prose-lg prose-neutral dark:prose-invert">
+            <Content components={{ a: Link }} />
+          </div>
         </div>
       </article>
     </main>

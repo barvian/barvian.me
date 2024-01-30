@@ -12,7 +12,7 @@ type Props = {
 const { entry: { data } } = Astro.props
 ---
 
-<a class="group p-7 sm:aspect-golden rounded-xl overflow-hidden text-white pb-[calc(theme(padding.7)+theme(borderWidth.10))] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[theme(borderWidth.10)] after:bg-[image:--rainbow] relative flex flex-col gap-5 md:gap-4 bg-[#162C35] hover:bg-[#19313c] transition hover:scale-[1.025] active:scale-[1] active:shadow-none active:duration-200 hover:shadow-xl dark:!shadow-none" style="--rainbow: linear-gradient(90deg, #74C6EB 0%, #8586BC 19%, #D992BA 37%, #EE9697 51%, #F0947D 59.32%, #F4B886 67.71%, #FAEE9A 80.5%, #ACD39E 93.83%, #85C79A 100%)" href={data.url}>
+<a rel="external" target="_blank" class="group p-7 sm:aspect-golden rounded-xl overflow-hidden text-white pb-[calc(theme(padding.7)+theme(borderWidth.10))] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[theme(borderWidth.10)] after:bg-[image:--rainbow] relative flex flex-col gap-5 md:gap-4 bg-[#162C35] hover:bg-[#19313c] transition hover:scale-[1.025] active:scale-[1] active:shadow-none active:duration-200 hover:shadow-xl dark:!shadow-none" style="--rainbow: linear-gradient(90deg, #74C6EB 0%, #8586BC 19%, #D992BA 37%, #EE9697 51%, #F0947D 59.32%, #F4B886 67.71%, #FAEE9A 80.5%, #ACD39E 93.83%, #85C79A 100%)" href={data.url}>
     <span class="flex gap-3.5 h-6 items-center">
         <Logo class="w-5" />
         <span class="text-[#F94962] uppercase text-sm whitespace-nowrap">

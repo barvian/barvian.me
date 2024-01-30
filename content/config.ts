@@ -20,8 +20,7 @@ const toolsCollection = defineCollection({
   type: 'data',
   schema: ({ image }) => z.object({
     name: z.string(),
-    url: z.string().url(),
-    logo: image().optional()
+    url: z.string().url()
   })
 })
 
