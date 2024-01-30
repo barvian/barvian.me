@@ -52,16 +52,14 @@
         :href
         :target
         :class="[
-            'transition group isolate overflow-clip relative *:pointer-events-none leading-snug h-12 font-medium rounded-full flex items-center justify-center gap-3',
+            'transition group hover:scale-110 active:scale-100 active:duration-200 isolate overflow-clip relative *:pointer-events-none leading-snug h-12 font-medium rounded-full flex items-center justify-center gap-3',
             target == '_blank' && icon !== 'external' && 'cursor-external',
             $slots.default
                 ? 'px-7'
                 : 'aspect-square',
             preset === 'primary'
                 ? 'bg-black hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-white text-white dark:text-black'
-                : preset === 'secondary'
-                ? 'shadow-[inset_0_0_0_1px] shadow-black/20 hover:shadow-black/35 dark:shadow-white/45 dark:hover:shadow-white/65'
-                : 'hover:bg-black/5 dark:hover:bg-white/20'
+                : ['hover:bg-black/5 dark:hover:bg-white/20', preset === 'secondary' && 'border border-black/20 dark:border-white/45']
         ]"
     >
         <component :is="Icon" :class="iconClassName" v-if="!iconRight && Icon" />
