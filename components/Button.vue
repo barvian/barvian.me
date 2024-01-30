@@ -52,7 +52,7 @@
         :href
         :target
         :class="[
-            'transition hover:scale-110 active:scale-100 active:duration-200 group isolate overflow-clip relative *:pointer-events-none leading-snug h-12 font-medium rounded-full flex items-center justify-center gap-3',
+            'transition group isolate overflow-clip relative *:pointer-events-none leading-snug h-12 font-medium rounded-full flex items-center justify-center gap-3',
             target == '_blank' && icon !== 'external' && 'cursor-external',
             $slots.default
                 ? 'px-7'
