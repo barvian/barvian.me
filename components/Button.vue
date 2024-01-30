@@ -15,38 +15,32 @@
 
     const {
         Icon = undefined,
-        iconAttr = undefined,
+        iconClassName = '',
         iconRight = false,
-        bgClassName = '[--bg:theme(colors.neutral.800)] dark:[--bg:theme(colors.neutral.100)]',
-        textClassName = 'hover:text-white dark:hover:text-black'
     } = icon ? ({
         github: {
             Icon: GitHub,
-            iconAttr: { class: 'h-5' }
+            iconClassName: 'h-5'
         },
         x: {
             Icon: X,
-            iconAttr: { class: 'h-4' }
+            iconClassName: 'h-4'
         },
         linkedin: {
             Icon: LinkedIn,
-            iconAttr: { class: 'h-5' },
-            bgClassName: '[--bg:#0a66c2]',
-            textClassName: 'hover:text-white'
+            iconClassName: 'h-5'
         },
         email: {
             Icon: Email,
-            iconAttr: { class: 'h-4' }
+            iconClassName: 'h-4'
         },
         dribbble: {
             Icon: Dribbble,
-            iconAttr: { class: 'h-5' },
-            bgClassName: '[--bg:#ea4c89]',
-            textClassName: 'hover:text-white'
+            iconClassName: 'h-5'
         },
         external: {
             Icon: External,
-            iconAttr: { class: 'h-3' },
+            iconClassName: 'h-3',
             iconRight: true
         }
     } as const)[icon] : {}
@@ -58,17 +52,19 @@
         :href
         :target
         :class="[
-            'group isolate overflow-clip hover:scale-110 active:duration-200 active:scale-100 relative *:pointer-events-none leading-snug h-12 font-medium rounded-full flex items-center justify-center gap-3',
+            'transition hover:scale-110 active:scale-100 active:duration-200 group isolate overflow-clip relative *:pointer-events-none leading-snug h-12 font-medium rounded-full flex items-center justify-center gap-3',
             target == '_blank' && icon !== 'external' && 'cursor-external',
             $slots.default
                 ? 'px-7'
-                : 'aspect-square before:absolute before:-z-10 before:size-full before:inset-0 before:bg-[--bg] before:transition-[transform,opacity] hover:before:duration-[theme(transitionDuration.DEFAULT),theme(transitionDuration.100)] before:scale-[.85] before:opacity-0 hover:before:opacity-100 hover:before:scale-100 before:rounded-full',
+                : 'aspect-square',
             preset === 'primary'
-                ? 'transition bg-black hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-white text-white dark:text-black'
-                : [bgClassName, textClassName, 'transition hover:duration-100', preset === 'secondary' && 'shadow-[inset_0_0_0_1px] shadow-black/20 hover:shadow-transparent dark:shadow-white/45']
+                ? 'bg-black hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-white text-white dark:text-black'
+                : preset === 'secondary'
+                ? 'shadow-[inset_0_0_0_1px] shadow-black/20 hover:shadow-black/35 dark:shadow-white/45 dark:hover:shadow-white/65'
+                : 'hover:bg-black/5 dark:hover:bg-white/20'
         ]"
     >
-        <component :is="Icon" v-bind="iconAttr" v-if="!iconRight && Icon" />
+        <component :is="Icon" :class="iconClassName" v-if="!iconRight && Icon" />
         <span v-if="$slots.default" class="block relative overflow-hidden">
             <span class="block group-hover:-translate-y-[108%] group-hover:skew-y-6 transition">
                 <slot />
@@ -77,6 +73,6 @@
                 <slot />
             </span>
         </span>
-        <component :is="Icon" v-bind="iconAttr" v-if="iconRight && Icon" />
+        <component :is="Icon" :class="iconClassName" v-if="iconRight && Icon" />
     </component>
 </template>
