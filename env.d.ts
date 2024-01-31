@@ -8,3 +8,9 @@ interface CSSStyleDeclaration {
 declare module 'tailwindcss/src/util/dataTypes' {
     export function normalize(value: string): string
 }
+
+declare namespace astroHTML.JSX {
+    interface TimeHTMLAttributes {
+        pubdate: boolean
+    }
+}
