@@ -14,10 +14,10 @@ export default {
 			fontFamily: {
 				sans: ['Favorit', 'sans-serif']
 			},
-			spacing: ({ theme }) => ({
+			spacing: {
 				'10vh': 'max(theme(padding.10),10vh)',
 				'12vh': 'max(theme(padding.12),12vh)'
-			}),
+			},
 			screens: {
 				md: '860px'
 			},
@@ -54,7 +54,7 @@ export default {
 	},
 	plugins: [
 		typography,
-		plugin(({ matchVariant, matchUtilities }) => {
+		plugin(({ matchVariant }) => {
 			// Override built-in to handle self
 			matchVariant('group-has', (value, { modifier }) => {
 				const mod = modifier ? `\\/${modifier}` : ''

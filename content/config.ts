@@ -1,6 +1,5 @@
 import { z, defineCollection } from 'astro:content'
 import worksSchema from '/schemas/work'
-import type { ImageMetadata } from 'astro'
 
 const worksCollection = defineCollection({
   type: 'content',
@@ -18,7 +17,7 @@ const companiesCollection = defineCollection({
 
 const toolsCollection = defineCollection({
   type: 'data',
-  schema: ({ image }) => z.object({
+  schema: z.object({
     name: z.string(),
     url: z.string().url()
   })

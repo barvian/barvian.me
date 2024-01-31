@@ -3,7 +3,7 @@
 // https://github.com/withastro/astro/blob/main/packages/astro/components/Image.astro
 
 import type { ImageMetadata } from 'astro';
-import { Image as AstroImage, getImage, type LocalImageProps, type RemoteImageProps } from 'astro:assets';
+import { Image as AstroImage, type LocalImageProps, type RemoteImageProps } from 'astro:assets';
 
 type Props = (LocalImageProps | RemoteImageProps) & {
     src: ImageMetadata
