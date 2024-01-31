@@ -1,6 +1,6 @@
 ---
 import { type ProjectEntry } from '/schemas/work'
-import ProjectHero from '/components/ProjectHero.astro'
+import ProjectHero from '/components/ProjectVideo.vue'
 
 type Props = {
     entry: ProjectEntry
@@ -13,5 +13,5 @@ const { data, slug } = entry
 <a href={`/${slug}`} aria-label={entry.data.title} data-project class:list={['group group/card outline-none relative', (data.usesLightBg || data.usesDarkBg) && 'after:absolute after:inset-0 after:size-full after:pointer-events-none', data.usesLightBg && 'after:bg-to-dark', data.usesDarkBg && 'dark:after:bg-to-light']}>
     <div class="absolute w-full top-0 group-data-[project=active]:[view-transition-name:project-header]" role="none"></div>
     <div class="absolute w-full bottom-0 group-data-[project=active]:[view-transition-name:project-content]" role="none"></div>
-    <ProjectHero {entry} />
+    <ProjectHero {slug} {data} client:load transition:persist={`${slug}-hero`} />
 </a>

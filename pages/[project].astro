@@ -2,9 +2,9 @@
 import { getCollection, getEntries } from 'astro:content'
 import Layout from '/layouts/Layout.astro'
 import { type ProjectEntry } from '/schemas/work'
-import Button from '../components/Button.vue'
-import External from '../components/icons/External.vue'
-import ProjectHero from '/components/ProjectHero.astro'
+import Button from '/components/Button.vue'
+import External from '/components/icons/External.vue'
+import ProjectHero from '/components/ProjectVideo.vue'
 import { getEntry } from 'astro:content'
 import Image from '/components/Image.astro'
 import Link from '/components/Link.vue'
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props
-const { data } = entry
+const { data, slug } = entry
 const company = data.for && await getEntry(data.for)
 const using = data.using && await getEntries(data.using)
 const { Content } = await entry.render()
@@ -91,7 +91,7 @@ const { Content } = await entry.render()
           </div>
           {data.video && (
             <div class="relative mt-10 group/hero">
-              <ProjectHero {entry} />
+              <ProjectHero {slug} {data} client:load transition:persist={`${slug}-hero`} />
             </div>
           )}
         </header>

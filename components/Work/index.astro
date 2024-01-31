@@ -5,7 +5,7 @@ import mapObject from 'map-obj'
 const components = mapObject(
 	import.meta.glob<AstroComponentFactory>(
 		['./*.astro', '!./index.astro'],
-		{ eager: true, import: 'default' }
+		{ import: 'default' }
 	),
 	(file, val) => [file.substring(2, file.lastIndexOf('.')), val]
 )
@@ -16,7 +16,7 @@ const { slug } = Astro.props
 
 const entry = await getEntry('works', slug)
 if (!entry) throw new Error(`Could not find work with slug: ${slug}`)
-const Component = components[entry.data.type]
+const Component = await components[entry.data.type]()
 ---
 
 <Component {entry} />

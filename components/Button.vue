@@ -6,10 +6,10 @@
     import Email from './icons/Email.vue'
     import LinkedIn from './icons/LinkedIn.vue'
     import { isExternal } from '/utils/url'
-
     
     // Discriminated unions didn't work with Vue here:
-    const { href, preset = 'primary', size = 'md', icon } = defineProps<{
+    const { class: className, href, preset = 'primary', size = 'md', icon } = defineProps<{
+        class?: string, // Astro's type checking doesn't like Vue's fallthrough attributes
         href?: string
         preset?: 'primary' | 'secondary' | 'tertiary'
         size?: 'sm' | 'md'
@@ -58,6 +58,7 @@
         :rel="external ? 'external' : undefined"
         :target="external ? '_blank' : undefined"
         :class="[
+            className,
             size === 'md' ? 'h-12' : 'h-8',
             'transition group hover:scale-110 active:scale-100 active:duration-200 isolate overflow-clip relative *:pointer-events-none leading-snug font-medium rounded-full flex items-center justify-center gap-3',
             external && icon !== 'external' && 'cursor-external',

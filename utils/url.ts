@@ -1,9 +1,10 @@
-let currentUrl: URL
-export const getCurrentUrl = () => typeof window === 'undefined' ? currentUrl : location
-export const setCurrentUrl = (url: URL) => currentUrl = url
+import { url } from '/stores/page'
 
-export const isExternal = (href: string) => {
-    if (href.trim().startsWith('mailto:')) return false
-    const url = getCurrentUrl()
-    return new URL(href, url.origin).origin !== url.origin
+export const isExternal = (href: string | URL) => {
+    if (typeof href === 'string')
+        return href.trim().startsWith('mailto:')
+            ? false
+            : new URL(href, url.value?.origin).origin !== url.value?.origin
+
+    return href.origin !== url.value?.origin
 }

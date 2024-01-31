@@ -1,0 +1,25 @@
+diff --git a/node_modules/astro/dist/transitions/events.js b/node_modules/astro/dist/transitions/events.js
+index 6e5a119..88610ea 100644
+--- a/node_modules/astro/dist/transitions/events.js
++++ b/node_modules/astro/dist/transitions/events.js
+@@ -111,7 +111,7 @@ async function doPreparation(from, to, direction, navigationType, sourceElement,
+ async function doSwap(afterPreparation, viewTransition, defaultSwap) {
+   const event = new TransitionBeforeSwapEvent(afterPreparation, viewTransition, defaultSwap);
+   document.dispatchEvent(event);
+-  event.swap();
++  await event.swap();
+   return event;
+ }
+ export {
+diff --git a/node_modules/astro/dist/transitions/router.js b/node_modules/astro/dist/transitions/router.js
+index aa3c332..6af79a3 100644
+--- a/node_modules/astro/dist/transitions/router.js
++++ b/node_modules/astro/dist/transitions/router.js
+@@ -380,6 +380,7 @@ async function transition(direction, from, to, options, historyState) {
+   viewTransition.finished.then(() => {
+     document.documentElement.removeAttribute(DIRECTION_ATTR);
+     document.documentElement.removeAttribute(OLD_NEW_ATTR);
++    triggerEvent('astro:after-transition')
+   });
+   await viewTransition.ready;
+ }

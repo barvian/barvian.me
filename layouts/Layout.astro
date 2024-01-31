@@ -30,32 +30,46 @@ const {
 </html>
 
 <script>
-  // Handle home -> project page transition
-  import { isTransitionBeforePreparationEvent } from "astro:transitions/client"
-  
-  function markActiveProject(doc: Document, slug: string) {
-    const project = doc.querySelector<HTMLAnchorElement>(`a[data-project][href="${slug}"]`)
-    if (!project) return
-    
-    project.dataset.project = 'active'
-    document.addEventListener('astro:page-load', () => {
-        project.dataset.project = ''
-    }, { once: true })
-  }
+   import { isTransitionBeforePreparationEvent, isTransitionBeforeSwapEvent } from "astro:transitions/client"
+    import { nextTick } from "vue"
+
+    function markActiveProject(doc: Document, slug: string) {
+      const project = doc.querySelector<HTMLAnchorElement>(`a[data-project][href="${slug}"]`)
+      if (!project) return
+      
+      project.dataset.project = 'active'
+      document.addEventListener('astro:page-load', () => {
+          project.dataset.project = ''
+      }, { once: true })
+    }
 
   document.addEventListener('astro:before-preparation', (event) => {
     if (!isTransitionBeforePreparationEvent(event)) return
-    // NOTE: can't destructure event
-    
+
     // If we're going to a project page, immediately mark the active project...
     if (event.from.pathname === '/') markActiveProject(document, event.to.pathname)
     document.addEventListener('astro:after-preparation', () => {
-      // ...otherwise, if we're going home we have to wait for the homepage document to load
-      if (event.to.pathname === '/') markActiveProject(event.newDocument, event.from.pathname)
-      
-      event.newDocument.documentElement.dataset.transitionFrom = event.from.pathname
-      event.newDocument.documentElement.dataset.transitionTo = event.to.pathname
-    }, { once: true });
+        // ...otherwise, if we're going home we have to wait for the homepage document to load
+        if (event.to.pathname === '/') markActiveProject(event.newDocument, event.from.pathname)
+        
+        event.newDocument.documentElement.dataset.transitionFrom = event.from.pathname
+        event.newDocument.documentElement.dataset.transitionTo = event.to.pathname
+    }, { once: true })
+  })
+
+  // Flush pending Vue changes before swapping
+  document.addEventListener('astro:before-swap', (event) => {
+    if (!isTransitionBeforeSwapEvent(event)) return
+    const defaultSwap = event.swap
+    event.swap = async () => {
+        await nextTick()
+        defaultSwap()
+    }
+  })
+
+  document.addEventListener('astro:after-transition', () => {
+    delete document.documentElement.dataset.transitionFrom
+    delete document.documentElement.dataset.transitionTo
   })
 </script>
 

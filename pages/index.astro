@@ -1,7 +1,6 @@
 ---
 import Layout from '/layouts/Layout.astro'
 import Work from '/components/Work/index.astro'
-import PauseButton from '/components/PauseButton.vue'
 import Header from '/components/Header.vue'
 ---
 
@@ -16,7 +15,4 @@ import Header from '/components/Header.vue'
             <li><Work slug="humblecast" /></li>
         </ol>
     </main>
-    <div class="fixed bottom-6 right-6">
-        <PauseButton client:only="vue" />
-    </div>
 </Layout>

@@ -1,9 +1,9 @@
-import { z, reference, type CollectionEntry } from 'astro:content'
+import { z, reference, type CollectionEntry, type SchemaContext } from 'astro:content'
 
-export const project = z.object({
+export const project = ({ image }: SchemaContext) => z.object({
   type: z.literal('project'),
   title: z.string(),
-  poster: z.string(),
+  poster: image(),
   video: z.string(),
   usesLightBg: z.boolean().default(false),
   usesDarkBg: z.boolean().default(false),
@@ -14,7 +14,7 @@ export const project = z.object({
   using: z.array(reference('tools')).optional()
 })
 
-export type ProjectEntry = CollectionEntry<'works'> & { data: z.infer<typeof project> }
+export type ProjectEntry = CollectionEntry<'works'> & { data: z.infer<ReturnType<typeof project>> }
 
 export const smashing = z.object({
   type: z.literal('smashing'),
@@ -32,8 +32,8 @@ export const codrops = z.object({
 
 export type CodropsEntry = CollectionEntry<'works'> & { data: z.infer<typeof codrops> }
 
-export default z.discriminatedUnion('type', [
-  project,
+export default (context: SchemaContext) => z.discriminatedUnion('type', [
+  project(context),
   smashing,
   codrops 
 ])
