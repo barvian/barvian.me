@@ -30,6 +30,10 @@ export default {
 			borderRadius: {
 				xl: '0.625rem'
 			},
+			boxShadow: {
+				'2xl': '0px 18px 36px -18px rgba(0,0,0,0.1),0px 30px 45px -30px rgba(50,50,93,0.25)'
+				// '2xl': '0 40px 30px -15px rgba(0,0,0,.25)'
+			},
 			borderWidth: {
 				10: '10px'
 			},
