@@ -20,7 +20,7 @@ const {
 	playsinline: boolean
 	loop: boolean
 	autoplay: boolean
-	src: string
+	src: Record<string, string>
 	poster: ImageMetadata
 }>()
 
@@ -36,14 +36,15 @@ const transitioning = useTransitioning()
 	>
 		<video
 			:poster="poster.src"
-			:src
 			:muted
 			:loop
 			:playsinline
 			:autoplay
 			v-if="forcePlay || (!transitioning && inView)"
 			class="size-full object-cover object-top"
-		/>
+		>
+			<source v-for="[type, s] in Object.entries(src)" :src="s" :type />
+		</video>
 		<img :src="poster.src" class="size-full object-cover object-top" v-else />
 	</div>
 </template>

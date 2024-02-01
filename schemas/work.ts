@@ -5,7 +5,7 @@ export const project = ({ image }: SchemaContext) =>
 		type: z.literal('project'),
 		title: z.string(),
 		poster: image(),
-		video: z.string(),
+		video: z.record(z.string(), z.string()),
 		demo: z
 			.union([
 				z.string(),
