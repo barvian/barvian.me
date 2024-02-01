@@ -14,6 +14,17 @@
     }
 }
 
+@layer utilities {
+    .overlap {
+        display: grid;
+        grid-template-areas: "overlap";
+
+        & > * {
+            grid-area: overlap
+        }
+    }
+}
+
 @layer components {
     .container {
         @apply xl:px-8

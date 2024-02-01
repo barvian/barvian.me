@@ -1,6 +1,10 @@
 /// <reference path=".astro/types.d.ts" />
 /// <reference types="astro/client" />
 
+interface Window {
+    __PROJECTS_WITH_DEMOS__: string[]
+}
+
 interface CSSStyleDeclaration {
     viewTransitionName: string
 }

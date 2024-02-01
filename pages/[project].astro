@@ -8,6 +8,9 @@ import ProjectHero from '/components/ProjectVideo.vue'
 import { getEntry } from 'astro:content'
 import Image from '/components/Image.astro'
 import Link from '/components/Link.vue'
+import * as path from 'node:path'
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js'
+import pkg from '/package.json'
 
 export async function getStaticPaths() {
   const projects = await getCollection('works', ({ data }) => data.type === 'project')
@@ -22,6 +25,14 @@ const { data, slug } = entry
 const company = data.for && await getEntry(data.for)
 const using = data.using && await getEntries(data.using)
 const { Content } = await entry.render()
+
+const demoBasename = data.demo && (typeof data.demo === 'string' ? data.demo : data.demo.astroComponentBasename)
+const repo = data.repo ?? (data.demo && (typeof data.demo === 'object' && data.demo.main
+  ? `https://github.com/${pkg.repository}/tree/main${path.resolve(`/content/${entry.collection}/${path.dirname(entry.id)}`, data.demo.main)}`
+  : `https://github.com/${pkg.repository}/tree/main/content/${entry.collection}/${path.dirname(entry.id)}/${demoBasename}.astro`
+))
+// Rules for analyzable dynamic imports: https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
+const Demo = demoBasename && (await import(`../content/${entry.collection}/${path.dirname(entry.id)}/${demoBasename}.astro`)).default as AstroComponentFactory
 ---
 
 <Layout bodyClass="container" title={`${data.title}, by Maxwell Barvian`}>
@@ -78,8 +89,11 @@ const { Content } = await entry.render()
               </div>
             </div>
             <div class="flex gap-4 sm:gap-6">
-              {data.repo && (
-                <Button preset="secondary" icon="github" href={data.repo}/>
+              {repo && (
+                <Button
+                  preset="secondary" icon="github"
+                  href={repo}
+                />
               )}
               {data.url && <>
                 <Button class="sm:hidden" icon="external" href={data.url}/>
@@ -89,7 +103,11 @@ const { Content } = await entry.render()
               </>}
             </div>
           </div>
-          {data.video && (
+          {Demo ? (
+            <div class="@container rounded-2xl overflow-clip aspect-golden mt-10" style="view-transition-name: project-hero">
+              <Demo />
+            </div>
+          ) : (
             <div class="relative mt-10 group/hero">
               <ProjectHero {slug} {data} client:load transition:persist={`${slug}-hero`} />
             </div>

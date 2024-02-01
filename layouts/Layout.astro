@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content'
 import '/assets/main.css'
 import { ViewTransitions } from 'astro:transitions'
 
@@ -11,6 +12,9 @@ const {
 	title = "Maxwell Barvian, Front-end Developer",
 	bodyClass
 } = Astro.props
+
+const projectsWithDemos = (await getCollection('works', ({ data }) => data.type === 'project' && data.demo))
+    .map(project => project.slug)
 ---
 
 <!doctype html>
@@ -29,6 +33,10 @@ const {
 	</body>
 </html>
 
+<script define:vars={{ projectsWithDemos }}>
+    window.__PROJECTS_WITH_DEMOS__ = projectsWithDemos
+</script>
+
 <script>
    import { isTransitionBeforePreparationEvent, isTransitionBeforeSwapEvent } from "astro:transitions/client"
     import { nextTick } from "vue"
@@ -36,6 +44,7 @@ const {
     function markActiveProject(doc: Document, slug: string) {
       const project = doc.querySelector<HTMLAnchorElement>(`a[data-project][href="${slug}"]`)
       if (!project) return
+      window.__PROJECTS_WITH_DEMOS__
       
       project.dataset.project = 'active'
       document.addEventListener('astro:page-load', () => {
@@ -52,6 +61,10 @@ const {
         // ...otherwise, if we're going home we have to wait for the homepage document to load
         if (event.to.pathname === '/') markActiveProject(event.newDocument, event.from.pathname)
         
+        if (
+            window.__PROJECTS_WITH_DEMOS__.includes(event.to.pathname.substring(1))
+            || window.__PROJECTS_WITH_DEMOS__.includes(event.from.pathname.substring(1))
+        ) event.newDocument.documentElement.dataset.transitionHasDemo = ''
         event.newDocument.documentElement.dataset.transitionFrom = event.from.pathname
         event.newDocument.documentElement.dataset.transitionTo = event.to.pathname
     }, { once: true })
@@ -68,6 +81,7 @@ const {
   })
 
   document.addEventListener('astro:after-transition', () => {
+    delete document.documentElement.dataset.transitionHasDemo
     delete document.documentElement.dataset.transitionFrom
     delete document.documentElement.dataset.transitionTo
   })
@@ -120,7 +134,7 @@ const {
       opacity: 0
   }
 
-  ::view-transition-old(project-hero) {
+  :not([data-transition-has-demo])::view-transition-old(project-hero) {
       /*
           This is a persistent element, so let the new always show on top
           See https://developer.chrome.com/docs/web-platform/view-transitions#making_the_most_of_content_you_already_have
@@ -129,7 +143,7 @@ const {
       opacity: 0
   }
 
-  ::view-transition-new(project-hero) {
+  :not([data-transition-has-demo])::view-transition-new(project-hero) {
       animation: none;
   }
 

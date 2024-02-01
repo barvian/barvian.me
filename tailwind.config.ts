@@ -2,9 +2,10 @@ import { type Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 import typography from '@tailwindcss/typography'
 import { normalize } from 'tailwindcss/src/util/dataTypes'
+import containerQueries from '@tailwindcss/container-queries'
 
 export default {
-	content: ['./{components,pages,layouts}/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	content: ['./{components,pages,content,layouts}/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		container: {
 			center: true,
@@ -53,6 +54,7 @@ export default {
 		},
 	},
 	plugins: [
+		containerQueries,
 		typography,
 		plugin(({ matchVariant }) => {
 			// Override built-in to handle self

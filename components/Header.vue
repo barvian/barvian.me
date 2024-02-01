@@ -2,12 +2,13 @@
     import { ref } from 'vue';
     import Button from '/components/Button.vue'
     import { vOnClickOutside } from '@vueuse/components';
-    import { breakpointsTailwind, useBreakpoints, useMediaQuery } from '@vueuse/core'
+    import { breakpointsTailwind, useBreakpoints, useMediaQuery, useMounted } from '@vueuse/core'
     const breakpoints = useBreakpoints(breakpointsTailwind)
     const canHover = useMediaQuery('(hover: hover)')
 
     const socialExpanded = ref(false)
     const maxSm = breakpoints.smaller('sm')
+    const isMounted = useMounted()
 </script>
 <template>
     <header class="container py-10vh flex justify-between items-center">
@@ -25,7 +26,7 @@
                     <Button class="-z-30" icon="dribbble" href="https://dribbble.com/barvian" preset="tertiary" />
                     <Button class="-z-40" icon="x" href="https://x.com/mbarvian" preset="tertiary" />
                 </nav>
-                <button aria-controls="social" v-if="!canHover && maxSm && !socialExpanded" @click="socialExpanded = true" :aria-expanded="socialExpanded ? 'true' : 'false'" class="absolute inset-0 size-full" />
+                <button aria-controls="social" v-if="isMounted && !canHover && maxSm && !socialExpanded" @click="socialExpanded = true" :aria-expanded="socialExpanded ? 'true' : 'false'" class="absolute inset-0 size-full" />
             </div>
         </div>
     </header>

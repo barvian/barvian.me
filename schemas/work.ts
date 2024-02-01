@@ -5,6 +5,10 @@ export const project = ({ image }: SchemaContext) => z.object({
   title: z.string(),
   poster: image(),
   video: z.string(),
+  demo: z.union([z.string(), z.object({
+    astroComponentBasename: z.string(),
+    main: z.string().optional()
+  })]).optional(),
   usesLightBg: z.boolean().default(false),
   usesDarkBg: z.boolean().default(false),
   for: reference('companies').optional(),
