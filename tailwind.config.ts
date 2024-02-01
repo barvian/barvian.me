@@ -18,8 +18,8 @@ export default {
 				sans: ['Favorit', 'sans-serif']
 			},
 			spacing: {
-				'10vh': 'max(theme(padding.10),10vh)',
-				'12vh': 'max(theme(padding.12),12vh)'
+				'8vh': 'max(theme(padding.8),8vh)',
+				'10vh': 'max(theme(padding.10),10vh)'
 			},
 			screens: {
 				md: '860px'
