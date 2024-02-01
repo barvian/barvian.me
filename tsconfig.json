@@ -1,11 +1,12 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": {
-    "paths": {
-      "/*": [
-        "./*"
-      ]
-    },
-    "jsx": "preserve"
-  }
+	"extends": "astro/tsconfigs/strict",
+	"exclude": ["dist"], // not sure why this isn't set by default
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": true,
+		"paths": {
+			"/*": ["./*"]
+		},
+		"jsx": "preserve"
+	}
 }

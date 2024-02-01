@@ -3,10 +3,7 @@ import { type AstroComponentFactory } from 'astro/runtime/server/index.js'
 import { getEntry, type CollectionEntry } from 'astro:content'
 import mapObject from 'map-obj'
 const components = mapObject(
-	import.meta.glob<AstroComponentFactory>(
-		['./*.astro', '!./index.astro'],
-		{ import: 'default' }
-	),
+	import.meta.glob<AstroComponentFactory>(['./*.astro', '!./index.astro'], { import: 'default' }),
 	(file, val) => [file.substring(2, file.lastIndexOf('.')), val]
 )
 

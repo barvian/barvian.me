@@ -1,30 +1,44 @@
 ---
-import Logo from "/components/icons/Codrops.vue"
-import External from "/components/icons/External.vue"
+import Logo from '/components/icons/Codrops.vue'
+import External from '/components/icons/External.vue'
 import { type CodropsEntry } from '/schemas/work'
 import { Image } from 'astro:assets'
 import headshot from '/assets/headshot.jpeg'
 
 type Props = {
-    entry: CodropsEntry
+	entry: CodropsEntry
 }
 
-const { entry: { data } } = Astro.props
+const {
+	entry: { data }
+} = Astro.props
 ---
 
-<a rel="external" target="_blank" class="group p-7 sm:aspect-golden rounded-xl text-white border-b-10 border-[#334BF7] flex flex-col gap-5 md:gap-4 bg-[#0D1028] hover:bg-[#0A103E] transition hover:scale-[1.025] active:scale-[1] active:duration-200 hover:shadow-xl active:shadow-none dark:!shadow-none" href={data.url}>
-    <span class="flex gap-3 justify-start items-center">
-        <Logo class="h-6" />
-        <span class="overflow-hidden relative top-[.0625rem]">
-            <External class="h-[0.7rem] -translate-x-full translate-y-[110%] group-hover:translate-y-0 group-hover:translate-x-0 transition-transform" />
-        </span>
-    </span>
-    <span class="text-2xl/snug font-medium sm:line-clamp-2">{data.title}</span>
-    <span class="flex items-center gap-3.5 mt-auto">
-        <Image src={headshot} height="100" class="size-9 rounded-full object-cover" alt="Headshot of Maxwell Barvian" />
-        <span class="flex-1 opacity-80">
-            <span class="font-light">by</span>
-            <span>Maxwell Barvian</span>
-        </span>
-    </span>
+<a
+	rel="external"
+	target="_blank"
+	class="group flex flex-col gap-5 rounded-xl border-b-10 border-[#334BF7] bg-[#0D1028] p-7 text-white transition hover:scale-[1.025] hover:bg-[#0A103E] hover:shadow-xl active:scale-[1] active:shadow-none active:duration-200 sm:aspect-golden md:gap-4 dark:!shadow-none"
+	href={data.url}
+>
+	<span class="flex items-center justify-start gap-3">
+		<Logo class="h-6" />
+		<span class="relative top-[.0625rem] overflow-hidden">
+			<External
+				class="h-[0.7rem] -translate-x-full translate-y-[110%] transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
+			/>
+		</span>
+	</span>
+	<span class="text-2xl/snug font-medium sm:line-clamp-2">{data.title}</span>
+	<span class="mt-auto flex items-center gap-3.5">
+		<Image
+			src={headshot}
+			height="100"
+			class="size-9 rounded-full object-cover"
+			alt="Headshot of Maxwell Barvian"
+		/>
+		<span class="flex-1 opacity-80">
+			<span class="font-light">by</span>
+			<span>Maxwell Barvian</span>
+		</span>
+	</span>
 </a>

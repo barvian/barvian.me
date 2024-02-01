@@ -13,116 +13,158 @@ import type { AstroComponentFactory } from 'astro/runtime/server/index.js'
 import pkg from '/package.json'
 
 export async function getStaticPaths() {
-  const projects = await getCollection('works', ({ data }) => data.type === 'project')
-  return projects.map(entry => ({
-    params: { project: entry.slug },
-    props: { entry: entry as ProjectEntry }
-  }))
+	const projects = await getCollection('works', ({ data }) => data.type === 'project')
+	return projects.map((entry) => ({
+		params: { project: entry.slug },
+		props: { entry: entry as ProjectEntry }
+	}))
 }
 
 const { entry } = Astro.props
 const { data, slug } = entry
-const company = data.for && await getEntry(data.for)
-const using = data.using && await getEntries(data.using)
+const company = data.for && (await getEntry(data.for))
+const using = data.using && (await getEntries(data.using))
 const { Content } = await entry.render()
 
-const demoBasename = data.demo && (typeof data.demo === 'string' ? data.demo : data.demo.astroComponentBasename)
-const repo = data.repo ?? (data.demo && (typeof data.demo === 'object' && data.demo.main
-  ? `https://github.com/${pkg.repository}/tree/main${path.resolve(`/content/${entry.collection}/${path.dirname(entry.id)}`, data.demo.main)}`
-  : `https://github.com/${pkg.repository}/tree/main/content/${entry.collection}/${path.dirname(entry.id)}/${demoBasename}.astro`
-))
+const demoBasename =
+	data.demo && (typeof data.demo === 'string' ? data.demo : data.demo.astroComponentBasename)
+const repo =
+	data.repo ??
+	(data.demo &&
+		(typeof data.demo === 'object' && data.demo.main
+			? `https://github.com/${pkg.repository}/tree/main${path.resolve(`/content/${entry.collection}/${path.dirname(entry.id)}`, data.demo.main)}`
+			: `https://github.com/${pkg.repository}/tree/main/content/${entry.collection}/${path.dirname(entry.id)}/${demoBasename}.astro`))
 // Rules for analyzable dynamic imports: https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
-const Demo = demoBasename && (await import(`../content/${entry.collection}/${path.dirname(entry.id)}/${demoBasename}.astro`)).default as AstroComponentFactory
+const Demo =
+	demoBasename &&
+	((await import(`../content/${entry.collection}/${path.dirname(entry.id)}/${demoBasename}.astro`))
+		.default as AstroComponentFactory)
 ---
 
 <Layout bodyClass="container" title={`${data.title}, by Maxwell Barvian`}>
-    <header class="max-xl:max-w-prose max-xl:mx-auto max-xl:pt-10vh xl:fixed xl:top-10vh max-xl:mb-8">
-      <nav>
-        <a href="/" onclick="return document.documentElement.dataset.transitionFrom === '/' && history.state.index > 0 ? (history.back(), false) : undefined" class="flex items-center gap-3.5 group outline-none w-fit">
-          <div class="w-fit opacity-45 group-focus-visible:outline transition-opacity group-hover:opacity-85 group-active:duration-200 group-active:opacity-65" style="view-transition-name: back"><External class="h-2.5 rotate-225" /></div>
-          <div class="relative">
-            <span style="view-transition-name: name" class="opacity-45 transition-opacity group-hover:opacity-85 group-active:duration-200 group-active:opacity-65">Maxwell Barvian</span>
-            <span aria-hidden="true" class="invisible top-full left-0 absolute whitespace-nowrap" style="view-transition-name: title">Front-end Developer</span>
-          </div>
-        </a>
-      </nav>
-    </header>
-    <main>
-      <article class="pb-12vh xl:pt-10vh max-w-prose mx-auto">
-        <header style="view-transition-name: project-header;">
-          <div class="flex items-center">
-            <div class="flex-1">
-              <h1 class="text-2xl font-medium">{data.title}</h1>
-              <div class="flex items-center gap-2 text-sm mt-0.5"> 
-                {company && <>
-                  <span>
-                    <span class="opacity-70">For</span>
-                    {company.data.logo && (
-                      <Image class="max-sm:hidden h-3.5 inline-block align-middle relative -top-[0.0625rem]" alt={`${company.data.name} logo`} src={company.data.logo} />
-                    )}
-                    <Link class="font-medium link-underline cursor-external" href={company.data.url}>
-                      {company.data.name}
-                    </Link>
-                  </span>
-                  <span class="opacity-70">·</span>
-                </>}
-                {data.date && (
-                  <time pubdate datetime={data.date.toISOString()} class="opacity-70">
-                    <span class="max-sm:hidden">
-                      {
-                        data.date.toLocaleDateString('en-us', {
-                          month: 'long',
-                          year: 'numeric'
-                        })
-                      }
-                    </span>
-                    <span class="sm:hidden">
-                    {
-                      data.date.toLocaleDateString('en-us', {
-                        month: 'short',
-                        year: 'numeric'
-                      })
-                    }
-                    </span>
-                  </time>
-                )}
-              </div>
-            </div>
-            <div class="flex gap-4 sm:gap-6">
-              {repo && (
-                <Button
-                  preset="secondary" icon="github"
-                  href={repo}
-                />
-              )}
-              {data.url && <>
-                <Button class="sm:hidden" icon="external" href={data.url}/>
-                <Button class="max-sm:hidden" icon="external" href={data.url}>
-                  View live
-                </Button>
-              </>}
-            </div>
-          </div>
-          {Demo ? (
-            <div class="@container rounded-2xl overflow-clip aspect-golden mt-10" style="view-transition-name: project-hero">
-              <Demo />
-            </div>
-          ) : (
-            <div class="relative mt-10 group/hero">
-              <ProjectHero {slug} {data} client:load transition:persist={`${slug}-hero`} />
-            </div>
-          )}
-        </header>
-        <div style="view-transition-name: project-content">
-          {using && (
-            <div role="group" aria-label="Tools used" class="opacity-70 flex flex-wrap gap-3 mt-10">
-              {using?.map((tool) => <Button size="sm" preset="secondary" href={tool.data.url}>{tool.data.name}</Button>)}
-            </div>
-          )}
-          <div class="mt-10 prose prose-lg prose-a:link-underline prose-neutral dark:prose-invert">
-            <Content components={{ a: Link }} />
-          </div>
-        </div>
-      </article>
-    </main>
+	<header class="max-xl:mx-auto max-xl:mb-8 max-xl:max-w-prose max-xl:pt-10vh xl:fixed xl:top-10vh">
+		<nav>
+			<a
+				href="/"
+				onclick="return document.documentElement.dataset.transitionFrom === '/' && history.state.index > 0 ? (history.back(), false) : undefined"
+				class="group flex w-fit items-center gap-3.5 outline-none"
+			>
+				<div
+					class="w-fit opacity-45 transition-opacity group-hover:opacity-85 group-focus-visible:outline group-active:opacity-65 group-active:duration-200"
+					style="view-transition-name: back"
+				>
+					<External class="h-2.5 rotate-225" />
+				</div>
+				<div class="relative">
+					<span
+						style="view-transition-name: name"
+						class="opacity-45 transition-opacity group-hover:opacity-85 group-active:opacity-65 group-active:duration-200"
+						>Maxwell Barvian</span
+					>
+					<span
+						aria-hidden="true"
+						class="invisible absolute left-0 top-full whitespace-nowrap"
+						style="view-transition-name: title">Front-end Developer</span
+					>
+				</div>
+			</a>
+		</nav>
+	</header>
+	<main>
+		<article class="mx-auto max-w-prose pb-12vh xl:pt-10vh">
+			<header style="view-transition-name: project-header;">
+				<div class="flex items-center">
+					<div class="flex-1">
+						<h1 class="text-2xl font-medium">{data.title}</h1>
+						<div class="mt-0.5 flex items-center gap-2 text-sm">
+							{
+								company && (
+									<>
+										<span>
+											<span class="opacity-70">For</span>
+											{company.data.logo && (
+												<Image
+													class="relative -top-[0.0625rem] inline-block h-3.5 align-middle max-sm:hidden"
+													alt={`${company.data.name} logo`}
+													src={company.data.logo}
+												/>
+											)}
+											<Link
+												class="link-underline cursor-external font-medium"
+												href={company.data.url}
+											>
+												{company.data.name}
+											</Link>
+										</span>
+										<span class="opacity-70">·</span>
+									</>
+								)
+							}
+							{
+								data.date && (
+									<time pubdate datetime={data.date.toISOString()} class="opacity-70">
+										<span class="max-sm:hidden">
+											{data.date.toLocaleDateString('en-us', {
+												month: 'long',
+												year: 'numeric'
+											})}
+										</span>
+										<span class="sm:hidden">
+											{data.date.toLocaleDateString('en-us', {
+												month: 'short',
+												year: 'numeric'
+											})}
+										</span>
+									</time>
+								)
+							}
+						</div>
+					</div>
+					<div class="flex gap-4 sm:gap-6">
+						{repo && <Button preset="secondary" icon="github" href={repo} />}
+						{
+							data.url && (
+								<>
+									<Button class="sm:hidden" icon="external" href={data.url} />
+									<Button class="max-sm:hidden" icon="external" href={data.url}>
+										View live
+									</Button>
+								</>
+							)
+						}
+					</div>
+				</div>
+				{
+					Demo ? (
+						<div
+							class="mt-10 aspect-golden overflow-clip rounded-2xl @container"
+							style="view-transition-name: project-hero"
+						>
+							<Demo />
+						</div>
+					) : (
+						<div class="group/hero relative mt-10">
+							<ProjectHero {slug} {data} client:load transition:persist={`${slug}-hero`} />
+						</div>
+					)
+				}
+			</header>
+			<div style="view-transition-name: project-content">
+				{
+					using && (
+						<div role="group" aria-label="Tools used" class="mt-10 flex flex-wrap gap-3 opacity-70">
+							{using?.map((tool) => (
+								<Button size="sm" preset="secondary" href={tool.data.url}>
+									{tool.data.name}
+								</Button>
+							))}
+						</div>
+					)
+				}
+				<div class="prose-a:link-underline prose prose-lg prose-neutral mt-10 dark:prose-invert">
+					<Content components={{ a: Link }} />
+				</div>
+			</div>
+		</article>
+	</main>
 </Layout>
