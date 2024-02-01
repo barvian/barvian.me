@@ -42,8 +42,8 @@ const transitioning = useTransitioning()
 			:playsinline
 			:autoplay
 			v-if="forcePlay || (!transitioning && inView)"
-			class="size-full object-cover"
+			class="size-full object-cover object-top"
 		/>
-		<img :src="poster.src" class="size-full object-cover" v-else />
+		<img :src="poster.src" class="size-full object-cover object-top" v-else />
 	</div>
 </template>
