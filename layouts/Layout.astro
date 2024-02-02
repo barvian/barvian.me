@@ -92,9 +92,10 @@ const projectsWithDemos = (
 	})
 
 	document.addEventListener('astro:after-transition', () => {
-		delete document.documentElement.dataset.transitionHasDemo
-		delete document.documentElement.dataset.transitionFrom
 		delete document.documentElement.dataset.transitionTo
+		// Don't delete these, because they get used in back button:
+		// delete document.documentElement.dataset.transitionHasDemo
+		// delete document.documentElement.dataset.transitionFrom
 	})
 </script>
 
