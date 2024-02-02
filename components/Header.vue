@@ -56,6 +56,7 @@ const isMounted = useMounted()
 				</nav>
 				<button
 					aria-controls="social"
+					aria-label="Toggle social links"
 					v-if="isMounted && !canHover && maxSm && !socialExpanded"
 					@click="socialExpanded = true"
 					:aria-expanded="socialExpanded ? 'true' : 'false'"
