@@ -14,6 +14,11 @@
 		min-width: 0;
 		min-height: 0;
 	}
+
+	/* Opera's video buttons */
+	#detach-button-host {
+		display: none !important;
+	}
 }
 
 @layer utilities {
