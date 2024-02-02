@@ -45,6 +45,6 @@ const transitioning = useTransitioning()
 		>
 			<source v-for="[type, s] in Object.entries(src)" :src="s" :type />
 		</video>
-		<img :src="poster.src" class="size-full object-cover object-top" v-else />
+		<img :src="poster.src" alt="" class="size-full object-cover object-top" v-else />
 	</div>
 </template>

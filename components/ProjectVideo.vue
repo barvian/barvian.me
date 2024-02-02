@@ -8,9 +8,10 @@ defineOptions({
 	inheritAttrs: false
 })
 
-const { data, slug } = defineProps<{
-	data: ProjectEntry['data']
+const { src, poster, slug } = defineProps<{
 	slug: ProjectEntry['slug']
+	src: ProjectEntry['data']['video']
+	poster: ImageMetadata
 }>()
 
 const transitioning = useTransitioning()
@@ -23,8 +24,8 @@ const hasDemo = typeof window !== 'undefined' && window.__PROJECTS_WITH_DEMOS__.
 			(transitioning?.from.pathname === '/' + slug && !hasDemo) ||
 			transitioning?.to.pathname === '/' + slug
 		"
-		:src="data.video"
-		:poster="data.poster"
+		:src
+		:poster
 		muted
 		playsinline
 		loop

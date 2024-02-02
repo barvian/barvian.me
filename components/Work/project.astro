@@ -1,6 +1,6 @@
 ---
 import { type ProjectEntry } from '/schemas/work'
-import ProjectHero from '/components/ProjectVideo.vue'
+import ProjectVideo from '/components/ProjectVideo.astro'
 
 type Props = {
 	entry: ProjectEntry
@@ -32,5 +32,5 @@ const { data, slug } = entry
 		role="none"
 	>
 	</div>
-	<ProjectHero {slug} {data} client:load transition:persist={`${slug}-hero`} />
+	<ProjectVideo {entry} />
 </a>
