@@ -15,8 +15,6 @@ export const project = ({ image }: SchemaContext) =>
 				})
 			])
 			.optional(),
-		usesLightBg: z.boolean().default(false),
-		usesDarkBg: z.boolean().default(false),
 		for: reference('companies').optional(),
 		repo: z.string().optional(),
 		url: z.string().url().optional(),

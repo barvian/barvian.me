@@ -14,13 +14,7 @@ const { data, slug } = entry
 	href={`/${slug}`}
 	aria-label={entry.data.title}
 	data-project
-	class:list={[
-		'group/card group relative outline-none',
-		(data.usesLightBg || data.usesDarkBg) &&
-			'after:pointer-events-none after:absolute after:inset-0 after:size-full',
-		data.usesLightBg && 'after:bg-to-dark',
-		data.usesDarkBg && 'dark:after:bg-to-light'
-	]}
+	class="group/card group relative outline-none"
 >
 	<div
 		class="absolute top-0 w-full group-data-[project=active]:[view-transition-name:project-header]"
