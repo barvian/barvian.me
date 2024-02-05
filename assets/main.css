@@ -5,7 +5,18 @@
 @layer base {
 	@font-face {
 		font-family: 'Favorit';
-		src: url('/assets/ABCFavoritVariable-Trial.woff2') format('woff2-variations');
+		src:
+			url('/assets/ABCFavorit-Regular.woff2') format('woff2'),
+			url('/assets/ABCFavorit-Regular.woff') format('woff');
+		font-weight: theme(fontWeight.normal);
+	}
+
+	@font-face {
+		font-family: 'Favorit';
+		src:
+			url('/assets/ABCFavorit-Medium.woff2') format('woff2'),
+			url('/assets/ABCFavorit-Medium.woff') format('woff');
+		font-weight: theme(fontWeight.medium);
 	}
 
 	*,
