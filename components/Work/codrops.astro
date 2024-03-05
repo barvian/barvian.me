@@ -14,28 +14,30 @@ const {
 } = Astro.props
 ---
 
-<a
-	rel="external"
-	target="_blank"
-	class="group flex flex-col gap-5 rounded-xl border-b-10 border-[#334BF7] bg-[#0D1028] p-7 text-white transition will-change-transform hover:scale-[1.025] hover:bg-[#0A103E] hover:shadow-2xl active:scale-[1] active:shadow-none active:duration-200 sm:aspect-golden md:gap-4 dark:!shadow-none"
-	href={data.url}
->
-	<span class="flex items-center justify-start gap-3">
-		<Logo class="h-6" />
-		<span class="relative top-[.0625rem] overflow-hidden">
-			<External
-				class="h-[0.7rem] -translate-x-full translate-y-[110%] transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
-			/>
+<div class="@container">
+	<a
+		rel="external"
+		target="_blank"
+		class="group flex flex-col gap-5 rounded-2.5cqw border-b-10 border-[#334BF7] bg-[#0D1028] p-7 text-white transition will-change-transform hover:scale-[1.025] hover:bg-[#0A103E] hover:shadow-2xl active:scale-[1] active:shadow-none active:duration-200 sm:aspect-golden md:gap-4 dark:!shadow-none"
+		href={data.url}
+	>
+		<span class="flex items-center justify-start gap-3">
+			<Logo class="h-6" />
+			<span class="relative top-[.0625rem] overflow-hidden">
+				<External
+					class="h-[0.7rem] -translate-x-full translate-y-[110%] transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
+				/>
+			</span>
 		</span>
-	</span>
-	<span class="text-2xl/snug font-medium sm:line-clamp-2">{data.title}</span>
-	<span class="mt-auto flex items-center gap-3.5">
-		<Image
-			src={headshot}
-			height="100"
-			class="size-9 rounded-full object-cover"
-			alt="Headshot of Maxwell Barvian"
-		/>
-		<span class="flex-1 opacity-80"> by Maxwell Barvian </span>
-	</span>
-</a>
+		<span class="text-2xl/snug font-medium sm:line-clamp-2">{data.title}</span>
+		<span class="mt-auto flex items-center gap-3.5">
+			<Image
+				src={headshot}
+				height="100"
+				class="size-9 rounded-full object-cover"
+				alt="Headshot of Maxwell Barvian"
+			/>
+			<span class="flex-1 opacity-80"> by Maxwell Barvian </span>
+		</span>
+	</a>
+</div>

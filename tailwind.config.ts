@@ -28,7 +28,7 @@ export default {
 				golden: '1.618'
 			},
 			borderRadius: {
-				xl: '0.625rem'
+				'2.5cqw': '2.5cqw'
 			},
 			boxShadow: {
 				'2xl': '0px 18px 36px -18px rgba(0,0,0,0.1),0px 30px 45px -30px rgba(50,50,93,0.25)'

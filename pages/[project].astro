@@ -136,14 +136,13 @@ const Demo =
 				</div>
 				{
 					Demo ? (
-						<div
-							class="mt-10 aspect-golden overflow-clip rounded-2xl @container"
-							style="view-transition-name: project-hero"
-						>
-							<Demo />
+						<div class="mt-10 @container" style="view-transition-name: project-hero">
+							<div class="aspect-golden overflow-clip rounded-2.5cqw">
+								<Demo />
+							</div>
 						</div>
 					) : (
-						<div class="group/hero relative mt-10">
+						<div class="group/hero relative mt-10 @container">
 							<ProjectVideo {entry} />
 						</div>
 					)

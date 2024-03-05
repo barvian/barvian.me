@@ -14,36 +14,38 @@ const {
 } = Astro.props
 ---
 
-<a
-	rel="external"
-	target="_blank"
-	class="group relative flex flex-col gap-5 overflow-hidden rounded-xl bg-[#162C35] p-7 pb-[calc(theme(padding.7)+theme(borderWidth.10))] text-white transition will-change-transform after:absolute after:bottom-0 after:left-0 after:h-[theme(borderWidth.10)] after:w-full after:bg-[image:--rainbow] hover:scale-[1.025] hover:bg-[#19313c] hover:shadow-2xl active:scale-[1] active:shadow-none active:duration-200 sm:aspect-golden md:gap-4 dark:!shadow-none"
-	style="--rainbow: linear-gradient(90deg, #74C6EB 0%, #8586BC 19%, #D992BA 37%, #EE9697 51%, #F0947D 59.32%, #F4B886 67.71%, #FAEE9A 80.5%, #ACD39E 93.83%, #85C79A 100%)"
-	href={data.url}
->
-	<span class="flex h-6 items-center gap-3.5">
-		<Logo class="w-5" />
-		<span class="whitespace-nowrap text-sm uppercase text-[#F94962]">
-			Smashing Magazine
-			<span class="relative -top-[0.0625em] ml-[0.5em] inline-block overflow-hidden align-middle">
-				<External
-					class="h-[0.75em] -translate-x-full translate-y-[110%] transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
-				/>
+<div class="@container">
+	<a
+		rel="external"
+		target="_blank"
+		class="group relative flex flex-col gap-5 overflow-hidden rounded-2.5cqw bg-[#162C35] p-7 pb-[calc(theme(padding.7)+theme(borderWidth.10))] text-white transition will-change-transform after:absolute after:bottom-0 after:left-0 after:h-[theme(borderWidth.10)] after:w-full after:bg-[image:--rainbow] hover:scale-[1.025] hover:bg-[#19313c] hover:shadow-2xl active:scale-[1] active:shadow-none active:duration-200 sm:aspect-golden md:gap-4 dark:!shadow-none"
+		style="--rainbow: linear-gradient(90deg, #74C6EB 0%, #8586BC 19%, #D992BA 37%, #EE9697 51%, #F0947D 59.32%, #F4B886 67.71%, #FAEE9A 80.5%, #ACD39E 93.83%, #85C79A 100%)"
+		href={data.url}
+	>
+		<span class="flex h-6 items-center gap-3.5">
+			<Logo class="w-5" />
+			<span class="whitespace-nowrap text-sm uppercase text-[#F94962]">
+				Smashing Magazine
+				<span class="relative -top-[0.0625em] ml-[0.5em] inline-block overflow-hidden align-middle">
+					<External
+						class="h-[0.75em] -translate-x-full translate-y-[110%] transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
+					/>
+				</span>
 			</span>
 		</span>
-	</span>
-	<span class="text-2xl/snug font-medium sm:line-clamp-2">{data.title}</span>
-	<span class="mt-auto flex items-center gap-3.5">
-		<span
-			class="block size-fit origin-bottom-left translate-x-[15%] -rotate-[11deg] scale-[84%] overflow-hidden rounded-lg transition-transform group-hover:rotate-0"
-		>
-			<Image
-				src={headshot}
-				height="100"
-				class="size-10 rotate-[11deg] scale-[1.2] transition-transform group-hover:rotate-0"
-				alt="Headshot of Maxwell Barvian"
-			/>
+		<span class="text-2xl/snug font-medium sm:line-clamp-2">{data.title}</span>
+		<span class="mt-auto flex items-center gap-3.5">
+			<span
+				class="block size-fit origin-bottom-left translate-x-[15%] -rotate-[11deg] scale-[84%] overflow-hidden rounded-lg transition-transform group-hover:rotate-0"
+			>
+				<Image
+					src={headshot}
+					height="100"
+					class="size-10 rotate-[11deg] scale-[1.2] transition-transform group-hover:rotate-0"
+					alt="Headshot of Maxwell Barvian"
+				/>
+			</span>
+			<span class="flex-1 opacity-80"> written by Maxwell Barvian </span>
 		</span>
-		<span class="flex-1 opacity-80"> written by Maxwell Barvian </span>
-	</span>
-</a>
+	</a>
+</div>

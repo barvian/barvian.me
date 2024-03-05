@@ -15,7 +15,9 @@
 	on:click={!clicked && (() => (clicked = true))}
 >
 	{#key key}
-		<Jar bind:this={jar} />
+		<div data-jar>
+			<Jar bind:this={jar} />
+		</div>
 	{/key}
 	<div data-toolbar>
 		<span data-hide={clicked ? '' : undefined}>Click anywhere to add a coin</span>
@@ -42,6 +44,7 @@
 	/* Want these styles separate from main.css/Tailwind */
 	[data-wrapper] {
 		background-color: #c6c9cf;
+		container-type: inline-size;
 		align-items: center;
 		flex-direction: column;
 		justify-content: center;
@@ -52,6 +55,12 @@
 		padding: 1.5rem;
 		/* gap: 1.5rem; */
 		width: 100%;
+	}
+
+	@container (width <= 31rem) {
+		[data-jar] {
+			scale: 80%;
+		}
 	}
 
 	[data-toolbar] {
