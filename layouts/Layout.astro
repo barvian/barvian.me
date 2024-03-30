@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import '/assets/main.css'
 import { ViewTransitions } from 'astro:transitions'
+import Progress from '/components/Progress.vue'
 
 type Props = {
 	title?: string
@@ -33,6 +34,7 @@ const projectsWithDemos = (
 	</head>
 	<body class:list={[bodyClass, 'min-h-[100svh]']}>
 		<slot />
+		<Progress client:load transition:persist="progress" />
 	</body>
 </html>
 
