@@ -31,16 +31,29 @@ if (typeof document !== 'undefined')
 <style>
 @import 'nprogress/nprogress.css';
 
-#nprogress .bar {
-	position: static !important;
-}
-
 #nprogress-container {
 	view-transition-name: nprogress;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
+
+	#nprogress {
+		.bar {
+			background: highlight;
+			background: accentcolor;
+			position: static !important;
+		}
+
+		.peg {
+			box-shadow:
+				0 0 10px highlight,
+				0 0 5px highlight;
+			box-shadow:
+				0 0 10px accentcolor,
+				0 0 5px accentcolor;
+		}
+	}
 }
 
 ::view-transition-old(nprogress) {
