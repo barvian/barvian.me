@@ -33,7 +33,7 @@ const waiting = ref(false)
 let waitingTimeout: NodeJS.Timeout
 useEventListener(video, ['waiting', 'loadstart'], () => {
 	if (waitingTimeout) clearTimeout(waitingTimeout)
-	waitingTimeout = setTimeout(() => (waiting.value = true), 300)
+	waitingTimeout = setTimeout(() => (waiting.value = true), 100)
 })
 useEventListener(video, ['playing', 'loadeddata'], () => {
 	if (waitingTimeout) clearTimeout(waitingTimeout)
