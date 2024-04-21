@@ -40,8 +40,8 @@ if (typeof document !== 'undefined')
 
 	#nprogress {
 		.bar {
-			background: highlight;
-			background: accentcolor;
+			/*background: highlight;
+			background: accentcolor;*/
 			position: static !important;
 		}
 
