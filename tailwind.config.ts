@@ -3,6 +3,7 @@ import plugin from 'tailwindcss/plugin'
 import typography from '@tailwindcss/typography'
 import { normalize } from 'tailwindcss/src/util/dataTypes'
 import containerQueries from '@tailwindcss/container-queries'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
 	content: [
@@ -15,13 +16,15 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Favorit', 'sans-serif']
+				sans: ['Favorit', 'sans-serif'],
+				system: defaultTheme.fontFamily.sans
 			},
 			spacing: {
 				'8vh': 'max(theme(padding.8),8vh)',
 				'10vh': 'max(theme(padding.10),10vh)'
 			},
 			screens: {
+				xs: '376px',
 				md: '860px'
 			},
 			aspectRatio: {
