@@ -14,7 +14,9 @@ const isMounted = useMounted()
 	<header class="container flex items-center justify-between py-8vh">
 		<h1
 			class="relative w-fit text-lg/snug transition"
-			:class="{ 'max-[550px]:opacity-30 max-[400px]:opacity-0': socialExpanded }"
+			:class="{
+				'max-sm:opacity-50 max-sm:blur-sm': socialExpanded
+			}"
 		>
 			<div
 				role="none"
