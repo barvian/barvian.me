@@ -26,7 +26,7 @@ const projectsWithDemos = (
 		<link rel="shortcut icon" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<script define:vars={{ projectsWithDemos }}>
+		<script define:vars={{ projectsWithDemos }} is:inline>
 			// @ts-ignore
 			window.__PROJECTS_WITH_DEMOS__ = projectsWithDemos
 		</script>

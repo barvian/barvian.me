@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro'
 import crypto from 'crypto'
 
-export const POST: APIRoute = async ({ params, request }) => {
+export const POST: APIRoute = async ({ request }) => {
 	try {
 		const text = await request.text()
 
