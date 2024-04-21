@@ -12,8 +12,6 @@ import * as path from 'node:path'
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js'
 import pkg from '/package.json'
 
-export const prerender = true
-
 export async function getStaticPaths() {
 	const projects = await getCollection('works', ({ data }) => data.type === 'project')
 	return projects.map((entry) => ({

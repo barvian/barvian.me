@@ -40,12 +40,5 @@ export const codrops = z.object({
 
 export type CodropsEntry = CollectionEntry<'works'> & { data: z.infer<typeof codrops> }
 
-export const github = z.object({
-	type: z.literal('github'),
-	github: z.string()
-})
-
-export type GitHubEntry = CollectionEntry<'works'> & { data: z.infer<typeof github> }
-
 export default (context: SchemaContext) =>
-	z.discriminatedUnion('type', [project(context), smashing, codrops, github])
+	z.discriminatedUnion('type', [project(context), smashing, codrops])
