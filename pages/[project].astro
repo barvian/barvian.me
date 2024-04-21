@@ -1,7 +1,7 @@
 ---
 import { getEntries } from 'astro:content'
 import Layout from '/layouts/Layout.astro'
-import { type ProjectEntry } from '/schemas/work'
+import { isProjectEntry, type ProjectEntry } from '/schemas/work'
 import Button from '/components/Button.vue'
 import External from '/components/icons/External.vue'
 import ProjectVideo from '/components/ProjectVideo.astro'
@@ -26,8 +26,8 @@ const { project } = Astro.params
 // }
 
 // const { entry } = Astro.props
-const entry = (await getEntry('works', project!)) as ProjectEntry | undefined
-if (!entry) {
+const entry = await getEntry('works', project!)
+if (!isProjectEntry(entry)) {
 	return new Response(null, {
 		status: 404,
 		statusText: 'Not found'

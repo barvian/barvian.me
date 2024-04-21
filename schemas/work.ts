@@ -24,6 +24,10 @@ export const project = ({ image }: SchemaContext) =>
 
 export type ProjectEntry = CollectionEntry<'works'> & { data: z.infer<ReturnType<typeof project>> }
 
+export function isProjectEntry(entry?: CollectionEntry<'works'>): entry is ProjectEntry {
+	return entry?.data.type === 'project'
+}
+
 export const smashing = z.object({
 	type: z.literal('smashing'),
 	title: z.string(),
