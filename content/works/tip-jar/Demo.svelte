@@ -5,6 +5,13 @@
 	let key = 0
 	let clicked = false
 	$: if (key) clicked = false
+
+	function preventSelection(event) {
+		// https://stackoverflow.com/a/43321596
+		if (event.detail > 1) {
+			event.preventDefault()
+		}
+	}
 </script>
 
 <!-- Use data attributes to avoid conflicts with Tailwind :\ -->
@@ -13,6 +20,7 @@
 	data-wrapper
 	on:pointerdown={() => jar?.addCoin()}
 	on:click={!clicked && (() => (clicked = true))}
+	on:mousedown={preventSelection}
 >
 	{#key key}
 		<div data-jar>
