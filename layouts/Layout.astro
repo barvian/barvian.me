@@ -175,4 +175,30 @@ const projectsWithDemos = (
 			/* filter: blur(30px) saturate(50%) */
 		}
 	}
+
+	/* Project Content */
+
+	[data-transition-from='/']::view-transition-new(project-content) {
+		animation-name: translateDown;
+	}
+
+	[data-transition-to='/']::view-transition-old(project-content) {
+		animation-name: translateUp;
+	}
+
+	@keyframes translateDown {
+		from {
+			opacity: 0;
+			transform: translateY(-100%);
+			/* clip-path: inset(100% 0 0 0); */
+		}
+	}
+
+	@keyframes translateUp {
+		to {
+			opacity: 0;
+			transform: translateY(-100%);
+			/* clip-path: inset(100% 0 0 0); */
+		}
+	}
 </style>
