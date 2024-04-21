@@ -150,6 +150,10 @@ const projectsWithDemos = (
 		opacity: 0;
 	}
 
+	::view-transition-group(project-hero) {
+		z-index: 10;
+	}
+
 	:not([data-transition-has-demo])::view-transition-old(project-hero) {
 		/* This is a persistent element, so let the new always show on top. See https://developer.chrome.com/docs/web-platform/view-transitions#making_the_most_of_content_you_already_have */
 		animation: none;
