@@ -11,28 +11,29 @@ import Link from '/components/Link.vue'
 import * as path from 'node:path'
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js'
 import pkg from '/package.json'
-const { project } = Astro.params
+import { getCollection } from 'astro:content'
+// const { project } = Astro.params
 
 // Started getting a ton of random errors when I tried prerendering these with ISR enabled :/
 
-// export const prerender = true
+export const prerender = true
 
-// export async function getStaticPaths() {
-// 	const projects = await getCollection('works', ({ data }) => data.type === 'project')
-// 	return projects.map((entry) => ({
-// 		params: { project: entry.slug },
-// 		props: { entry: entry as ProjectEntry }
-// 	}))
-// }
-
-// const { entry } = Astro.props
-const entry = await getEntry('works', project!)
-if (!isProjectEntry(entry)) {
-	return new Response(null, {
-		status: 404,
-		statusText: 'Not found'
-	})
+export async function getStaticPaths() {
+	const projects = await getCollection('works', ({ data }) => data.type === 'project')
+	return projects.map((entry) => ({
+		params: { project: entry.slug },
+		props: { entry: entry as ProjectEntry }
+	}))
 }
+
+const { entry } = Astro.props
+// const entry = await getEntry('works', project!)
+// if (!isProjectEntry(entry)) {
+// 	return new Response(null, {
+// 		status: 404,
+// 		statusText: 'Not found'
+// 	})
+// }
 const { data } = entry
 const company = data.for && (await getEntry(data.for))
 const using = data.using && (await getEntries(data.using))
