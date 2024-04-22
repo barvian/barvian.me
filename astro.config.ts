@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind'
 import svelte from '@astrojs/svelte'
 import vue from '@astrojs/vue'
 import mdx from '@astrojs/mdx'
-import vercel from '@astrojs/vercel/serverless'
+import vercel from '@astrojs/vercel/static'
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,14 +21,14 @@ export default defineConfig({
 		mdx()
 	],
 	srcDir: './',
-	output: 'server',
+	output: 'static',
 	adapter: vercel({
-		isr: {
-			// A secret random string that you create.
-			bypassToken: process.env.ISR_BYPASS_TOKEN,
-			// Paths that will always be served fresh.
-			exclude: ['/api/webhook']
-		},
+		// isr: {
+		// 	// A secret random string that you create.
+		// 	bypassToken: process.env.ISR_BYPASS_TOKEN,
+		// 	// Paths that will always be served fresh.
+		// 	exclude: ['/api/webhook']
+		// },
 		webAnalytics: {
 			enabled: true
 		}
