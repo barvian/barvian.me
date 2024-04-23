@@ -36,6 +36,10 @@ export const smashing = z.object({
 
 export type SmashingEntry = CollectionEntry<'works'> & { data: z.infer<typeof smashing> }
 
+export function isSmashingEntry(entry?: CollectionEntry<'works'>): entry is SmashingEntry {
+	return entry?.data.type === 'smashing'
+}
+
 export const codrops = z.object({
 	type: z.literal('codrops'),
 	title: z.string(),
@@ -44,12 +48,20 @@ export const codrops = z.object({
 
 export type CodropsEntry = CollectionEntry<'works'> & { data: z.infer<typeof codrops> }
 
+export function isCodropsEntry(entry?: CollectionEntry<'works'>): entry is CodropsEntry {
+	return entry?.data.type === 'codrops'
+}
+
 export const github = z.object({
 	type: z.literal('github'),
 	github: z.string()
 })
 
 export type GitHubEntry = CollectionEntry<'works'> & { data: z.infer<typeof github> }
+
+export function isGitHubEntry(entry?: CollectionEntry<'works'>): entry is GitHubEntry {
+	return entry?.data.type === 'github'
+}
 
 export default (context: SchemaContext) =>
 	z.discriminatedUnion('type', [project(context), smashing, codrops, github])
