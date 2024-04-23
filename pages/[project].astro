@@ -12,9 +12,6 @@ import * as path from 'node:path'
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js'
 import pkg from '/package.json'
 import { getCollection } from 'astro:content'
-// const { project } = Astro.params
-
-// Started getting a ton of random errors when I tried prerendering these with ISR enabled :/
 
 export const prerender = true
 
@@ -27,13 +24,6 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props
-// const entry = await getEntry('works', project!)
-// if (!isProjectEntry(entry)) {
-// 	return new Response(null, {
-// 		status: 404,
-// 		statusText: 'Not found'
-// 	})
-// }
 const { data } = entry
 const company = data.for && (await getEntry(data.for))
 const using = data.using && (await getEntries(data.using))
