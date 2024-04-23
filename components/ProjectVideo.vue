@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type ProjectEntry } from '/schemas/work'
+import type { ProjectEntry } from '/schemas/work'
 import useTransitioning from '/composables/useTransitioning'
 import Video from '/components/Video.vue'
 
