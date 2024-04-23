@@ -1,7 +1,7 @@
 ---
 import { getEntries } from 'astro:content'
 import Layout from '@/layouts/Layout.astro'
-import { type ProjectEntry } from '@/schemas/work'
+import { isProjectEntry, type ProjectEntry } from '@/schemas/work'
 import Button from '@/components/Button.vue'
 import External from '@/components/icons/External.vue'
 import ProjectVideo from '@/components/ProjectVideo.astro'
@@ -14,10 +14,10 @@ import pkg from '/package.json'
 import { getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
-	const projects = await getCollection('works', ({ data }) => data.type === 'project')
+	const projects = await getCollection('works', isProjectEntry)
 	return projects.map((entry) => ({
 		params: { project: entry.slug },
-		props: { entry: entry as ProjectEntry }
+		props: { entry }
 	}))
 }
 
