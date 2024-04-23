@@ -1,7 +1,7 @@
 ---
 import { getEntries } from 'astro:content'
 import Layout from '/layouts/Layout.astro'
-import { isProjectEntry, type ProjectEntry } from '/schemas/work'
+import { type ProjectEntry } from '/schemas/work'
 import Button from '/components/Button.vue'
 import External from '/components/icons/External.vue'
 import ProjectVideo from '/components/ProjectVideo.astro'
@@ -12,8 +12,6 @@ import * as path from 'node:path'
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js'
 import pkg from '/package.json'
 import { getCollection } from 'astro:content'
-
-export const prerender = true
 
 export async function getStaticPaths() {
 	const projects = await getCollection('works', ({ data }) => data.type === 'project')

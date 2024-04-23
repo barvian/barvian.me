@@ -21,7 +21,7 @@ export default defineConfig({
 		mdx()
 	],
 	srcDir: './',
-	output: 'server',
+	output: 'hybrid',
 	adapter: vercel({
 		isr: {
 			// A secret random string that you create.
