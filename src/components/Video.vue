@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type ImageMetadata } from 'astro'
+import type { ImageMetadata } from 'astro'
 import { onUnmounted, ref } from 'vue'
 import { useElementVisibility, useEventListener } from '@vueuse/core'
 import useTransitioning from '@/composables/useTransitioning'
