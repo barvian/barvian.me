@@ -6,9 +6,7 @@ import containerQueries from '@tailwindcss/container-queries'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
-	content: [
-		'./{components,pages,content,layouts}/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'
-	],
+	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		container: {
 			center: true,

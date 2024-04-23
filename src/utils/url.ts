@@ -1,4 +1,4 @@
-import { url } from '/stores/page'
+import { url } from '@/stores/page'
 
 export const isExternal = (href: string | URL) => {
 	if (typeof href === 'string')

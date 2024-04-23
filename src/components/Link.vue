@@ -1,7 +1,7 @@
 <!-- Sets rel, target, and cursor for external links -->
 <script lang="ts" setup>
 import { useAttrs } from 'vue'
-import { isExternal } from '/utils/url'
+import { isExternal } from '@/utils/url'
 const attrs = useAttrs()
 
 const external = typeof attrs.href === 'string' && isExternal(attrs.href)

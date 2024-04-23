@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Button from '/components/Button.vue'
+import Button from '@/components/Button.vue'
 import { vOnClickOutside } from '@vueuse/components'
 import { breakpointsTailwind, useBreakpoints, useMediaQuery, useMounted } from '@vueuse/core'
 const breakpoints = useBreakpoints(breakpointsTailwind)

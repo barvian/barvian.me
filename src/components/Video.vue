@@ -2,8 +2,8 @@
 import { type ImageMetadata } from 'astro'
 import { onUnmounted, ref } from 'vue'
 import { useElementVisibility, useEventListener } from '@vueuse/core'
-import useTransitioning from '/composables/useTransitioning'
-import Spinner from '/components/Spinner.vue'
+import useTransitioning from '@/composables/useTransitioning'
+import Spinner from '@/components/Spinner.vue'
 
 const {
 	class: className,

@@ -2,7 +2,7 @@
 	import { onMount, onDestroy } from 'svelte'
 	import { hsla, toRgba } from 'color2k'
 	import matter from 'matter-js'
-	import useTransitioning from '/composables/useTransitioning'
+	import useTransitioning from '@/composables/useTransitioning'
 	import { until } from '@vueuse/core'
 
 	export let w

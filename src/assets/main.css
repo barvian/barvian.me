@@ -6,16 +6,16 @@
 	@font-face {
 		font-family: 'Favorit';
 		src:
-			url('/assets/ABCFavorit-Regular.woff2') format('woff2'),
-			url('/assets/ABCFavorit-Regular.woff') format('woff');
+			url('./ABCFavorit-Regular.woff2') format('woff2'),
+			url('./ABCFavorit-Regular.woff') format('woff');
 		font-weight: theme(fontWeight.normal);
 	}
 
 	@font-face {
 		font-family: 'Favorit';
 		src:
-			url('/assets/ABCFavorit-Medium.woff2') format('woff2'),
-			url('/assets/ABCFavorit-Medium.woff') format('woff');
+			url('./ABCFavorit-Medium.woff2') format('woff2'),
+			url('./ABCFavorit-Medium.woff') format('woff');
 		font-weight: theme(fontWeight.medium);
 	}
 

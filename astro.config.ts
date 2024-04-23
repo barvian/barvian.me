@@ -20,7 +20,6 @@ export default defineConfig({
 		}),
 		mdx()
 	],
-	srcDir: './',
 	output: 'hybrid',
 	adapter: vercel({
 		isr: {

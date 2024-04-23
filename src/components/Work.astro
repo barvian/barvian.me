@@ -4,7 +4,7 @@ import GitHub from './Work/GitHub.astro'
 import Project from './Work/Project.astro'
 import Smashing from './Work/Smashing.astro'
 import { getEntry, type CollectionEntry } from 'astro:content'
-import { isProjectEntry, isCodropsEntry, isGitHubEntry, isSmashingEntry } from '/schemas/work'
+import { isProjectEntry, isCodropsEntry, isGitHubEntry, isSmashingEntry } from '@/schemas/work'
 
 type Props = Pick<CollectionEntry<'works'>, 'slug'>
 

@@ -1,5 +1,5 @@
 import { z, defineCollection } from 'astro:content'
-import worksSchema from '/schemas/work'
+import worksSchema from '@/schemas/work'
 
 const worksCollection = defineCollection({
 	type: 'content',

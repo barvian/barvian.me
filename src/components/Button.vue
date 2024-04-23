@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import External from '/components/icons/External.vue'
+import External from '@/components/icons/External.vue'
 import GitHub from './icons/GitHub.vue'
 import X from './icons/X.vue'
 import Dribbble from './icons/Dribbble.vue'
 import Email from './icons/Email.vue'
 import LinkedIn from './icons/LinkedIn.vue'
-import { isExternal } from '/utils/url'
+import { isExternal } from '@/utils/url'
 
 // Discriminated unions didn't work with Vue here:
 const {

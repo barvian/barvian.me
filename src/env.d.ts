@@ -1,5 +1,5 @@
-/// <reference path=".astro/types.d.ts" />
 /// <reference types="astro/client" />
+/// <reference path="../.astro/types.d.ts" />
 
 interface Window {
 	__PROJECTS_WITH_DEMOS__: string[]

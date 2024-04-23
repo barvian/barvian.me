@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { type ProjectEntry } from '/schemas/work'
-import useTransitioning from '/composables/useTransitioning'
-import Video from '/components/Video.vue'
+import { type ProjectEntry } from '@/schemas/work'
+import useTransitioning from '@/composables/useTransitioning'
+import Video from '@/components/Video.vue'
 
 defineOptions({
 	// It gets weird with Astro's transition persist stuff:
