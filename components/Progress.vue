@@ -15,17 +15,16 @@ onMounted(() => {
 	})
 })
 
-if (typeof document !== 'undefined')
+if (!import.meta.env.SSR) {
 	useEventListener(document, 'astro:before-preparation', (event) => {
 		if (!isTransitionBeforePreparationEvent(event)) return
 
 		NProgress.start()
 	})
-
-if (typeof document !== 'undefined')
 	useEventListener(document, 'astro:after-swap', (event) => {
 		NProgress.done()
 	})
+}
 </script>
 
 <style>

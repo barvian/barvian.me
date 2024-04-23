@@ -6,7 +6,7 @@ import { ref } from 'vue'
 
 // Gets whether the page is transitioning (starting before swap, ending after transition)
 const transitioning = ref<TransitionBeforeSwapEvent>()
-if (typeof document !== 'undefined') {
+if (!import.meta.env.SSR) {
 	document.addEventListener('astro:before-swap', (event) => {
 		if (!isTransitionBeforeSwapEvent(event)) return
 		transitioning.value = event

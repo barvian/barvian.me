@@ -15,7 +15,7 @@ const { src, poster, slug } = defineProps<{
 }>()
 
 const transitioning = useTransitioning()
-const hasDemo = typeof window !== 'undefined' && window.__PROJECTS_WITH_DEMOS__.includes(slug)
+const hasDemo = !import.meta.env.SSR && window.__PROJECTS_WITH_DEMOS__.includes(slug)
 </script>
 <template>
 	<Video
