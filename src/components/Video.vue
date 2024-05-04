@@ -63,5 +63,6 @@ onUnmounted(() => {
 		</video>
 		<img :src="poster.src" alt="" class="size-full object-cover object-top" v-else />
 		<Spinner v-if="waiting && !transitioning" class="absolute bottom-4 left-4 size-7" />
+		<slot />
 	</div>
 </template>

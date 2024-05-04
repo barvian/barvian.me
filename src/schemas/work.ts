@@ -6,6 +6,7 @@ export const project = ({ image }: SchemaContext) =>
 		title: z.string(),
 		poster: image(),
 		video: z.record(z.string(), z.string()),
+		needsContrastOnWhite: z.boolean().default(false),
 		demo: z
 			.union([
 				z.string(),

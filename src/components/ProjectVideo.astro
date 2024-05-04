@@ -16,4 +16,11 @@ const image = await getImage({ src: data.poster })
 const poster = { ...data.poster, src: image.src }
 ---
 
-<ProjectVideoVue {slug} src={data.video} {poster} client:load transition:persist={`${slug}-hero`} />
+<ProjectVideoVue
+	{slug}
+	needsContrastOnWhite={data.needsContrastOnWhite}
+	src={data.video}
+	{poster}
+	client:load
+	transition:persist={`${slug}-hero`}
+/>
