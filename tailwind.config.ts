@@ -2,10 +2,11 @@ import { type Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 import typography from '@tailwindcss/typography'
 import { normalize } from 'tailwindcss/src/util/dataTypes'
-import containerQueries from '@tailwindcss/container-queries'
 import defaultTheme from 'tailwindcss/defaultTheme'
+import reset from 'tw-reset'
 
 export default {
+	presets: [reset],
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		container: {
@@ -22,8 +23,8 @@ export default {
 				'10vh': 'max(theme(padding.10),10vh)'
 			},
 			screens: {
-				xs: '376px',
-				md: '860px'
+				xs: '23.5rem',
+				md: '53.75rem'
 			},
 			aspectRatio: {
 				golden: '1.618'
@@ -66,7 +67,6 @@ export default {
 		}
 	},
 	plugins: [
-		containerQueries,
 		typography,
 		plugin(({ matchVariant }) => {
 			// Override built-in to handle self
