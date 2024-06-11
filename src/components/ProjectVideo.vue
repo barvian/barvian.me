@@ -45,7 +45,7 @@ const hasDemo = !import.meta.env.SSR && window.__PROJECTS_WITH_DEMOS__.includes(
 		/>
 		<div
 			v-if="needsContrastOnBlack"
-			class="absolute inset-0 hidden rounded-2.5cqw ring-1 ring-inset ring-white/5 dark:block"
+			class="absolute inset-0 hidden rounded-2.5cqw ring-1 ring-inset ring-white/[7.5%] dark:block"
 		/>
 	</Video>
 </template>
