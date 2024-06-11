@@ -37,24 +37,24 @@ const isMounted = useMounted()
 					v-on-click-outside="() => (socialExpanded = false)"
 					id="social"
 					aria-label="Social links"
-					class="isolate flex items-center gap-2 max-sm:-space-x-8 max-sm:*:bg-white/10 max-sm:*:backdrop-blur-lg max-sm:*:transition-all max-[400px]:-space-x-11 sm:gap-4"
+					class="max-[400px]:-space-x-11 isolate flex items-center gap-2 max-sm:-space-x-8 max-sm:*:bg-white/10 max-sm:*:backdrop-blur-lg max-sm:*:transition-all sm:gap-4"
 					:class="{ 'max-sm:!space-x-0': socialExpanded }"
 				>
 					<Button icon="email" href="mailto:max@barvian.me" preset="tertiary" />
+					<Button class="-z-10" icon="github" href="https://github.com/barvian" preset="tertiary" />
+					<Button class="-z-20" icon="x" href="https://x.com/mbarvian" preset="tertiary" />
 					<Button
-						class="-z-10"
+						class="-z-30"
 						icon="linkedin"
 						href="https://linkedin.com/in/barvian"
 						preset="tertiary"
 					/>
-					<Button class="-z-20" icon="github" href="https://github.com/barvian" preset="tertiary" />
 					<Button
-						class="-z-30"
+						class="-z-40"
 						icon="dribbble"
 						href="https://dribbble.com/barvian"
 						preset="tertiary"
 					/>
-					<Button class="-z-40" icon="x" href="https://x.com/mbarvian" preset="tertiary" />
 				</nav>
 				<button
 					aria-controls="social"
