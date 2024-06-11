@@ -12,12 +12,14 @@ const {
 	src,
 	poster,
 	slug,
-	needsContrastOnWhite = false
+	needsContrastOnWhite = false,
+	needsContrastOnBlack = false
 } = defineProps<{
 	slug: ProjectEntry['slug']
 	src: ProjectEntry['data']['video']
 	poster: ImageMetadata
 	needsContrastOnWhite: boolean
+	needsContrastOnBlack: boolean
 }>()
 
 const transitioning = useTransitioning()
@@ -40,6 +42,10 @@ const hasDemo = !import.meta.env.SSR && window.__PROJECTS_WITH_DEMOS__.includes(
 		<div
 			v-if="needsContrastOnWhite"
 			class="absolute inset-0 rounded-2.5cqw ring-1 ring-inset ring-black/5 dark:hidden"
+		/>
+		<div
+			v-if="needsContrastOnBlack"
+			class="absolute inset-0 hidden rounded-2.5cqw ring-1 ring-inset ring-white/5 dark:block"
 		/>
 	</Video>
 </template>
