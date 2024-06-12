@@ -4,4 +4,4 @@ package-lock.json
 yarn.lock
 
 # Prettier does terrible things to this file for some reason (probably the script and style outside the html)
-layouts/Layout.astro
+src/layouts/Layout.astro

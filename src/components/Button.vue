@@ -69,13 +69,17 @@ const {
 			size === 'md' ? 'h-12' : 'h-8',
 			'group relative isolate flex select-none items-center justify-center gap-3 overflow-clip rounded-full font-medium leading-snug transition will-change-transform *:pointer-events-none hover:scale-110 active:scale-100 active:duration-200',
 			external && icon !== 'external' && 'cursor-external',
-			$slots.default ? (size === 'md' ? 'px-7' : 'px-2.5 text-sm') : 'aspect-square',
-			preset === 'primary'
-				? 'bg-black text-white hover:bg-neutral-800 dark:bg-neutral-100 dark:text-black dark:hover:bg-white'
-				: [
-						'hover:bg-black/5 dark:hover:bg-white/20',
-						preset === 'secondary' && 'border border-black/20 dark:border-white/25'
-					]
+			$slots.default ?
+				size === 'md' ?
+					'px-7'
+				:	'px-2.5 text-sm'
+			:	'aspect-square',
+			preset === 'primary' ?
+				'bg-black text-white hover:bg-neutral-800 dark:bg-neutral-100 dark:text-black dark:hover:bg-white'
+			:	[
+					'hover:bg-black/5 dark:hover:bg-white/20',
+					preset === 'secondary' && 'border border-black/20 dark:border-white/25'
+				]
 		]"
 	>
 		<component :is="Icon" :class="iconClassName" v-if="!iconRight && Icon" />

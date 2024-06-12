@@ -13,13 +13,11 @@ const { alt, src, ...props } = Astro.props
 ---
 
 {
-	src.format === 'svg' ? (
+	src.format === 'svg' ?
 		// @ts-expect-error type issue
 		<svg {...props} aria-label={alt} style={{ aspectRatio: src.width / src.height }}>
 			<use xlink:href={`${src.src}#root`} />
 		</svg>
-	) : (
 		// @ts-expect-error type issue
-		<AstroImage {src} {alt} {...props} />
-	)
+	:	<AstroImage {src} {alt} {...props} />
 }

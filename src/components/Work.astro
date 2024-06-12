@@ -16,13 +16,9 @@ if (!entry) throw new Error(`Could not find work with slug: ${slug}`)
 
 {/* There were too many issues with using a dynamic tag */}
 {
-	isCodropsEntry(entry) ? (
-		<Codrops entry={entry} />
-	) : isGitHubEntry(entry) ? (
-		<GitHub {entry} />
-	) : isProjectEntry(entry) ? (
-		<Project {entry} />
-	) : isSmashingEntry(entry) ? (
-		<Smashing {entry} />
-	) : null
+	isCodropsEntry(entry) ? <Codrops entry={entry} />
+	: isGitHubEntry(entry) ? <GitHub {entry} />
+	: isProjectEntry(entry) ? <Project {entry} />
+	: isSmashingEntry(entry) ? <Smashing {entry} />
+	: null
 }

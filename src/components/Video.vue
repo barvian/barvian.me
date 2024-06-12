@@ -21,7 +21,7 @@ const {
 	playsinline: boolean
 	loop: boolean
 	autoplay: boolean
-	src: Record<string, string>
+	src: Array<{ file: string; type: string }>
 	poster: ImageMetadata
 }>()
 
@@ -59,7 +59,7 @@ onUnmounted(() => {
 			v-if="forcePlay || (!transitioning && inView)"
 			class="size-full object-cover object-top"
 		>
-			<source v-for="[type, s] in Object.entries(src)" :src="s" :type />
+			<source v-for="{ file, type } in src" :src="file" :type="`video/${type}`" />
 		</video>
 		<img :src="poster.src" alt="" class="size-full object-cover object-top" v-else />
 		<Spinner v-if="waiting && !transitioning" class="absolute bottom-4 left-4 size-7" />

@@ -32,9 +32,9 @@ const demoBasename =
 const repo =
 	data.repo ??
 	(data.demo &&
-		(typeof data.demo === 'object' && data.demo.main
-			? `https://github.com/${pkg.repository}/tree/main${path.resolve(`/content/${entry.collection}/${path.dirname(entry.id)}`, data.demo.main)}`
-			: `https://github.com/${pkg.repository}/tree/main/content/${entry.collection}/${path.dirname(entry.id)}/${demoBasename}.astro`))
+		(typeof data.demo === 'object' && data.demo.main ?
+			`https://github.com/${pkg.repository}/tree/main${path.resolve(`/content/${entry.collection}/${path.dirname(entry.id)}`, data.demo.main)}`
+		:	`https://github.com/${pkg.repository}/tree/main/content/${entry.collection}/${path.dirname(entry.id)}/${demoBasename}.astro`))
 // Rules for analyzable dynamic imports: https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
 const Demo =
 	demoBasename &&
@@ -136,17 +136,15 @@ const Demo =
 					</div>
 				</div>
 				{
-					Demo ? (
+					Demo ?
 						<div class="mt-10 @container" style="view-transition-name: project-hero">
 							<div class="aspect-golden overflow-clip rounded-2.5cqw">
 								<Demo />
 							</div>
 						</div>
-					) : (
-						<div class="group/hero relative mt-10 @container">
+					:	<div class="group/hero relative mt-10 @container">
 							<ProjectVideo {entry} />
 						</div>
-					)
 				}
 			</header>
 			<div style="view-transition-name: project-content">

@@ -9,6 +9,7 @@
 		"build": "astro check && astro build",
 		"preview": "astro preview",
 		"astro": "astro",
+		"format": "prettier --write .",
 		"postinstall": "patch-package",
 		"prepare": "husky install"
 	},

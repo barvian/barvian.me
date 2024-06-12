@@ -5,7 +5,7 @@ export const project = ({ image }: SchemaContext) =>
 		type: z.literal('project'),
 		title: z.string(),
 		poster: image(),
-		video: z.record(z.string(), z.string()),
+		video: z.array(z.object({ file: z.string(), type: z.string() })),
 		needsContrastOnWhite: z.boolean().default(false),
 		needsContrastOnBlack: z.boolean().default(false),
 		demo: z
