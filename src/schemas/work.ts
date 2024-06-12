@@ -12,7 +12,7 @@ export const project = ({ image }: SchemaContext) =>
 			.union([
 				z.string(),
 				z.object({
-					astroComponentBasename: z.string(),
+					file: z.string(),
 					main: z.string().optional()
 				})
 			])

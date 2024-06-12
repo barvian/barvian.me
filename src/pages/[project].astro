@@ -27,8 +27,7 @@ const company = data.for && (await getEntry(data.for))
 const using = data.using && (await getEntries(data.using))
 const { Content } = await entry.render()
 
-const demoBasename =
-	data.demo && (typeof data.demo === 'string' ? data.demo : data.demo.astroComponentBasename)
+const demoBasename = data.demo && (typeof data.demo === 'string' ? data.demo : data.demo.file)
 const repo =
 	data.repo ??
 	(data.demo &&
