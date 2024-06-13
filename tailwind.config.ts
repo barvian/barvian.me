@@ -15,7 +15,12 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Favorit', 'sans-serif'],
+				sans: [
+					"'Favorit', 'sans-serif'",
+					{
+						fontFeatureSettings: "'ss11'"
+					}
+				],
 				system: defaultTheme.fontFamily.sans
 			},
 			spacing: {
