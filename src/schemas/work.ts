@@ -1,13 +1,20 @@
 import { z, reference, type CollectionEntry, type SchemaContext } from 'astro:content'
 
-export const project = ({ image }: SchemaContext) =>
+// z.intersection messed up types for some reason
+export const video = ({ image }: SchemaContext) => ({
+	poster: image(),
+	video: z.array(z.object({ file: z.string(), type: z.string() }))
+})
+
+type Infer<Type extends Record<string, z.ZodType>> = {
+	[Property in keyof Type]: z.infer<Type[Property]>
+}
+export type HasVideo = CollectionEntry<'works'> & { data: Infer<ReturnType<typeof video>> }
+
+export const project = (context: SchemaContext) =>
 	z.object({
 		type: z.literal('project'),
 		title: z.string(),
-		poster: image(),
-		video: z.array(z.object({ file: z.string(), type: z.string() })),
-		needsContrastOnWhite: z.boolean().default(false),
-		needsContrastOnBlack: z.boolean().default(false),
 		demo: z
 			.union([
 				z.string(),
@@ -18,6 +25,7 @@ export const project = ({ image }: SchemaContext) =>
 			])
 			.optional(),
 		for: reference('companies').optional(),
+		...video(context),
 		repo: z.string().optional(),
 		url: z.string().url().optional(),
 		date: z.date(),
@@ -30,28 +38,20 @@ export function isProjectEntry(entry?: CollectionEntry<'works'>): entry is Proje
 	return entry?.data.type === 'project'
 }
 
-export const smashing = z.object({
-	type: z.literal('smashing'),
-	title: z.string(),
-	url: z.string().url()
-})
+export const article = (context: SchemaContext) =>
+	z.object({
+		type: z.literal('article'),
+		logo: z.string(),
+		logoColor: z.string().optional(),
+		title: z.string(),
+		url: z.string().url(),
+		...video(context)
+	})
 
-export type SmashingEntry = CollectionEntry<'works'> & { data: z.infer<typeof smashing> }
+export type ArticleEntry = CollectionEntry<'works'> & { data: z.infer<ReturnType<typeof article>> }
 
-export function isSmashingEntry(entry?: CollectionEntry<'works'>): entry is SmashingEntry {
-	return entry?.data.type === 'smashing'
-}
-
-export const codrops = z.object({
-	type: z.literal('codrops'),
-	title: z.string(),
-	url: z.string().url()
-})
-
-export type CodropsEntry = CollectionEntry<'works'> & { data: z.infer<typeof codrops> }
-
-export function isCodropsEntry(entry?: CollectionEntry<'works'>): entry is CodropsEntry {
-	return entry?.data.type === 'codrops'
+export function isArticleEntry(entry?: CollectionEntry<'works'>): entry is ArticleEntry {
+	return entry?.data.type === 'article'
 }
 
 export const github = z.object({
@@ -66,4 +66,4 @@ export function isGitHubEntry(entry?: CollectionEntry<'works'>): entry is GitHub
 }
 
 export default (context: SchemaContext) =>
-	z.discriminatedUnion('type', [project(context), smashing, codrops, github])
+	z.discriminatedUnion('type', [project(context), article(context), github])

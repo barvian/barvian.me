@@ -41,6 +41,10 @@
 			grid-area: overlap;
 		}
 	}
+
+	.ring-contrast {
+		@apply ring-1 ring-inset ring-black/[7.5%] dark:ring-white/[7.5%];
+	}
 }
 
 @layer components {

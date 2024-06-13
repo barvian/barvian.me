@@ -1,0 +1,58 @@
+---
+import External from '@/components/icons/External.vue'
+import type { ArticleEntry } from '@/schemas/work'
+import { Image } from 'astro:assets'
+import headshot from '@/assets/headshot.jpeg'
+import { getVideo } from '@/utils/assets'
+import Video from '../Video.vue'
+
+type Props = {
+	entry: ArticleEntry
+}
+
+const { entry } = Astro.props
+const { data } = entry
+
+const { Content: Logo } = await entry.render()
+const { poster, src } = await getVideo(entry)
+---
+
+<div class="@container">
+	<a
+		rel="external"
+		target="_blank"
+		class="group relative isolate flex flex-col justify-end gap-4 overflow-clip rounded-2.5cqw bg-black p-6 text-white transition will-change-transform will-change-transform hover:scale-[1.025] hover:shadow-2xl active:scale-[1] active:shadow-none active:duration-200 sm:aspect-golden md:gap-3 dark:!shadow-none"
+		href={data.url}
+	>
+		<Video
+			class="inset-0 -z-20 size-full"
+			position="absolute"
+			spinner={false}
+			{src}
+			{poster}
+			client:load
+		/>
+		<div class="ring-contrast absolute inset-0 -z-10 rounded-2.5cqw bg-to-dark"></div>
+		<span
+			class="flex items-center justify-start gap-3 text-[--logo-color]"
+			style={`--logo-color: ${data.logoColor}`}
+		>
+			<Logo />
+			<span class="relative top-[0.0625rem] overflow-hidden">
+				<External
+					class="h-[0.7rem] -translate-x-full translate-y-[110%] transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
+				/>
+			</span>
+		</span>
+		<span class="text-2xl font-medium sm:line-clamp-2">{data.title}</span>
+		<span class="flex items-center gap-3">
+			<Image
+				src={headshot}
+				height="100"
+				class="size-6 rounded-full object-cover"
+				alt="Headshot of Maxwell Barvian"
+			/>
+			<span class="flex-1 opacity-80"> Maxwell Barvian</span>
+		</span>
+	</a>
+</div>

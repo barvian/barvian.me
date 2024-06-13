@@ -8,18 +8,10 @@ defineOptions({
 	inheritAttrs: false
 })
 
-const {
-	src,
-	poster,
-	slug,
-	needsContrastOnWhite = false,
-	needsContrastOnBlack = false
-} = defineProps<{
+const { src, poster, slug } = defineProps<{
 	slug: ProjectEntry['slug']
 	src: ProjectEntry['data']['video']
 	poster: ImageMetadata
-	needsContrastOnWhite: boolean
-	needsContrastOnBlack: boolean
 }>()
 
 const transitioning = useTransitioning()
@@ -32,20 +24,9 @@ const hasDemo = !import.meta.env.SSR && window.__PROJECTS_WITH_DEMOS__.includes(
 			(transitioning?.from.pathname === '/' + slug && !hasDemo) ||
 			transitioning?.to.pathname === '/' + slug
 		"
-		muted
-		playsinline
-		loop
-		autoplay
 		:src
 		:poster
 	>
-		<div
-			v-if="needsContrastOnWhite"
-			class="absolute inset-0 rounded-2.5cqw ring-1 ring-inset ring-black/5 dark:hidden"
-		/>
-		<div
-			v-if="needsContrastOnBlack"
-			class="absolute inset-0 hidden rounded-2.5cqw ring-1 ring-inset ring-white/[7.5%] dark:block"
-		/>
+		<div class="ring-contrast absolute inset-0 rounded-2.5cqw" />
 	</Video>
 </template>

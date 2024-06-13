@@ -13,13 +13,15 @@ const {
 	href,
 	preset = 'primary',
 	size = 'md',
-	icon
+	icon,
+	iconStrokeWidth
 } = defineProps<{
 	class?: string // Astro's type checking doesn't like Vue's fallthrough attributes
 	href?: string
 	preset?: 'primary' | 'secondary' | 'tertiary'
 	size?: 'sm' | 'md'
 	icon?: 'external' | 'github' | 'x' | 'dribbble' | 'email' | 'linkedin'
+	iconStrokeWidth?: number
 }>()
 
 const external = href && isExternal(href)
@@ -82,7 +84,12 @@ const {
 				]
 		]"
 	>
-		<component :is="Icon" :class="iconClassName" v-if="!iconRight && Icon" />
+		<component
+			:is="Icon"
+			:class="iconClassName"
+			:stroke-width="iconStrokeWidth"
+			v-if="!iconRight && Icon"
+		/>
 		<slot v-if="preset !== 'primary'" />
 		<span v-else-if="$slots.default" class="relative block overflow-hidden">
 			<span class="block transition group-hover:-translate-y-[108%] group-hover:skew-y-6">
@@ -95,6 +102,11 @@ const {
 				<slot />
 			</span>
 		</span>
-		<component :is="Icon" :class="iconClassName" v-if="iconRight && Icon" />
+		<component
+			:is="Icon"
+			:class="iconClassName"
+			:stroke-width="iconStrokeWidth"
+			v-if="iconRight && Icon"
+		/>
 	</component>
 </template>

@@ -8,21 +8,25 @@ import Spinner from '@/components/Spinner.vue'
 const {
 	class: className,
 	forcePlay = false,
+	spinner = true,
 	src,
-	muted,
-	loop,
-	autoplay,
-	playsinline,
-	poster
+	muted = true,
+	loop = true,
+	autoplay = true,
+	playsinline = true,
+	poster,
+	position = 'relative'
 } = defineProps<{
-	class: string
-	forcePlay: boolean
-	muted: boolean
-	playsinline: boolean
-	loop: boolean
-	autoplay: boolean
+	class?: string
+	forcePlay?: boolean
+	muted?: boolean
+	playsinline?: boolean
+	loop?: boolean
+	autoplay?: boolean
+	spinner?: boolean
 	src: Array<{ file: string; type: string }>
 	poster: ImageMetadata
+	position?: string
 }>()
 
 const el = ref<HTMLDivElement>()
@@ -46,7 +50,7 @@ onUnmounted(() => {
 <template>
 	<div
 		ref="el"
-		:class="['relative', className]"
+		:class="[className, position]"
 		:style="{ aspectRatio: poster.width / poster.height }"
 	>
 		<video
@@ -62,7 +66,7 @@ onUnmounted(() => {
 			<source v-for="{ file, type } in src" :src="file" :type="`video/${type}`" />
 		</video>
 		<img :src="poster.src" alt="" class="size-full object-cover object-top" v-else />
-		<Spinner v-if="waiting && !transitioning" class="absolute bottom-4 left-4 size-7" />
+		<Spinner v-if="spinner && waiting && !transitioning" class="absolute bottom-4 left-4 size-7" />
 		<slot />
 	</div>
 </template>

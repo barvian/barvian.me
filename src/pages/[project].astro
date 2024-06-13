@@ -1,7 +1,7 @@
 ---
 import { getEntries } from 'astro:content'
 import Layout from '@/layouts/Layout.astro'
-import { isProjectEntry, type ProjectEntry } from '@/schemas/work'
+import { isProjectEntry } from '@/schemas/work'
 import Button from '@/components/Button.vue'
 import External from '@/components/icons/External.vue'
 import ProjectVideo from '@/components/ProjectVideo.astro'
@@ -121,7 +121,7 @@ const Demo =
 						</div>
 					</div>
 					<div class="flex gap-4 sm:gap-6">
-						{repo && <Button preset="secondary" icon="github" href={repo} />}
+						{repo && <Button preset="secondary" iconStrokeWidth={1.5} icon="github" href={repo} />}
 						{
 							data.url && (
 								<>

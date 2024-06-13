@@ -1,46 +1,16 @@
 ---
-import { getImage } from 'astro:assets'
+import { getVideo } from '@/utils/assets'
 import type { ProjectEntry } from '@/schemas/work'
 import ProjectVideoVue from './ProjectVideo.vue'
-import * as path from 'node:path'
 
 type Props = {
 	entry: ProjectEntry
 }
 
 const { entry } = Astro.props
-const { data, slug } = entry
+const { slug } = entry
 
-// Optimize the image
-const image = await getImage({ src: data.poster })
-// TODO: this feels a little gross:
-const poster = { ...data.poster, src: image.src }
-
-// Rules for analyzable dynamic imports: https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
-const unknownTypeError = () => {
-	throw new Error('Unknown video type')
-}
-const src = await Promise.all(
-	data.video.map(async ({ file, type }) => ({
-		type,
-		file:
-			type === 'webm' ?
-				((await import(`../content/${entry.collection}/${path.dirname(entry.id)}/${file}.webm`))
-					.default as string)
-			: type === 'mp4' ?
-				((await import(`../content/${entry.collection}/${path.dirname(entry.id)}/${file}.mp4`))
-					.default as string)
-			:	unknownTypeError()
-	}))
-)
+const { poster, src } = await getVideo(entry)
 ---
 
-<ProjectVideoVue
-	{slug}
-	needsContrastOnWhite={data.needsContrastOnWhite}
-	needsContrastOnBlack={data.needsContrastOnBlack}
-	{poster}
-	{src}
-	client:load
-	transition:persist={`${slug}-hero`}
-/>
+<ProjectVideoVue {slug} {poster} {src} client:load transition:persist={`${slug}-hero`} />

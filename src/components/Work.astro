@@ -1,10 +1,9 @@
 ---
-import Codrops from './Work/Codrops.astro'
+import Article from './Work/Article.astro'
 import GitHub from './Work/GitHub.astro'
 import Project from './Work/Project.astro'
-import Smashing from './Work/Smashing.astro'
 import { getEntry, type CollectionEntry } from 'astro:content'
-import { isProjectEntry, isCodropsEntry, isGitHubEntry, isSmashingEntry } from '@/schemas/work'
+import { isProjectEntry, isArticleEntry, isGitHubEntry } from '@/schemas/work'
 
 type Props = Pick<CollectionEntry<'works'>, 'slug'>
 
@@ -16,9 +15,8 @@ if (!entry) throw new Error(`Could not find work with slug: ${slug}`)
 
 {/* There were too many issues with using a dynamic tag */}
 {
-	isCodropsEntry(entry) ? <Codrops entry={entry} />
+	isArticleEntry(entry) ? <Article entry={entry} />
 	: isGitHubEntry(entry) ? <GitHub {entry} />
 	: isProjectEntry(entry) ? <Project {entry} />
-	: isSmashingEntry(entry) ? <Smashing {entry} />
 	: null
 }
