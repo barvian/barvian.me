@@ -24,7 +24,7 @@ const isMounted = useMounted()
 				style="view-transition-name: back"
 			/>
 			<span style="view-transition-name: name">Maxwell Barvian</span><br />
-			<span style="view-transition-name: title">Front-end Developer</span>
+			<span style="view-transition-name: title">Design Engineer</span>
 		</h1>
 		<div class="max-sm:relative sm:contents">
 			<div
