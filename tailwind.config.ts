@@ -9,9 +9,14 @@ export default {
 	presets: [reset],
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
-		container: {
-			center: true,
-			padding: '1.5rem'
+		container: ({ theme }) => {
+			const { xs, ...screens } = theme('screens')
+
+			return {
+				center: true,
+				screens,
+				padding: theme('spacing.6')
+			}
 		},
 		extend: {
 			fontFamily: {
@@ -72,7 +77,6 @@ export default {
 	plugins: [
 		typography,
 		plugin(({ matchVariant, addVariant, matchUtilities, theme }) => {
-			console.log(theme('screens'))
 			matchUtilities(
 				{
 					'text-current': (_, { modifier }) => ({
