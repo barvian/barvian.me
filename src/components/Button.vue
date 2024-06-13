@@ -46,7 +46,7 @@ const {
     },
     email: {
         Icon: Email,
-        iconClassName: 'h-5'
+        iconClassName: 'h-4'
     },
     dribbble: {
         Icon: Dribbble,
