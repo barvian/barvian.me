@@ -4,20 +4,26 @@ import typography from '@tailwindcss/typography'
 import { normalize } from 'tailwindcss/src/util/dataTypes'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import reset from 'tw-reset'
+import fluid, { extract, type FluidThemeConfig } from 'fluid-tailwind'
 
 export default {
 	presets: [reset],
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	content: {
+		files: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+		extract
+	},
 	theme: {
 		container: ({ theme }) => {
 			const { xs, ...screens } = theme('screens')
 
 			return {
 				center: true,
-				screens,
-				padding: theme('spacing.6')
+				screens
 			}
 		},
+		fluid: (({ theme }) => ({
+			defaultScreens: [, theme('screens.xl')]
+		})) satisfies FluidThemeConfig,
 		extend: {
 			fontFamily: {
 				sans: [
@@ -27,10 +33,6 @@ export default {
 					}
 				],
 				system: defaultTheme.fontFamily.sans
-			},
-			spacing: {
-				'8vh': 'max(theme(padding.8),8vh)',
-				'10vh': 'max(theme(padding.10),10vh)'
 			},
 			screens: {
 				xs: '23.5rem',
@@ -75,6 +77,7 @@ export default {
 		}
 	},
 	plugins: [
+		fluid,
 		typography,
 		plugin(({ matchVariant, addVariant, matchUtilities, theme }) => {
 			matchUtilities(

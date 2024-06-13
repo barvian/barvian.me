@@ -53,7 +53,7 @@
 
 @layer components {
 	.container {
-		@apply xl:px-8;
+		@apply ~px-6/8;
 	}
 
 	.link-underline {

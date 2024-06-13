@@ -11,7 +11,7 @@ const maxSm = breakpoints.smaller('sm')
 const isMounted = useMounted()
 </script>
 <template>
-	<header class="container flex items-center justify-between py-8vh">
+	<header class="container flex items-center justify-between ~py-8/16">
 		<h1
 			class="relative w-fit text-lg/snug transition"
 			:class="{

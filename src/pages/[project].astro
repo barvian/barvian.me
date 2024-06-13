@@ -42,7 +42,9 @@ const Demo =
 ---
 
 <Layout bodyClass="container" title={`${data.title}, by Maxwell Barvian`}>
-	<header class="max-xl:mx-auto max-xl:mb-8 max-xl:max-w-prose max-xl:pt-8vh xl:fixed xl:top-8vh">
+	<header
+		class="max-xl:mx-auto max-xl:mb-8 max-xl:max-w-prose max-xl:~pt-8/16 xl:fixed xl:~top-8/16"
+	>
 		<nav>
 			<a
 				href="/"
@@ -71,7 +73,7 @@ const Demo =
 		</nav>
 	</header>
 	<main>
-		<article class="mx-auto max-w-prose pb-10vh xl:pt-8vh">
+		<article class="mx-auto max-w-prose ~pb-12/20 xl:~pt-8/16">
 			<header style="view-transition-name: project-header;">
 				<div class="flex items-start gap-6 sm:items-center">
 					<div class="flex-1">
