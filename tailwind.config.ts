@@ -67,6 +67,7 @@ export default {
 	plugins: [
 		typography,
 		plugin(({ matchVariant, addVariant, matchUtilities, theme }) => {
+			console.log(theme('screens'))
 			matchUtilities(
 				{
 					'text-current': (_, { modifier }) => ({
@@ -77,6 +78,7 @@ export default {
 			)
 
 			addVariant('inactive', '&:not(:hover,:active,:focus-visible)')
+			addVariant('real-hover', '@media (hover: hover) and (pointer:fine)')
 
 			// Override built-in to handle self
 			matchVariant(

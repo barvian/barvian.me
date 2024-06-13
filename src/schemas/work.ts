@@ -1,3 +1,4 @@
+import type { Schema } from 'astro/zod'
 import { z, reference, type CollectionEntry, type SchemaContext } from 'astro:content'
 
 // z.intersection messed up types for some reason
@@ -54,16 +55,18 @@ export function isArticleEntry(entry?: CollectionEntry<'works'>): entry is Artic
 	return entry?.data.type === 'article'
 }
 
-export const github = z.object({
-	type: z.literal('github'),
-	github: z.string()
-})
+export const github = (context: SchemaContext) =>
+	z.object({
+		type: z.literal('github'),
+		github: z.string(),
+		...video(context)
+	})
 
-export type GitHubEntry = CollectionEntry<'works'> & { data: z.infer<typeof github> }
+export type GitHubEntry = CollectionEntry<'works'> & { data: z.infer<ReturnType<typeof github>> }
 
 export function isGitHubEntry(entry?: CollectionEntry<'works'>): entry is GitHubEntry {
 	return entry?.data.type === 'github'
 }
 
 export default (context: SchemaContext) =>
-	z.discriminatedUnion('type', [project(context), article(context), github])
+	z.discriminatedUnion('type', [project(context), article(context), github(context)])

@@ -37,7 +37,7 @@ const isMounted = useMounted()
 					v-on-click-outside="() => (socialExpanded = false)"
 					id="social"
 					aria-label="Social links"
-					class="max-[400px]:-space-x-11 isolate flex items-center gap-2 max-sm:-space-x-8 max-sm:*:bg-white/10 max-sm:*:backdrop-blur-lg max-sm:*:transition-all sm:gap-4"
+					class="isolate flex items-center gap-2 max-sm:-space-x-8 max-sm:*:bg-white/10 max-sm:*:backdrop-blur-lg max-sm:*:transition-all max-[25rem]:-space-x-11 sm:gap-4"
 					:class="{ 'max-sm:!space-x-0': socialExpanded }"
 				>
 					<Button
