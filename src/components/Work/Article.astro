@@ -21,7 +21,7 @@ const { poster, src } = await getVideo(entry)
 	<a
 		rel="external"
 		target="_blank"
-		class="group relative isolate flex flex-col justify-end gap-4 overflow-clip rounded-2.5cqw bg-black p-6 text-white transition will-change-transform will-change-transform hover:scale-[1.025] hover:shadow-2xl active:scale-[1] active:shadow-none active:duration-200 sm:aspect-golden md:gap-3 dark:!shadow-none"
+		class="group relative isolate flex aspect-golden flex-col justify-end gap-4 overflow-clip rounded-2.5cqw bg-black p-6 text-white transition will-change-transform hover:scale-[1.025] hover:shadow-2xl active:scale-[1] active:shadow-none active:duration-200 md:gap-3 dark:!shadow-none"
 		href={data.url}
 	>
 		<Video
@@ -44,7 +44,7 @@ const { poster, src } = await getVideo(entry)
 				/>
 			</span>
 		</span>
-		<span class="text-pretty text-2xl font-medium sm:line-clamp-2">{data.title}</span>
+		<span class="line-clamp-2 text-pretty text-2xl font-medium">{data.title}</span>
 		<span class="flex items-center gap-3">
 			<Image
 				src={headshot}
