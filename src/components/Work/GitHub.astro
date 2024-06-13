@@ -22,13 +22,13 @@ const color = languages[repo.language]?.color
 	<a
 		rel="external"
 		target="_blank"
-		class="ring-contrast group flex flex-col gap-4 rounded-2.5cqw p-6 transition will-change-transform hover:scale-[1.025] hover:bg-[#d0d7de33] hover:shadow-2xl active:scale-[1] active:shadow-none active:duration-200 sm:aspect-golden md:gap-3 dark:!shadow-none dark:hover:bg-[#b1bac41f]"
+		class="ring-contrastier group flex flex-col gap-4 rounded-2.5cqw p-6 transition will-change-transform hover:scale-[1.025] hover:bg-black/5 hover:shadow-2xl active:scale-[1] active:shadow-none active:duration-200 sm:aspect-golden md:gap-3 dark:!shadow-none dark:hover:bg-white/10"
 		href={repo.html_url}
 	>
 		<div class="flex gap-4 @md:gap-5">
 			<div class="flex-1">
 				<svg
-					class="relative top-[.125em] mr-1 inline-block h-5 fill-current align-baseline opacity-80"
+					class="relative top-[.125em] mr-1 inline-block h-5 fill-current align-baseline opacity-75"
 					viewBox="0 0 16 16"
 				>
 					<title>Repository Icon</title>
@@ -42,7 +42,7 @@ const color = languages[repo.language]?.color
 						class="h-[0.8rem] -translate-x-full translate-y-[110%] transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
 					/>
 				</span>
-				<p class="mt-4 leading-snug opacity-80">{repo.description}</p>
+				<p class="mt-4 leading-snug opacity-75">{repo.description}</p>
 			</div>
 			<!-- <Image
 				src={repo.owner.avatar_url}
@@ -57,9 +57,9 @@ const color = languages[repo.language]?.color
 				<dt class="block size-3 rounded-full" style={`background-color: ${color}`}>
 					<span class="sr-only">Language</span>
 				</dt>
-				<dd class="opacity-80">{repo.language}</dd>
+				<dd class="opacity-75">{repo.language}</dd>
 			</div>
-			<div class="flex items-baseline gap-2 opacity-80">
+			<div class="flex items-baseline gap-2 opacity-75">
 				<dt>
 					<svg
 						class="relative top-[.0625em] h-3.5"
@@ -75,7 +75,7 @@ const color = languages[repo.language]?.color
 				</dt>
 				<dd>{repo.stargazers_count}</dd>
 			</div>
-			<div class="flex items-baseline gap-2 whitespace-nowrap opacity-80">
+			<div class="flex items-baseline gap-2 whitespace-nowrap opacity-75">
 				<dt>
 					<svg
 						class="relative top-[.0625em] h-3.5"

@@ -78,10 +78,7 @@ const {
 			:	'aspect-square',
 			preset === 'primary' ?
 				'bg-black text-white hover:bg-neutral-800 dark:bg-neutral-100 dark:text-black dark:hover:bg-white'
-			:	[
-					'hover:bg-black/5 dark:hover:bg-white/20',
-					preset === 'secondary' && 'border border-black/20 dark:border-white/25'
-				]
+			:	['hover:bg-black/5 dark:hover:bg-white/10', preset === 'secondary' && 'ring-contrastier']
 		]"
 	>
 		<component

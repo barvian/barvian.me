@@ -66,7 +66,18 @@ export default {
 	},
 	plugins: [
 		typography,
-		plugin(({ matchVariant }) => {
+		plugin(({ matchVariant, addVariant, matchUtilities, theme }) => {
+			matchUtilities(
+				{
+					'text-current': (_, { modifier }) => ({
+						color: `color-mix(in srgb, currentColor, transparent ${(1 - modifier) * 100}%)`
+					})
+				},
+				{ values: { DEFAULT: '' }, modifiers: theme('opacity') }
+			)
+
+			addVariant('inactive', '&:not(:hover,:active,:focus-visible)')
+
 			// Override built-in to handle self
 			matchVariant(
 				'group-has',

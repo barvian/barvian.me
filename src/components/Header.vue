@@ -42,30 +42,30 @@ const isMounted = useMounted()
 				>
 					<Button
 						icon="email"
-						class="sm:opacity-80 sm:hover:opacity-100"
+						class="inactive:text-current/75"
 						href="mailto:max@barvian.me"
 						preset="tertiary"
 					/>
 					<Button
-						class="-z-10 sm:opacity-80 sm:hover:opacity-100"
+						class="-z-10 inactive:text-current/75"
 						icon="github"
 						href="https://github.com/barvian"
 						preset="tertiary"
 					/>
 					<Button
-						class="-z-20 sm:opacity-80 sm:hover:opacity-100"
+						class="-z-20 inactive:text-current/75"
 						icon="x"
 						href="https://x.com/mbarvian"
 						preset="tertiary"
 					/>
 					<Button
-						class="-z-30 sm:opacity-80 sm:hover:opacity-100"
+						class="-z-30 inactive:text-current/75"
 						icon="linkedin"
 						href="https://linkedin.com/in/barvian"
 						preset="tertiary"
 					/>
 					<Button
-						class="-z-40 sm:opacity-80 sm:hover:opacity-100"
+						class="-z-40 inactive:text-current/75"
 						icon="dribbble"
 						href="https://dribbble.com/barvian"
 						preset="tertiary"

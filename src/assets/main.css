@@ -45,6 +45,10 @@
 	.ring-contrast {
 		@apply ring-1 ring-inset ring-black/[7.5%] dark:ring-white/[7.5%];
 	}
+
+	.ring-contrastier {
+		@apply ring-1 ring-inset ring-black/20 dark:ring-white/20;
+	}
 }
 
 @layer components {
@@ -53,6 +57,6 @@
 	}
 
 	.link-underline {
-		@apply relative inline-block no-underline transition before:absolute before:left-0 before:top-1/2 before:mt-[.6em] before:h-[1px] before:w-full before:bg-current before:opacity-35 after:absolute after:left-0 after:top-1/2 after:mt-[.6em] after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition after:hover:scale-x-100 active:opacity-80 active:duration-200 dark:before:opacity-70;
+		@apply relative inline-block no-underline transition before:absolute before:left-0 before:top-1/2 before:mt-[.6em] before:h-[1px] before:w-full before:bg-current before:opacity-35 after:absolute after:left-0 after:top-1/2 after:mt-[.6em] after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition after:hover:scale-x-100 active:opacity-75 active:duration-200 dark:before:opacity-75;
 	}
 }

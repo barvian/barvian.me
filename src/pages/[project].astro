@@ -81,7 +81,7 @@ const Demo =
 								company && (
 									<>
 										<span>
-											<span class="opacity-70">For</span>
+											<span class="opacity-75">For</span>
 											{company.data.logo && (
 												<Image
 													class="relative -top-[0.0625rem] inline-block h-3.5 align-middle max-sm:hidden"
@@ -96,13 +96,13 @@ const Demo =
 												{company.data.name}
 											</Link>
 										</span>
-										<span class="opacity-70">·</span>
+										<span class="opacity-75">·</span>
 									</>
 								)
 							}
 							{
 								data.date && (
-									<time pubdate datetime={data.date.toISOString()} class="opacity-70">
+									<time pubdate datetime={data.date.toISOString()} class="opacity-75">
 										<span class="max-sm:hidden">
 											{data.date.toLocaleDateString('en-us', {
 												month: 'long',
@@ -149,9 +149,14 @@ const Demo =
 			<div style="view-transition-name: project-content">
 				{
 					using && (
-						<div role="group" aria-label="Tools used" class="mt-10 flex flex-wrap gap-3 opacity-70">
+						<div role="group" aria-label="Tools used" class="mt-10 flex flex-wrap gap-3">
 							{using?.map((tool) => (
-								<Button size="sm" preset="secondary" href={tool.data.url}>
+								<Button
+									size="sm"
+									preset="secondary"
+									class="inactive:text-current/75"
+									href={tool.data.url}
+								>
 									{tool.data.name}
 								</Button>
 							))}
