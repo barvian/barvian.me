@@ -34,7 +34,7 @@ const {
 } = icon ? ({
     github: {
         Icon: GitHub,
-        iconClassName: 'h-5'
+        iconClassName: 'h-5 relative top-[0.03125rem]'
     },
     x: {
         Icon: X,
