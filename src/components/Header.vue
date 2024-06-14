@@ -64,12 +64,12 @@ const isMounted = useMounted()
 						href="https://linkedin.com/in/barvian"
 						preset="tertiary"
 					/>
-					<Button
+					<!-- <Button
 						class="-z-40 inactive:text-current/75"
 						icon="dribbble"
 						href="https://dribbble.com/barvian"
 						preset="tertiary"
-					/>
+					/> -->
 				</nav>
 				<button
 					aria-controls="social"
