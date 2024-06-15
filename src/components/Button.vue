@@ -13,15 +13,13 @@ const {
 	href,
 	preset = 'primary',
 	size = 'md',
-	icon,
-	iconStrokeWidth
+	icon
 } = defineProps<{
 	class?: string // Astro's type checking doesn't like Vue's fallthrough attributes
 	href?: string
 	preset?: 'primary' | 'secondary' | 'tertiary'
 	size?: 'sm' | 'md'
 	icon?: 'external' | 'github' | 'x' | 'dribbble' | 'email' | 'linkedin'
-	iconStrokeWidth?: number
 }>()
 
 const external = href && isExternal(href)
@@ -34,7 +32,7 @@ const {
 } = icon ? ({
     github: {
         Icon: GitHub,
-        iconClassName: 'h-5 relative top-[0.03125rem]'
+        iconClassName: 'h-5'
     },
     x: {
         Icon: X,
@@ -69,7 +67,7 @@ const {
 		:class="[
 			className,
 			size === 'md' ? 'h-12' : 'h-8',
-			'group relative isolate flex select-none items-center justify-center gap-3 overflow-clip rounded-full font-medium leading-snug transition will-change-transform *:pointer-events-none hover:scale-110 active:scale-100 active:duration-200',
+			'group relative isolate flex select-none items-center justify-center gap-3 overflow-clip rounded-full font-medium leading-snug transition *:pointer-events-none active:duration-200',
 			external && icon !== 'external' && 'cursor-external',
 			$slots.default ?
 				size === 'md' ?
@@ -81,29 +79,19 @@ const {
 			:	['hover:bg-black/5 dark:hover:bg-white/10', preset === 'secondary' && 'ring-contrastier']
 		]"
 	>
-		<component
-			:is="Icon"
-			:class="iconClassName"
-			:stroke-width="iconStrokeWidth"
-			v-if="!iconRight && Icon"
-		/>
-		<slot v-if="preset !== 'primary'" />
-		<span v-else-if="$slots.default" class="relative block overflow-hidden">
-			<span class="block transition group-hover:-translate-y-[108%] group-hover:skew-y-6">
-				<slot />
-			</span>
-			<span
+		<component :is="Icon" :class="iconClassName" v-if="!iconRight && Icon" />
+		<!-- <slot v-if="preset !== 'primary'" /> -->
+		<!-- <span v-else-if="$slots.default" class="relative block overflow-hidden"> -->
+		<!-- <span class="block transition group-hover:-translate-y-[108%] group-hover:skew-y-6"> -->
+		<slot />
+		<!-- </span> -->
+		<!-- <span
 				aria-hidden="true"
 				class="absolute left-0 top-full skew-y-6 transition group-hover:-translate-y-full group-hover:skew-y-0"
 			>
 				<slot />
-			</span>
-		</span>
-		<component
-			:is="Icon"
-			:class="iconClassName"
-			:stroke-width="iconStrokeWidth"
-			v-if="iconRight && Icon"
-		/>
+			</span> -->
+		<!-- </span> -->
+		<component :is="Icon" :class="iconClassName" v-if="iconRight && Icon" />
 	</component>
 </template>

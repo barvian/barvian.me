@@ -122,8 +122,17 @@ const Demo =
 							}
 						</div>
 					</div>
-					<div class="flex gap-4 sm:gap-6">
-						{repo && <Button preset="secondary" iconStrokeWidth={1.5} icon="github" href={repo} />}
+					<div class="flex gap-4">
+						{
+							repo && (
+								<Button
+									preset="tertiary"
+									class="inactive:text-current/75"
+									icon="github"
+									href={repo}
+								/>
+							)
+						}
 						{
 							data.url && (
 								<>
@@ -143,9 +152,14 @@ const Demo =
 								<Demo />
 							</div>
 						</div>
-					:	<div class="group/hero relative mt-10 @container">
+					:	<a
+							href={data.url}
+							target="_blank"
+							rel="external"
+							class="group/hero relative mt-10 block @container"
+						>
 							<ProjectVideo {entry} />
-						</div>
+						</a>
 				}
 			</header>
 			<div style="view-transition-name: project-content">
