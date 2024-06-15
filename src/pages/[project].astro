@@ -152,14 +152,9 @@ const Demo =
 								<Demo />
 							</div>
 						</div>
-					:	<a
-							href={data.url}
-							target="_blank"
-							rel="external"
-							class="group/hero relative mt-10 block @container"
-						>
+					:	<Link href={data.url} class="group/hero relative mt-10 block @container">
 							<ProjectVideo {entry} />
-						</a>
+						</Link>
 				}
 			</header>
 			<div style="view-transition-name: project-content">
