@@ -157,10 +157,11 @@ const Demo =
 						</Link>
 				}
 			</header>
-			<div style="view-transition-name: project-content">
+			<!-- This has to be padding for the VT to look right -->
+			<div class="pt-10" style="view-transition-name: project-content">
 				{
 					using && (
-						<div role="group" aria-label="Tools used" class="mt-10 flex flex-wrap gap-3">
+						<div role="group" aria-label="Tools used" class="flex flex-wrap gap-3">
 							{using?.map((tool) => (
 								<Button
 									size="sm"

@@ -130,13 +130,6 @@ const projectsWithDemos = (
 		}
 
 		/* Entrance animations */
-		[data-transition-to='/']::view-transition-new(root),
-		[data-transition-to='/']::view-transition-old(title),
-		[data-transition-to='/']::view-transition-new(title) {
-			/* animation-timing-function: theme('transitionTimingFunction.out'); */
-			/* animation-duration: theme('transitionDuration.350'); */
-			/* animation-delay: calc(theme('transitionDuration.450') - theme('transitionDuration.350')) */
-		}
 
 		[data-transition-to='/']::view-transition-new(root) {
 			animation-name: pop;
@@ -177,30 +170,30 @@ const projectsWithDemos = (
 			}
 		}
 
+		/* Project Header */
+
+		/* [data-transition-from='/']::view-transition-old(project-header),
+		[data-transition-to='/']::view-transition-new(project-header) {
+			opacity: 0;
+			animation: none;
+		}
+
+		[data-transition-from='/']::view-transition-new(project-header),
+		[data-transition-to='/']::view-transition-old(project-header) {
+			animation: none;
+		} */
+
 		/* Project Content */
 
-		[data-transition-from='/']::view-transition-new(project-content) {
-			animation-name: translateDown;
+		::view-transition-group(project-content) {
+			overflow: clip;
 		}
 
-		[data-transition-to='/']::view-transition-old(project-content) {
-			animation-name: translateUp;
-		}
-
-		@keyframes translateDown {
-			from {
-				opacity: 0;
-				transform: translateY(-100%);
-				/* clip-path: inset(100% 0 0 0); */
-			}
-		}
-
-		@keyframes translateUp {
-			to {
-				opacity: 0;
-				transform: translateY(-100%);
-				/* clip-path: inset(100% 0 0 0); */
-			}
+		::view-transition-old(project-content),
+		::view-transition-new(project-content) {
+			object-fit: cover;
+			object-position: bottom center;
+			height: 100%;
 		}
 	</style>
 </html>
