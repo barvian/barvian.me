@@ -4,6 +4,7 @@ import typography from '@tailwindcss/typography'
 import { normalize } from 'tailwindcss/src/util/dataTypes'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import reset from 'tw-reset'
+import { screens } from './theme'
 import fluid, { extract, type FluidThemeConfig } from 'fluid-tailwind'
 
 export default {
@@ -13,17 +14,15 @@ export default {
 		extract
 	},
 	theme: {
-		container: ({ theme }) => {
-			const { xs, ...screens } = theme('screens')
+		container: () => {
+			const { xs, ...screensWithoutXs } = screens
 
 			return {
 				center: true,
-				screens
+				screens: screensWithoutXs
 			}
 		},
-		fluid: (({ theme }) => ({
-			defaultScreens: [, theme('screens.xl')]
-		})) satisfies FluidThemeConfig,
+		screens,
 		extend: {
 			fontFamily: {
 				sans: [
@@ -33,10 +32,6 @@ export default {
 					}
 				],
 				system: defaultTheme.fontFamily.sans
-			},
-			screens: {
-				xs: '23.5rem',
-				md: '53.75rem'
 			},
 			aspectRatio: {
 				golden: '1.618'

@@ -2,12 +2,13 @@
 import { ref } from 'vue'
 import Button from '@/components/Button.vue'
 import { vOnClickOutside } from '@vueuse/components'
-import { breakpointsTailwind, useBreakpoints, useMediaQuery, useMounted } from '@vueuse/core'
-const breakpoints = useBreakpoints(breakpointsTailwind)
+import { screens } from '/theme'
+import { useBreakpoints, useMediaQuery, useMounted } from '@vueuse/core'
+const breakpoints = useBreakpoints(screens)
 const canHover = useMediaQuery('(hover: hover)')
 
 const socialExpanded = ref(false)
-const maxSm = breakpoints.smaller('sm')
+const maxXs = breakpoints.smaller('xs')
 const isMounted = useMounted()
 </script>
 <template>
@@ -15,7 +16,7 @@ const isMounted = useMounted()
 		<h1
 			class="relative w-fit text-lg/snug transition"
 			:class="{
-				'max-sm:opacity-50 max-sm:blur-sm': socialExpanded
+				'max-xs:opacity-50 max-xs:blur-sm': socialExpanded
 			}"
 		>
 			<div
@@ -26,9 +27,9 @@ const isMounted = useMounted()
 			<span style="view-transition-name: name">Maxwell Barvian</span><br />
 			<span style="view-transition-name: title">Design Engineer</span>
 		</h1>
-		<div class="max-sm:relative sm:contents">
+		<div class="max-xs:relative xs:contents">
 			<div
-				class="max-sm:absolute max-sm:right-0 max-sm:top-1/2 max-sm:-translate-y-1/2 sm:contents"
+				class="max-xs:absolute max-xs:right-0 max-xs:top-1/2 max-xs:-translate-y-1/2 xs:contents"
 			>
 				<nav
 					ref="social"
@@ -37,8 +38,8 @@ const isMounted = useMounted()
 					v-on-click-outside="() => (socialExpanded = false)"
 					id="social"
 					aria-label="Social links"
-					class="isolate flex items-center gap-2 max-sm:-space-x-8 max-sm:*:bg-white/10 max-sm:*:backdrop-blur-lg max-sm:*:transition-all max-[25rem]:-space-x-11 sm:gap-4"
-					:class="{ 'max-sm:!space-x-0': socialExpanded }"
+					class="isolate flex items-center ~/sm:~gap-0/2 max-xs:*:bg-white/10 max-xs:*:backdrop-blur-lg max-xs:*:transition-all max-xs:~min-[20rem]/[22rem]:~-space-x-9/6"
+					:class="{ 'max-xs:!space-x-0': socialExpanded }"
 				>
 					<Button
 						icon="email"
@@ -74,7 +75,7 @@ const isMounted = useMounted()
 				<button
 					aria-controls="social"
 					aria-label="Toggle social links"
-					v-if="isMounted && !canHover && maxSm && !socialExpanded"
+					v-if="isMounted && !canHover && maxXs && !socialExpanded"
 					@click="socialExpanded = true"
 					:aria-expanded="socialExpanded ? 'true' : 'false'"
 					class="absolute inset-0 size-full"
