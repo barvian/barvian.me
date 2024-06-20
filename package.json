@@ -30,7 +30,7 @@
 		"matter-js": "^0.18.0",
 		"nprogress": "^0.2.0",
 		"svelte": "^4.2.9",
-		"tailwindcss": "^3.4.1",
+		"tailwindcss": "^3.4.4",
 		"tw-reset": "^0.0.5",
 		"typescript": "^5.4.5",
 		"vue": "^3.4.15"
