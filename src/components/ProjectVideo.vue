@@ -19,7 +19,7 @@ const hasDemo = !import.meta.env.SSR && window.__PROJECTS_WITH_DEMOS__.includes(
 </script>
 <template>
 	<Video
-		class="!aspect-golden w-full overflow-clip rounded-2.5cqw transition group-hover/card:scale-[1.025] group-hover/card:shadow-2xl group-focus-visible/card:outline group-active/card:scale-[1] group-active/card:shadow-none group-active/card:duration-200 group-data-[project=active]/card:scale-[1] group-data-[project=active]/card:shadow-none group-data-[project=active]/card:duration-200 group-data-[project=active]/card:[view-transition-name:project-hero] group-has/hero:[view-transition-name:project-hero] dark:!shadow-none"
+		class="!aspect-golden w-full overflow-clip rounded-2.5cqw transition duration-200 ease-out-quad group-hover/card:scale-[1.025] group-hover/card:shadow-2xl group-focus-visible/card:outline group-active/card:scale-[1] group-active/card:shadow-none group-data-[project=active]/card:scale-[1] group-data-[project=active]/card:shadow-none group-data-[project=active]/card:[view-transition-name:project-hero] group-has/hero:[view-transition-name:project-hero] dark:!shadow-none"
 		:forcePlay="
 			(transitioning?.from.pathname === '/' + slug && !hasDemo) ||
 			transitioning?.to.pathname === '/' + slug

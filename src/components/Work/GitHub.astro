@@ -35,14 +35,14 @@ const { poster, src } = await getVideo(entry)
 			client:load
 		/>
 		<div
-			class="ring-contrast absolute inset-0 -z-10 rounded-2.5cqw bg-to-dark transition-opacity group-hover:opacity-90"
+			class="ring-contrast absolute inset-0 -z-10 rounded-2.5cqw bg-to-dark transition-opacity duration-200 ease-out-quad group-hover:opacity-90"
 		>
 		</div>
 		<p>
 			<span class="text-2xl font-medium">{data.github}</span>
 			<span class="ml-1.5 hidden overflow-hidden real-hover:inline-block">
 				<External
-					class="h-[0.8rem] -translate-x-full translate-y-[110%] transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
+					class="spring-200 h-[0.8rem] -translate-x-full translate-y-[110%] transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
 				/>
 			</span>
 		</p>

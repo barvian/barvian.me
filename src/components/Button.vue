@@ -67,7 +67,7 @@ const {
 		:class="[
 			className,
 			size === 'md' ? 'h-12' : 'h-8',
-			'group relative isolate flex select-none items-center justify-center gap-3 overflow-clip rounded-full font-medium leading-snug transition duration-150 ease-out-quad *:pointer-events-none',
+			'group relative isolate flex select-none items-center justify-center gap-3 overflow-clip rounded-full font-medium leading-snug transition ease-out-quad *:pointer-events-none',
 			external && icon !== 'external' && 'cursor-external',
 			$slots.default ?
 				size === 'md' ?

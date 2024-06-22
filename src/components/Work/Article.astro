@@ -33,7 +33,7 @@ const { poster, src } = await getVideo(entry)
 			client:load
 		/>
 		<div
-			class="ring-contrast absolute inset-0 -z-10 rounded-2.5cqw bg-to-dark transition-opacity group-hover:opacity-90"
+			class="ring-contrast absolute inset-0 -z-10 rounded-2.5cqw bg-to-dark transition-opacity duration-200 ease-out-quad group-hover:opacity-90"
 		>
 		</div>
 		<span
@@ -43,7 +43,7 @@ const { poster, src } = await getVideo(entry)
 			<Logo />
 			<span class="relative top-[0.0625rem] hidden overflow-hidden real-hover:block">
 				<External
-					class="h-[0.7rem] -translate-x-full translate-y-[110%] transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
+					class="spring-200 h-[0.7rem] -translate-x-full translate-y-[110%] transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
 				/>
 			</span>
 		</span>

@@ -102,8 +102,9 @@ const projectsWithDemos = (
 		/* Use a spring by for the parts that transform */
 		::view-transition-group(*),
 		::view-transition-image-pair(*) {
-			animation-duration: 550ms; /* match the spring duration */
-			animation-timing-function: theme('transitionTimingFunction[spring-450/550]');
+			/* Ideally: */
+			/* animation-timing-function: spring(450ms) */
+			@apply animate-spring-450;
 		}
 		
 		/* And an ease for the parts that don't transform */
