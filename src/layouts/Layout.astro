@@ -99,11 +99,18 @@ const projectsWithDemos = (
 	</script>
 
 	<style is:global>
+		/* Use a spring by for the parts that transform */
 		::view-transition-group(*),
+		::view-transition-image-pair(*) {
+			animation-duration: 550ms; /* match the spring duration */
+			animation-timing-function: theme('transitionTimingFunction[spring-450/550]');
+		}
+		
+		/* And an ease for the parts that don't transform */
 		::view-transition-old(*),
 		::view-transition-new(*) {
-			animation-duration: 600ms;
-			animation-timing-function: theme('transitionTimingFunction.DEFAULT');
+			animation-timing-function: ease;
+			animation-duration: 450ms; /* match the spring perceived duration */
 		}
 
 		::view-transition-old(root),
@@ -112,13 +119,8 @@ const projectsWithDemos = (
 		}
 
 		/* Exit animations */
-		[data-transition-from='/']::view-transition-old(root),
-		[data-transition-from='/']::view-transition-old(title),
-		[data-transition-from='/']::view-transition-new(title) {
-			animation-duration: theme('transitionDuration.350');
-		}
 
-		[data-transition-from='/']::view-transition-old(root) {
+		[data-transition-from='/']::view-transition-image-pair(root) {
 			animation-name: push;
 		}
 
@@ -129,7 +131,7 @@ const projectsWithDemos = (
 
 		/* Entrance animations */
 
-		[data-transition-to='/']::view-transition-new(root) {
+		[data-transition-to='/']::view-transition-image-pair(root) {
 			animation-name: pop;
 		}
 
@@ -156,7 +158,7 @@ const projectsWithDemos = (
 			to {
 				transform: scale(0.9);
 				opacity: 0;
-				/* filter: blur(theme(blur.sm)) saturate(50%) */
+				/* filter: blur(theme(blur.lg)) saturate(50%) */
 			}
 		}
 
@@ -164,7 +166,7 @@ const projectsWithDemos = (
 			from {
 				transform: scale(0.9);
 				opacity: 0;
-				/* filter: blur(theme(blur.sm)) saturate(50%) */
+				/* filter: blur(theme(blur.lg)) saturate(50%) */
 			}
 		}
 
@@ -191,7 +193,10 @@ const projectsWithDemos = (
 		::view-transition-new(project-content) {
 			object-fit: cover;
 			object-position: bottom center;
+			/* object-position: top center; */
 			height: 100%;
+			/* width: 100%;
+			height: auto; */
 		}
 	</style>
 </html>
