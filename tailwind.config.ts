@@ -79,19 +79,7 @@ export default {
 	plugins: [
 		fluid,
 		typography,
-		plugin(({ matchVariant, addVariant, addUtilities, matchUtilities, theme }) => {
-			// I really need a plugin for these:
-			addUtilities({
-				'.animate-spring-450': {
-					'animation-timing-function': `linear(
-						0, 0.005, 0.02 2%, 0.08 4.5%, 0.469 15.1%, 0.567, 0.65, 0.723 24.3%,
-						0.784 27.6%, 0.836 31.1%, 0.878 34.8%, 0.915 39%, 0.943 43.7%, 0.964 49.1%,
-						0.979 55.3%, 0.989 62.3%, 0.995 71%, 1
-					  )`,
-					'animation-duration': '550ms'
-				}
-			})
-
+		plugin(({ matchVariant, addVariant, matchUtilities, theme }) => {
 			matchUtilities(
 				{
 					'text-current': (_, { modifier }) => ({
