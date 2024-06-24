@@ -82,6 +82,6 @@
 	}
 
 	.link-underline {
-		@apply relative inline-block no-underline transition after:absolute after:left-0 after:top-1/2 after:mt-[.6em] after:h-[1px] after:w-full after:origin-top after:bg-current after:opacity-75 after:transition after:ease-out-quad hover:after:scale-y-150 hover:after:opacity-100;
+		@apply relative inline-block no-underline transition after:absolute after:left-0 after:top-1/2 after:mt-[.6em] after:h-[1px] after:w-full after:origin-top after:bg-current after:opacity-75 after:transition-opacity after:ease-out-quad hover:after:opacity-100;
 	}
 }
