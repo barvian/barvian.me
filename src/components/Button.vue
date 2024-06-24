@@ -67,7 +67,7 @@ const {
 		:class="[
 			className,
 			size === 'md' ? 'h-12' : 'h-8',
-			'group relative isolate flex select-none items-center justify-center gap-3 overflow-clip rounded-full font-medium leading-snug transition ease-out-quad *:pointer-events-none',
+			'group relative isolate flex select-none items-center justify-center gap-3 overflow-clip rounded-full leading-snug transition ease-out-quad *:pointer-events-none',
 			external && icon !== 'external' && 'cursor-external',
 			$slots.default ?
 				size === 'md' ?
@@ -75,7 +75,7 @@ const {
 				:	'px-2.5 text-sm'
 			:	'aspect-square',
 			preset === 'primary' ?
-				'bg-black text-white hover:bg-neutral-800 dark:bg-neutral-200 dark:text-black dark:hover:bg-white'
+				'bg-black font-medium text-white hover:bg-neutral-800 dark:bg-neutral-200 dark:text-black dark:hover:bg-white'
 			:	['hover:bg-black/5 dark:hover:bg-white/10', preset === 'secondary' && 'ring-contrastier']
 		]"
 	>

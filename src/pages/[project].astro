@@ -91,10 +91,7 @@ const Demo =
 													src={company.data.logo}
 												/>
 											)}
-											<Link
-												class="link-underline cursor-external font-medium"
-												href={company.data.url}
-											>
+											<Link class="link-underline cursor-external" href={company.data.url}>
 												{company.data.name}
 											</Link>
 										</span>
@@ -175,7 +172,9 @@ const Demo =
 						</div>
 					)
 				}
-				<div class="prose-a:link-underline prose prose-lg prose-neutral mt-10 dark:prose-invert">
+				<div
+					class="prose-a:link-underline prose prose-lg prose-neutral mt-10 dark:prose-invert prose-a:font-normal"
+				>
 					<Content components={{ a: Link }} />
 				</div>
 			</div>
