@@ -214,31 +214,21 @@ const projectsWithDemos = (
 
 		/* Project Header */
 
-		/* [data-transition-from='/']::view-transition-old(project-header),
-		[data-transition-to='/']::view-transition-new(project-header) {
-			opacity: 0;
-			animation: none;
+		/* ::view-transition-group(project-header) {
+			overflow: clip;
 		}
 
-		[data-transition-from='/']::view-transition-new(project-header),
-		[data-transition-to='/']::view-transition-old(project-header) {
-			animation: none;
+		::view-transition-old(project-header),
+		::view-transition-new(project-header) {
+			height: 100%;
+			object-fit: cover;
+			object-position: bottom center;
 		} */
 
 		/* Project Content */
 
 		::view-transition-group(project-content) {
 			overflow: clip;
-		}
-
-		::view-transition-old(project-content),
-		::view-transition-new(project-content) {
-			object-fit: cover;
-			object-position: bottom center;
-			/* object-position: top center; */
-			height: 100%;
-			/* width: 100%;
-			height: auto; */
 		}
 	</style>
 </html>
