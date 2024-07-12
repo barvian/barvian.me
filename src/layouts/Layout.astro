@@ -118,7 +118,7 @@ const projectsWithDemos = (
 		::view-transition-old(*),
 		::view-transition-new(*) {
 			animation-timing-function: ease;
-			animation-duration: 450ms; /* match the spring perceived duration */
+			animation-duration: 300ms;
 		}
 
 		::view-transition-old(root),
@@ -138,11 +138,6 @@ const projectsWithDemos = (
 			animation-duration: 500ms;
 		}
 
-		::view-transition-old(root),
-		::view-transition-new(root) {
-			animation-duration: 300ms;
-		}
-
 
 		/* Speed up for back */
 		[data-astro-transition="back"]::view-transition-group(*),
@@ -157,7 +152,7 @@ const projectsWithDemos = (
 
 		[data-astro-transition="back"]::view-transition-old(*),
 		[data-astro-transition="back"]::view-transition-new(*) {
-			animation-duration: 400ms;
+			animation-duration: 250ms;
 		}
 
 		/* Exit animations */
