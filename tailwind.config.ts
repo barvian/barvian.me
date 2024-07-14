@@ -30,12 +30,11 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: [
-					"'Favorit', 'sans-serif'",
+					`'Favorit', ${defaultTheme.fontFamily.sans.join(', ')}`,
 					{
 						fontFeatureSettings: "'ss11'"
 					}
-				],
-				system: defaultTheme.fontFamily.sans
+				]
 			},
 			aspectRatio: {
 				golden: '1.618'
