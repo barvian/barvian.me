@@ -24,7 +24,7 @@
 		"@types/nprogress": "^0.2.3",
 		"@vueuse/components": "^10.7.2",
 		"@vueuse/core": "^10.7.2",
-		"astro": "^4.6.3",
+		"astro": "4.6.x",
 		"astro-tweet": "^0.0.4",
 		"color2k": "^2.0.3",
 		"map-obj": "^5.0.2",

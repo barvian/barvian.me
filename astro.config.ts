@@ -20,11 +20,6 @@ export default defineConfig({
 		}),
 		mdx()
 	],
-	markdown: {
-		shikiConfig: {
-			theme: 'vesper'
-		}
-	},
 	output: 'hybrid',
 	adapter: vercel({
 		isr: {

@@ -8,7 +8,7 @@ export const POST: APIRoute = async ({ request }) => {
 		const text = await request.text()
 
 		const signature = crypto
-			.createHmac('sha256', process.env.GITHUB_WEBHOOK_SECRET || '')
+			.createHmac('sha256', import.meta.env.GITHUB_WEBHOOK_SECRET || '')
 			.update(text)
 			.digest('hex')
 
@@ -26,9 +26,9 @@ export const POST: APIRoute = async ({ request }) => {
 		}
 
 		console.log('[Astro] Revalidating /')
-		if (!process.env.ISR_BYPASS_TOKEN) throw new Error('No ISR bypass token set')
+		if (!import.meta.env.ISR_BYPASS_TOKEN) throw new Error('No ISR bypass token set')
 		const headers = new Headers()
-		headers.set('x-prerender-revalidate', process.env.ISR_BYPASS_TOKEN)
+		headers.set('x-prerender-revalidate', import.meta.env.ISR_BYPASS_TOKEN)
 		await fetch(new URL('/', request.url), {
 			method: 'HEAD',
 			headers
