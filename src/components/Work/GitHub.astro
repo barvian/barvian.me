@@ -11,7 +11,9 @@ type Props = {
 const { entry } = Astro.props
 const { data } = entry
 
-const repo = await fetch(`https://api.github.com/repos/${data.github}`).then((r) => r.json())
+const repo = await fetch(`https://api.github.com/respos/${data.github}`).then((r) =>
+	r.ok ? r.json() : Promise.reject(`Could not fetch repo ${data.github}`)
+)
 const languages = await fetch(
 	'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json'
 ).then((r) => r.json())
