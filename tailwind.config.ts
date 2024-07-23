@@ -32,7 +32,7 @@ export default {
 				sans: [
 					`'Favorit', ${defaultTheme.fontFamily.sans.join(', ')}`,
 					{
-						fontFeatureSettings: "'ss11'"
+						fontFeatureSettings: "'ss11', 'ss04'"
 					}
 				]
 			},
