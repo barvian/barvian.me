@@ -19,6 +19,10 @@
 		font-weight: theme(fontWeight.medium);
 	}
 
+	:root {
+		font-variant-ligatures: no-common-ligatures;
+	}
+
 	*,
 	*::before,
 	*::after {
