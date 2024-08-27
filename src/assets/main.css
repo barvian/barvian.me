@@ -47,7 +47,7 @@
 	}
 
 	.ring-contrast {
-		@apply ring-1 ring-inset ring-black/[7.5%] dark:ring-white/[7.5%];
+		@apply ring-1 ring-inset ring-black/10 dark:ring-white/10;
 	}
 
 	.ring-contrastier {
@@ -86,6 +86,6 @@
 	}
 
 	.link-underline {
-		@apply relative inline-block no-underline transition after:absolute after:left-0 after:top-1/2 after:mt-[.6em] after:h-[1px] after:w-full after:origin-top after:bg-current after:opacity-75 after:transition-opacity after:ease-out-quad hover:after:opacity-100;
+		@apply underline-offset-[0.3em] transition-[text-decoration-color] ease-out-quad decoration-current/75 hover:decoration-current;
 	}
 }

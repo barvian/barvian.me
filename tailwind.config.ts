@@ -81,9 +81,14 @@ export default {
 		plugin(({ matchVariant, addVariant, matchUtilities, theme }) => {
 			matchUtilities(
 				{
-					'text-current': (_, { modifier }) => ({
-						color: `color-mix(in srgb, currentColor, transparent ${(1 - modifier) * 100}%)`
-					})
+					'text-current': (_, { modifier }) =>
+						modifier && {
+							color: `color-mix(in srgb, currentColor, transparent ${(1 - modifier) * 100}%)`
+						},
+					'decoration-current': (_, { modifier }) =>
+						modifier && {
+							'text-decoration-color': `color-mix(in srgb, currentColor, transparent ${(1 - modifier) * 100}%)`
+						}
 				},
 				{ values: { DEFAULT: '' }, modifiers: theme('opacity') }
 			)
