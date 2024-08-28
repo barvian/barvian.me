@@ -114,45 +114,39 @@ const projectsWithDemos = (
 			animation-duration: 575ms;
 		}
 		
-		/* And an ease for the parts that don't transform */
+		/* And a faster ease for the parts that don't transform */
 		::view-transition-old(*),
 		::view-transition-new(*) {
 			animation-timing-function: ease;
 			animation-duration: 300ms;
 		}
 
-		::view-transition-old(root),
-		::view-transition-new(root) {
-			transform-origin: top center;
-		}
-
-		/* Speed up parts that don't move a lot */
-
-		::view-transition-group(root),
-		::view-transition-image-pair(root) {
-			animation-timing-function: linear(
-				0, 0.005, 0.02 2%, 0.08 4.5%, 0.469 15.1%, 0.567, 0.65, 0.723 24.3%,
-				0.784 27.6%, 0.836 31.1%, 0.878 34.8%, 0.914 39%, 0.943 43.7%, 0.964 49.1%,
-				0.979 55.3%, 0.989 62.3%, 0.995 71%, 1
-			);
-			animation-duration: 500ms;
-		}
-
-
 		/* Speed up for back */
-		[data-astro-transition="back"]::view-transition-group(*),
-		[data-astro-transition="back"]::view-transition-image-pair(*) {
-			animation-timing-function: linear(
-				0, 0.005, 0.02 2%, 0.08 4.5%, 0.469 15.1%, 0.567, 0.65, 0.723 24.3%,
-				0.784 27.6%, 0.836 31.1%, 0.878 34.8%, 0.914 39%, 0.943 43.7%, 0.964 49.1%,
-				0.979 55.3%, 0.989 62.3%, 0.995 71%, 1
-			);
-			animation-duration: 575ms;
+		[data-transition-to="/"]::view-transition-group(project-container),
+		[data-transition-to="/"]::view-transition-image-pair(project-container) {
+			animation-timing-function: linear(0, 0.0158, 0.0559 3.63%, 0.5078 16.33%, 0.6624, 0.7754 27.22%, 0.831, 0.8739, 0.9065 38.1%, 0.941, 0.9631, 0.9772 54.43%, 0.9881 61.69%, 0.9948 70.76%, 0.9981 81.65%, 0.9997 99.8%);
+			animation-duration: 0.3320s;
 		}
 
-		[data-astro-transition="back"]::view-transition-old(*),
-		[data-astro-transition="back"]::view-transition-new(*) {
-			animation-duration: 250ms;
+		[data-transition-to="/"]::view-transition-group(project-header),
+		[data-transition-to="/"]::view-transition-image-pair(project-header),
+		[data-transition-to="/"]::view-transition-group(project-hero),
+		[data-transition-to="/"]::view-transition-image-pair(project-hero),
+		[data-transition-to="/"]::view-transition-group(project-content),
+		[data-transition-to="/"]::view-transition-image-pair(project-content) {
+			animation-timing-function: linear(0, 0.0033 0.8%, 0.0263 2.39%, 0.0896 4.77%, 0.4676 15.12%, 0.5688, 0.6553, 0.7274, 0.7862, 0.8336 31.04%, 0.8793, 0.9132 38.99%, 0.9421 43.77%, 0.9642 49.34%, 0.9796 55.71%, 0.9893 62.87%, 0.9952 71.62%, 0.9983 82.76%, 0.9996 99.47%);
+			animation-duration: 0.5013s;
+		}
+
+		[data-transition-to="/"]::view-transition-old(project-container),
+		[data-transition-to="/"]::view-transition-new(project-container),
+		[data-transition-to="/"]::view-transition-old(project-header),
+		[data-transition-to="/"]::view-transition-new(project-header),
+		[data-transition-to="/"]::view-transition-old(project-hero),
+		[data-transition-to="/"]::view-transition-new(project-hero),
+		[data-transition-to="/"]::view-transition-old(project-content),
+		[data-transition-to="/"]::view-transition-new(project-content) {
+			animation-duration: 200ms;
 		}
 
 		/* Exit animations */
@@ -172,11 +166,9 @@ const projectsWithDemos = (
 			animation-name: pop;
 		}
 
-		[data-transition-to='/']::view-transition-old(root) {
-			animation: none;
-			opacity: 0;
-		}
-
+		::view-transition-group(back),
+		::view-transition-group(name),
+		::view-transition-group(title),
 		::view-transition-group(project-hero) {
 			z-index: 10;
 		}
@@ -222,8 +214,20 @@ const projectsWithDemos = (
 
 		/* Project Content */
 
+		::view-transition-image-pair(project-container) {
+			border-radius: 1rem;
+			overflow: clip;
+		}
+
+		[data-transition-from='/']::view-transition-new(project-container),
+		[data-transition-to='/']::view-transition-old(project-container) {
+			animation: none;
+			opacity: 1;
+			height: 100%;
+		}
+
 		::view-transition-group(project-content) {
-			/* overflow: clip; */
+			overflow: clip;
 		}
 	</style>
 </html>

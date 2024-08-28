@@ -41,7 +41,10 @@ const Demo =
 		.default as AstroComponentFactory)
 ---
 
-<Layout bodyClass="container" title={`${data.title}, by Maxwell Barvian`}>
+<Layout
+	bodyClass="container bg-white dark:bg-black [view-transition-name:project-container]"
+	title={`${data.title}, by Maxwell Barvian`}
+>
 	<header
 		class="max-xl:mx-auto max-xl:mb-8 max-xl:max-w-prose max-xl:~pt-8/16 xl:fixed xl:~top-8/16"
 	>
