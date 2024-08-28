@@ -86,6 +86,6 @@
 	}
 
 	.link-underline {
-		@apply underline-offset-[0.3em] transition-[text-decoration-color] ease-out-quad decoration-current/75 hover:decoration-current;
+		@apply underline underline-offset-[0.3em] transition-[text-decoration-color] ease-out-quad decoration-current/75 hover:decoration-current;
 	}
 }
