@@ -9,11 +9,10 @@ export type Props = ComponentProps<typeof AstroTweet>
 </div>
 
 <style is:global>
-	.Tweet ._root_1ec15_1 {
-		white-space: unset;
-	}
-
 	.Tweet p {
 		white-space: unset !important;
+	}
+	.Tweet [class*='root']:not(.astro-tweet-theme):has(video) {
+		display: none !important;
 	}
 </style>
