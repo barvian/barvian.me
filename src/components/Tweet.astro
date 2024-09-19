@@ -1,18 +1,24 @@
 ---
 import AstroTweet from 'astro-tweet'
 import type { ComponentProps } from 'astro/types'
-export type Props = ComponentProps<typeof AstroTweet>
+export type Props = ComponentProps<typeof AstroTweet> & {
+	hideVideos?: boolean
+}
+const { hideVideos } = Astro.props
 ---
 
-<div class="not-prose Tweet">
-	<AstroTweet {...Astro.props} />
+<div class:list={['Tweet', hideVideos && 'Tweet-HideVideos']}>
+	<AstroTweet className="not-prose" {...Astro.props} />
 </div>
 
 <style is:global>
+	.Tweet .astro-tweet-theme {
+		--tweet-container-margin: 0;
+	}
 	.Tweet p {
 		white-space: unset !important;
 	}
-	.Tweet [class*='root']:not(.astro-tweet-theme):has(video) {
+	.Tweet-HideVideos [class*='root']:not(.astro-tweet-theme):has(video) {
 		display: none !important;
 	}
 </style>

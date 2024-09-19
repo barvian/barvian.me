@@ -72,6 +72,16 @@ export default {
 			backgroundImage: {
 				'to-dark':
 					'linear-gradient(to bottom,transparent,rgba(0,0,0,.7) 50%,rgba(0,0,0,0.9) 75%,rgba(0,0,0,0.9))'
+			},
+			typography: {
+				DEFAULT: {
+					css: {
+						'.Tweet': {
+							'margin-top': '1.777em',
+							'margin-bottom': '1.777em'
+						}
+					}
+				}
 			}
 		}
 	},
