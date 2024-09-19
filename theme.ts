@@ -1,10 +1,10 @@
-import { screens as _screens } from 'tw-reset/defaultTheme'
-const { '2xl': _, ...screensInRem } = _screens
-
 // Things that need to be exported on the client
 
 export const screens = {
-	...screensInRem,
 	xs: '26rem',
-	md: '53.75rem'
+	sm: '40rem',
+	md: '53.75rem',
+	lg: '64rem',
+	xl: '80rem'
+	// '2xl': '96rem',
 }
