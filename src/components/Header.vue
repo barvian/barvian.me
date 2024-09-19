@@ -38,13 +38,13 @@ const isMounted = useMounted()
 					v-on-click-outside="() => (socialExpanded = false)"
 					id="social"
 					aria-label="Social links"
-					class="isolate flex items-center ~/sm:~gap-0/2 max-xs:*:bg-white/10 max-xs:*:backdrop-blur-lg max-xs:*:transition-all max-xs:~min-[20rem]/[22rem]:~-space-x-9/6"
+					class="isolate flex items-center ~/sm:~gap-1/2 max-xs:*:bg-white/10 max-xs:*:backdrop-blur-lg max-xs:*:transition-all max-xs:~min-[20rem]/[22rem]:~-space-x-9/6"
 					:class="{ 'max-xs:!space-x-0': socialExpanded }"
 				>
 					<Button
-						icon="email"
 						class="inactive:text-current/75"
-						href="mailto:max@barvian.me"
+						icon="x"
+						href="https://x.com/mbarvian"
 						preset="tertiary"
 					/>
 					<Button
@@ -55,14 +55,14 @@ const isMounted = useMounted()
 					/>
 					<Button
 						class="-z-20 inactive:text-current/75"
-						icon="x"
-						href="https://x.com/mbarvian"
+						icon="linkedin"
+						href="https://linkedin.com/in/barvian"
 						preset="tertiary"
 					/>
 					<Button
+						icon="email"
 						class="-z-30 inactive:text-current/75"
-						icon="linkedin"
-						href="https://linkedin.com/in/barvian"
+						href="mailto:max@barvian.me"
 						preset="tertiary"
 					/>
 					<!-- <Button
