@@ -117,7 +117,7 @@ const projectsWithDemos = (
 		/* And an ease for the parts that don't transform */
 		::view-transition-old(*),
 		::view-transition-new(*) {
-			animation-timing-function: ease;
+			animation-timing-function: ease-out;
 			animation-duration: 300ms;
 		}
 
@@ -222,8 +222,20 @@ const projectsWithDemos = (
 
 		/* Project Content */
 
-		::view-transition-group(project-content) {
-			overflow: clip;
+		/* Prevent the content from overlaying the other cards */
+		[data-transition-from='/']::view-transition-old(project-content),
+		[data-transition-from='/']::view-transition-new(project-content){
+			animation-delay: 100ms;
+		}
+
+		[data-transition-to='/']::view-transition-old(project-content),
+		[data-transition-to='/']::view-transition-new(project-content) {
+			animation-duration: 125ms;
+		}
+		
+		[data-astro-transition="back"][data-transition-to='/']::view-transition-old(project-content),
+		[data-astro-transition="back"][data-transition-to='/']::view-transition-new(project-content) {
+			animation-duration: 100ms;
 		}
 	</style>
 </html>
