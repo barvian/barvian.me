@@ -24,6 +24,13 @@ const languages = await fetch(
 ).then((r) => r.json())
 const color = languages[repo.language]?.color
 const { poster, src } = await getVideo(entry)
+const stargazers: number = repo.stargazers_count
+const formattedStars = stargazers.toLocaleString('en-US', {
+	notation: 'compact',
+	compactDisplay: 'short'
+	// GitHub rounds these (Twitter truncates)
+	// roundingMode: 'trunc'
+})
 ---
 
 <div class="@container">
@@ -75,7 +82,7 @@ const { poster, src } = await getVideo(entry)
 						></path>
 					</svg>
 				</dt>
-				<dd>{repo.stargazers_count}</dd>
+				<dd>{formattedStars}</dd>
 			</div>
 			<div class="flex items-baseline gap-2 whitespace-nowrap opacity-75">
 				<dt>
