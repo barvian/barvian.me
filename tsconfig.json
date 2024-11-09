@@ -1,6 +1,6 @@
 {
-	"extends": "astro/tsconfigs/strict",
-	"exclude": ["dist"], // not sure why this isn't set by default
+	"extends": "astro/tsconfigs/strictest",
+	"exclude": ["dist"],
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true,
@@ -10,6 +10,7 @@
 			"@/*": ["./src/*"]
 		},
 		"verbatimModuleSyntax": true,
-		"jsx": "preserve"
+		"jsx": "react-jsx",
+		"jsxImportSource": "react"
 	}
 }

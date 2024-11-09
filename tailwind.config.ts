@@ -5,7 +5,7 @@ import { normalize } from 'tailwindcss/src/util/dataTypes'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import reset from 'tw-reset'
 import { screens } from './theme'
-import fluid, { extract, type FluidThemeConfig } from 'fluid-tailwind'
+import fluid, { extract } from 'fluid-tailwind'
 
 export default {
 	presets: [reset],
@@ -100,7 +100,7 @@ export default {
 							'text-decoration-color': `color-mix(in srgb, currentColor, transparent ${(1 - modifier) * 100}%)`
 						}
 				},
-				{ values: { DEFAULT: '' }, modifiers: theme('opacity') }
+				{ values: { DEFAULT: '' }, modifiers: theme('opacity')! }
 			)
 
 			addVariant('inactive', '&:not(:hover,:active,:focus-visible)')

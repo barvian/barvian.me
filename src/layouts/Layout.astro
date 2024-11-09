@@ -1,8 +1,8 @@
 ---
-import { getCollection } from 'astro:content'
 import '@/assets/main.css'
 import { ViewTransitions } from 'astro:transitions'
-import Progress from '@/components/Progress.vue'
+import Progress from '@/components/Progress'
+import { getProjectsWithDemos } from '@/utils/content'
 
 type Props = {
 	title?: string
@@ -10,10 +10,7 @@ type Props = {
 }
 
 const { title = 'Maxwell Barvian, Design Engineer', bodyClass } = Astro.props
-
-const projectsWithDemos = (
-	await getCollection('works', ({ data }) => data.type === 'project' && data.demo)
-).map((project) => project.slug)
+const projectsWithDemos = await getProjectsWithDemos()
 ---
 
 <!doctype html>
@@ -35,17 +32,15 @@ const projectsWithDemos = (
 	<body class:list={[bodyClass, 'min-h-[100svh]']}>
 		<slot />
 		<Progress client:load transition:persist="progress" />
-	</body><script>
+	</body>
+	<script>
 		import {
 			isTransitionBeforePreparationEvent,
-			isTransitionBeforeSwapEvent
 		} from 'astro:transitions/client'
-		import { nextTick } from 'vue'
 
 		function markActiveProject(doc: Document, slug: string) {
 			const project = doc.querySelector<HTMLAnchorElement>(`a[data-project][href="${slug}"]`)
 			if (!project) return
-			window.__PROJECTS_WITH_DEMOS__
 
 			project.dataset.project = 'active'
 			document.addEventListener(
@@ -78,16 +73,6 @@ const projectsWithDemos = (
 				},
 				{ once: true }
 			)
-		})
-
-		// Flush pending Vue changes before swapping
-		document.addEventListener('astro:before-swap', (event) => {
-			if (!isTransitionBeforeSwapEvent(event)) return
-			const defaultSwap = event.swap
-			event.swap = async () => {
-				await nextTick()
-				defaultSwap()
-			}
 		})
 
 		document.addEventListener('astro:after-transition', () => {
@@ -236,6 +221,16 @@ const projectsWithDemos = (
 		[data-astro-transition="back"][data-transition-to='/']::view-transition-old(project-content),
 		[data-astro-transition="back"][data-transition-to='/']::view-transition-new(project-content) {
 			animation-duration: 100ms;
+		}
+
+		::view-transition-old(progress) {
+			/* This is a persistent element, so let the new always show on top. See https://developer.chrome.com/docs/web-platform/view-transitions#making_the_most_of_content_you_already_have */
+			animation: none;
+			opacity: 0;
+		}
+
+		::view-transition-new(progress) {
+			animation: none;
 		}
 	</style>
 </html>

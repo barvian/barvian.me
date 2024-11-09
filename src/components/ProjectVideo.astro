@@ -1,7 +1,7 @@
 ---
 import { getVideo } from '@/utils/assets'
 import type { ProjectEntry } from '@/schemas/work'
-import ProjectVideoVue from './ProjectVideo.vue'
+import ProjectVideoReact from './ProjectVideo'
 
 type Props = {
 	entry: ProjectEntry
@@ -13,4 +13,4 @@ const { slug } = entry
 const { poster, src } = await getVideo(entry)
 ---
 
-<ProjectVideoVue {slug} {poster} {src} client:load transition:persist={`${slug}-hero`} />
+<ProjectVideoReact {slug} {poster} {src} client:load transition:persist={`${slug}-hero`} />
