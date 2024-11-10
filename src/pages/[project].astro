@@ -55,7 +55,7 @@ const Demo =
 					class="w-fit opacity-45 transition-opacity ease-out-quad group-hover:opacity-85 group-focus-visible:outline group-active:opacity-65"
 					style="view-transition-name: back"
 				>
-					<External class="h-2.5 rotate-225" />
+					<External className="h-2.5 rotate-225" />
 				</div>
 				<div class="relative">
 					<span
@@ -94,7 +94,7 @@ const Demo =
 													src={company.data.logo}
 												/>
 											)}
-											<Link class="link-underline cursor-external" href={company.data.url}>
+											<Link className="link-underline cursor-external" href={company.data.url}>
 												{company.data.name}
 											</Link>
 										</span>
@@ -127,7 +127,7 @@ const Demo =
 							repo && (
 								<Button
 									preset="tertiary"
-									class="inactive:text-current/75"
+									className="inactive:text-current/75"
 									icon="github"
 									href={repo}
 								/>
@@ -136,8 +136,8 @@ const Demo =
 						{
 							data.url && (
 								<>
-									<Button class="sm:hidden" icon="external" href={data.url} />
-									<Button class="max-sm:hidden" icon="external" href={data.url}>
+									<Button className="sm:hidden" icon="external" href={data.url} />
+									<Button className="max-sm:hidden" icon="external" href={data.url}>
 										Visit
 									</Button>
 								</>
@@ -152,7 +152,7 @@ const Demo =
 								<Demo />
 							</div>
 						</div>
-					:	<Link href={data.url} class="group/hero relative block @container">
+					:	<Link href={data.url} className="group/hero relative block @container">
 							<ProjectVideo {entry} />
 						</Link>
 				}
@@ -166,7 +166,7 @@ const Demo =
 								<Button
 									size="sm"
 									preset="secondary"
-									class="inactive:text-current/75"
+									className="inactive:text-current/75"
 									href={tool.data.url}
 								>
 									{tool.data.name}

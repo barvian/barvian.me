@@ -5,7 +5,7 @@ import Dribbble from './icons/Dribbble'
 import Email from './icons/Email'
 import LinkedIn from './icons/LinkedIn'
 import { isExternal } from '@/utils/url'
-import clsx from 'clsx/lite'
+import clsx from 'clsx'
 
 const ICONS = {
 	github: {
@@ -49,11 +49,13 @@ export default function Button({
 	const external = href && isExternal(href)
 	const Icons = icon && ICONS[icon]
 
-	const nodes = [
-		Icons && 'Left' in Icons && Icons.Left,
-		children,
-		Icons && 'Right' in Icons && Icons.Right
-	]
+	const nodes = (
+		<>
+			{Icons && 'Left' in Icons && Icons.Left}
+			{children}
+			{Icons && 'Right' in Icons && Icons.Right}
+		</>
+	)
 
 	const className = clsx(
 		_cls,

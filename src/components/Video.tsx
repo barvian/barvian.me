@@ -71,7 +71,7 @@ export default function Video({
 					className="size-full object-cover object-top"
 				>
 					{src.map(({ file, type }) => (
-						<source src={file} type={`video/${type}`} />
+						<source src={file} key={file} type={`video/${type}`} />
 					))}
 				</video>
 			:	<img src={poster.src} alt="" className="size-full object-cover object-top" />}
