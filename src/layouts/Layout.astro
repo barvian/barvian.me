@@ -9,7 +9,7 @@ type Props = {
 	bodyClass?: string
 }
 
-const { title = 'Maxwell Barvian, Design Engineer', bodyClass } = Astro.props
+const { title = 'Maxwell Barvian, UI Engineer', bodyClass } = Astro.props
 
 const projectsWithDemos = (
 	await getCollection('works', ({ data }) => data.type === 'project' && data.demo)
@@ -21,7 +21,7 @@ const projectsWithDemos = (
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="author" content="Maxwell Barvian" />
-		<meta name="description" content="The portfolio of Maxwell Barvian, Design Engineer" />
+		<meta name="description" content="The portfolio of Maxwell Barvian, UI Engineer" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="shortcut icon" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
