@@ -26,7 +26,7 @@ export default function Header() {
 				/>
 				<span style={{ viewTransitionName: 'name' }}>Maxwell Barvian</span>
 				<br />
-				<span style={{ viewTransitionName: 'title' }}>Design Engineer</span>
+				<span style={{ viewTransitionName: 'title' }}>UI Engineer</span>
 			</h1>
 			<div className="max-xs:relative xs:contents">
 				<div className="max-xs:absolute max-xs:right-0 max-xs:top-1/2 max-xs:-translate-y-1/2 xs:contents">
